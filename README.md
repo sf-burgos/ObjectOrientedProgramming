@@ -1,2 +1,0 @@
-# objects
-Oriented Programming Objects 
