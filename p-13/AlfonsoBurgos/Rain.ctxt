@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Rain
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Rain\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=x\ y
+comment1.target=Rain(int,\ int)
+comment1.text=public\ Rain(int\ x,\ int\ realY)\r\n\ \ \ \ {\r\n\ \ \ \ \ \ \ \ rain\ \=\ new\ \ Rectangle\ (1,realY);\r\n\ \ \ \ \ \ \ \ flagRain\=true;\r\n\ \ \ \ \ \ \ \ rain.changeColor("blue");\r\n\ \ \ \ \ \ \ \ rain.makeVisible();\r\n\ \ \ \ \ \ \ \ rain.moveVertical(-realY);\r\n\ \ \ \ \ \ \ \ rain.moveHorizontal(x);\r\n\ \ \ \ \ \ \ \ if\ (flagRain){\r\n\ \ \ \ \ \ \ \ \ \ \ \ rain.slowMoveVertical(realY);\ \ \ \ \r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \r\n\ \ \ \ }\r\n
+numComments=2

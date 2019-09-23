@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Puncture
+comment1.params=xPos\ yPos\ visible
+comment1.target=Puncture(int,\ int,\ boolean)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Puncture\r\n\ @param\ xPos\ posicion\ en\ X,\ yPos\ \ posicion\ en\ Y,\ visible\ visibilidad\ del\ objeto\ \r\n
+comment2.params=
+comment2.target=void\ makeInvisible()
+comment2.text=\r\n\ Vuelve\ invisible\ el\ objeto\ de\ tipo\ Puncture\ \r\n
+comment3.params=
+comment3.target=void\ makeVisible()
+comment3.text=\r\n\ Vuelve\ visible\ el\ objeto\ de\ tipo\ Pucture\ \r\n
+comment4.params=
+comment4.target=int\ getXPos()
+comment5.params=
+comment5.target=int\ getYPos()
+numComments=6

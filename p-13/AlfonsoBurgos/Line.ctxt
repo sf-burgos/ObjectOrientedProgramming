@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Line
+comment0.text=\r\n\ La\ clase\ linea\ permite\ dibujar\ lineas\ entre\ dos\ puntos\ \r\n\ \r\n
+comment1.params=x1\ y1\ x2\ y2\ h
+comment1.target=Line(int,\ int,\ int,\ int,\ int)
+comment1.text=\r\n\ Create\ a\ new\ line\ at\ default\ position\ \r\n
+comment2.params=
+comment2.target=void\ makeVisible()
+comment2.text=\r\n\ Make\ this\ rectangle\ visible.\ If\ it\ was\ already\ visible,\ do\ nothing.\r\n
+comment3.params=
+comment3.target=void\ makeInvisible()
+comment3.text=\r\n\ Make\ this\ rectangle\ invisible.\ If\ it\ was\ already\ invisible,\ do\ nothing.\r\n
+comment4.params=
+comment4.target=void\ draw()
+comment4.text=\r\n\ Draw\ the\ line\ with\ current\ specifications\ on\ screen.\r\n
+comment5.params=
+comment5.target=void\ erase()
+comment5.text=\ \r\n\ Erase\ the\ line\ \r\n
+numComments=6
