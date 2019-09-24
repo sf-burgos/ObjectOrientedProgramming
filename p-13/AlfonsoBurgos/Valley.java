@@ -59,7 +59,7 @@ public class Valley
             }
         } 
         for (int j=0; j<listVinedo.size(); j++){
-            if(listVinedo.get(j).getName().equals(name) || cont==0){
+            if(listVinedo.get(j).getName().equals(name) && cont==0){
                 System.out.println("No se puede crear el viñedo,Ya existe uno con este nombre");
                 flag=false;
             }
@@ -98,19 +98,41 @@ public class Valley
                 sePuede = false;               
            }
        }
+       String col=verificarColorLona(lowerEnd,higherEnd);
        if(sePuede || listLonas.size() == 0){
-           lona = new Tarp(lowerEnd, higherEnd,realY,true);
+           lona = new Tarp(lowerEnd, higherEnd,realY,true,col);
            listLonas.add(lona);
            //ecuacion(lowerEnd, higherEnd);
        }
     }
             
     
-       /**
+     
+    public String verificarColorLona(int[] lowerEnd, int[] higherEnd){
+        int cont=0;
+        int z= lowerEnd[0]; 
+        int s = higherEnd[0];
+        String color = "black";
+        
+        for (int i=0; i < listVinedo.size(); i++){
+            
+            if (listVinedo.get(i).getInicio()<=z && z<=s && s<=listVinedo.get(i).getFin()){
+                cont+=1;
+                color= listVinedo.get(i).getName();
+                
+            }
+            if (cont==1){
+                return color;
+            }
+        }
+        return color;
+    
+    
+    }
+      /**
      * Elimina una trampa en orden de creacion o posicion en arreglo 
      * @param int position a borrar 
      */
-  
     public void removeTrap(int position){
         listLonas.get(position-1).makeInvisible(); 
         listLonas.remove(position-1);

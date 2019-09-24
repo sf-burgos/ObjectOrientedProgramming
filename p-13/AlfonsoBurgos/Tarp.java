@@ -19,10 +19,10 @@ public class Tarp
      * Constructor for objects of class Tarp
      * @param lowerEnd y higherEnd Arreglos con un punto como coordenada isVisible es el atributo de visibilidad en pantalla
      */
-    public Tarp(int[] lowerEnd ,int[] higherEnd,int h, boolean isVisible){
+    public Tarp(int[] lowerEnd ,int[] higherEnd,int h, boolean isVisible,String col){
         puntoUno= lowerEnd;
         puntoDos= higherEnd;
-        lona = new Line(lowerEnd[0],h-lowerEnd[1],higherEnd[0],h-higherEnd[1],h);
+        lona = new Line(lowerEnd[0],h-lowerEnd[1],higherEnd[0],h-higherEnd[1],h,col);
         pendiente = (float)(higherEnd[1]-lowerEnd[1])/(higherEnd[0]-lowerEnd[0]);
         puntoCorte = (float) lowerEnd[1]-(pendiente*lowerEnd[0]);  
         huecos = new ArrayList<Puncture>();

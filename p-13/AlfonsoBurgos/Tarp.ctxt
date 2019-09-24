@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=Tarp
 comment0.text=\ \r\n\ La\ clase\ Tarp\ nos\ permitira\ la\ creacion\ de\ lonas,\ dando\ como\ parametros\ las\ coordenadas\ en\ X\ y\ en\ Y\r\n
-comment1.params=lowerEnd\ higherEnd\ h\ isVisible
-comment1.target=Tarp(int[],\ int[],\ int,\ boolean)
+comment1.params=lowerEnd\ higherEnd\ h\ isVisible\ col
+comment1.target=Tarp(int[],\ int[],\ int,\ boolean,\ java.lang.String)
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Tarp\r\n\ @param\ lowerEnd\ y\ higherEnd\ Arreglos\ con\ un\ punto\ como\ coordenada\ isVisible\ es\ el\ atributo\ de\ visibilidad\ en\ pantalla\r\n
 comment10.params=m\ m2\ b1\ b2
 comment10.target=float\ interX(float,\ float,\ float,\ float)

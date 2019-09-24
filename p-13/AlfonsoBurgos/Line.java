@@ -15,12 +15,12 @@ public class Line{
     /**
      * Create a new line at default position 
      */
-    public Line(int x1,int y1,int x2,int y2,int h){
+    public Line(int x1,int y1,int x2,int y2,int h,String col){
         this.x1=x1;
         this.x2=x2;
         this.y1=y1;
         this.y2=y2;
-        color = "black";
+        color = col;
         isVisible = false;
     }
         /**
