@@ -18,7 +18,7 @@ public class VineYard
         inicio = xi;
         fin = xf;
         this.name = name;
-        rectangle = new Rectangle(3, xf-xi,xi,y, "red");
+        rectangle = new Rectangle(3, xf-xi,xi,y, name);
         if(visible){
             rectangle.makeVisible();
         }

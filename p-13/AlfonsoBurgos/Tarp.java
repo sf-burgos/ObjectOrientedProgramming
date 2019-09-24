@@ -14,6 +14,7 @@ public class Tarp
     private float pendiente; 
     private float puntoCorte;
     private ArrayList<Puncture> huecos;
+    //private ArrayList
     /**
      * Constructor for objects of class Tarp
      * @param lowerEnd y higherEnd Arreglos con un punto como coordenada isVisible es el atributo de visibilidad en pantalla

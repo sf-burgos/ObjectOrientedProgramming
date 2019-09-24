@@ -11,6 +11,7 @@ public class Valley
     private ArrayList <Rain> lluvias;  
     private  Rectangle valleyconstructor ;
     private int realY;
+    private ArrayList <String> coloresDisponibles;
 
     /**
      * Contructor de type VineYard Objects 
@@ -19,6 +20,9 @@ public class Valley
      */
     
     public Valley(int x, int y){
+       coloresDisponibles= new ArrayList<String>();
+       coloresDisponibles.add("yellow");coloresDisponibles.add("magenta");coloresDisponibles.add("blue");coloresDisponibles.add("red");coloresDisponibles.add("white");
+       
        realY=y;
        valleyconstructor = new  Rectangle (x,y);
        valleyconstructor.changeColor("green");
@@ -37,6 +41,17 @@ public class Valley
     public void openVineyard(String name, int xi, int xf){  
         boolean flag;
         flag=true;
+        int cont=0;int bandera=-1;
+        for (String color:coloresDisponibles){
+            if (color==name){
+            bandera=coloresDisponibles.indexOf(color);
+            cont+=1;    
+            }  
+        
+        }
+        if (bandera!=-1){
+            coloresDisponibles.remove(bandera);
+        }
         for (int i=0; i<listVinedo.size(); i++){
             if(((listVinedo.get(i).getInicio()<=xi) && xi<=listVinedo.get(i).getFin())||( (listVinedo.get(i).getFin()<=xf) && (xf<=listVinedo.get(i).getFin()))){
                 System.out.println("Operacion invalida debido a existencia de un viñedo en esta posicion");
@@ -44,16 +59,18 @@ public class Valley
             }
         } 
         for (int j=0; j<listVinedo.size(); j++){
-            if(listVinedo.get(j).getName().equals(name)){
+            if(listVinedo.get(j).getName().equals(name) || cont==0){
                 System.out.println("No se puede crear el viñedo,Ya existe uno con este nombre");
                 flag=false;
             }
         }
         
-        if (flag || listVinedo.size()==0) {
+        if (flag || listVinedo.size()==0 && cont==1) {
             VineYard vinedo = new VineYard(name,xi,xf,realY,true);
             listVinedo.add(vinedo);                           
         }
+      
+       
     }
               
 
@@ -124,54 +141,63 @@ public class Valley
         int j=0; 
         for (int i=0; i< listLonas.size();i++){                   
             while  (j!= realY ){ 
-                if (x <= listLonas.get(i).getPuntoDos()[0] && x >= listLonas.get(i).getPuntoUno()[0]){
-                    float k= (listLonas.get(i).getPendiente()*x)+listLonas.get(i).getPuntoCorte();
-                    //System.out.println(k+" "+j);
-                    if (realY-j==(int) k){
-                        ArrayList<Puncture> huecos = new ArrayList<Puncture>();
-                        huecos = listLonas.get(i).getHuecos(); 
-                        for(int m=0;m<huecos.size();m++){
-                            if(huecos.get(m).getXPos() == x && huecos.get(m).getYPos() == j){
-                                j = j+1;
-                                Rain lluvia = new Rain(x,j);
-                            }
+                
+                if (VerificarHuecos(listLonas.get(i),x,j)){
+                    System.out.println("Estamos melos");
+                    j=j+1;
+                    Rain lluvia = new Rain (x,j);
+                    break;
+                }
+                else{
+                    if (x <= listLonas.get(i).getPuntoDos()[0] && x >= listLonas.get(i).getPuntoUno()[0]){
+                        float k= (listLonas.get(i).getPendiente()*x)+listLonas.get(i).getPuntoCorte();
+                        //System.out.println(k+" "+j);
+                        if (realY-j==(int) k){
                             
-                        
-                        
-                        //System.out.println(listLonas.get(i).getPendiente());
-                        else if ((int) listLonas.get(i).getPendiente()>0){
-                             //System.out.println("pendiente positiva");  
-                             //System.out.println(x+""+j); 
-                             x=x-1;
-                             j=j-1;
-                             Rain lluvia = new Rain (x,j);
+                                
+                            
+                            
+                            //System.out.println(listLonas.get(i).getPendiente());
+                            if ((int) listLonas.get(i).getPendiente()>0){
+                                 //System.out.println("pendiente positiva");  
+                                 //System.out.println(x+""+j); 
+                                 x=x-1;
+                                 j=j-1;
+                                 Rain lluvia = new Rain (x,j);
+                            }
+                            else{
+                                //System.out.println("pendiente negativa");  
+                                x=x+1;
+                                j=j-1;
+                                Rain lluvia = new Rain (x,j);  
+                            }
                         }
+                        
                         else{
-                            //System.out.println("pendiente negativa");  
-                            x=x+1;
-                            j=j-1;
-                            Rain lluvia = new Rain (x,j);  
+                            j=j+1;
+                            Rain lluvia = new Rain (x,j);
                         }
+                            
                     }
+                    else if (VerificarHuecos(listLonas.get(i+1),x,j)){
+                        break;
+                    }
+            
+                    
+                    else if(i<listLonas.size()-1 && (x<= listLonas.get(i+1).getPuntoDos()[0] && x >= listLonas.get(i+1).getPuntoUno()[0])){
+                        break;
                     }
                     else{
                         j=j+1;
                         Rain lluvia = new Rain (x,j);
                     }
-                        
-                }
-                else if(i<listLonas.size()-1 && (x<= listLonas.get(i+1).getPuntoDos()[0] && x >= listLonas.get(i+1).getPuntoUno()[0])){
-                    break;
-                }
-                else{
-                    j=j+1;
-                    Rain lluvia = new Rain (x,j);
-                }
-                    
+                }   
             }
+        
                 
                   
         }
+        
     }
     /**
      * Cuando se invoca este metodo para la lluvia 
@@ -221,6 +247,19 @@ public class Valley
         canvas.zoom(simbolo);
     }
     
+    public boolean VerificarHuecos(Tarp lona, int x, int y){
+        ArrayList<Puncture> huecos = new ArrayList <Puncture>();
+        huecos=lona.getHuecos();
+        for (int i=0; i<huecos.size(); i++){
+            System.out.println(huecos.get(i).getXPos()+" "+huecos.get(i).getYPos()+" "+x+" "+y);
+            if (x==huecos.get(i).getXPos() && y==huecos.get(i).getYPos()){
+                return true;
+             
+            }
+         
+        }
+        return false; 
+    }
     
 
 }
