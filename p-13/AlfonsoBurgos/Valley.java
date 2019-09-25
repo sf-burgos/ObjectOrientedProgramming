@@ -283,6 +283,42 @@ public class Valley
         return false; 
     }
     
+    public int[][] vineyards(){
+        int[][] vinedos = new int[listVinedo.size()][1];
+        for (int i = 0; i<listVinedo.size(); i++){
+            int inicio = listVinedo.get(i).getInicio(); int fin= listVinedo.get(i).getFin();
+            int [] coordenada = new int[2]; 
+            coordenada[0] = inicio;
+            coordenada[1] = fin; 
+            vinedos[i] = coordenada;                      
+        }
+        return vinedos;
+    }
+    
+    public int[][][] tarps(){
+        int[][][] tarps = new int[listLonas.size()][listLonas.size()][listLonas.size()];
+        for (int i = 0; i<listLonas.size(); i++){
+            for (int j = 0; j<listLonas.size(); j++){
+                for (int k = 0; k<listLonas.size(); k++){
+                    if(i==j){
+                        int [] puntoUno = listLonas.get(i).getPuntoUno();
+                        tarps[i][j] = puntoUno;                        
+                    }
+                    else if(i==j+1){
+                        int [] puntoDos = listLonas.get(i).getPuntoDos();
+                        tarps[i][j+1] = puntoDos;      
+                    }else if(i-2 == k){
+                        int [] huecos = listLonas.get(i).posXHuecos();
+                        tarps[i][j+2] = huecos;      
+                    }
+                    
+                }               
+            }
+        }
+        return tarps;
+        
+    }
+    
 
 }
  

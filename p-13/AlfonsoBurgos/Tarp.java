@@ -29,7 +29,6 @@ public class Tarp
         if(isVisible){
             lona.makeVisible(); 
         }   
-        longitud = Math.pow((Math.pow((higherEnd[0]-lowerEnd[0]),2)+Math.pow((higherEnd[1]-lowerEnd[1]),2)),(0.5));
     }
     
     /**
@@ -99,6 +98,13 @@ public class Tarp
         return huecos;
     }
     
+    public int[] posXHuecos(){
+        int[] huecosX = new int[huecos.size()];
+        for (int i = 0; i<huecos.size(); i++){
+            huecosX[i] = huecos.get(i).getXPos();
+        }
+        return huecosX;
+    }
         
 
 
