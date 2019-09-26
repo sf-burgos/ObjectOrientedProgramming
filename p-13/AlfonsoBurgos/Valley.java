@@ -21,8 +21,7 @@ public class Valley
     
     public Valley(int x, int y){
        coloresDisponibles= new ArrayList<String>();
-       coloresDisponibles.add("yellow");coloresDisponibles.add("magenta");coloresDisponibles.add("blue");coloresDisponibles.add("red");coloresDisponibles.add("white");
-       
+       coloresDisponibles.add("yellow");coloresDisponibles.add("magenta");coloresDisponibles.add("blue");coloresDisponibles.add("red");coloresDisponibles.add("white");       
        realY=y;
        valleyconstructor = new  Rectangle (x,y);
        valleyconstructor.changeColor("green");
@@ -162,10 +161,8 @@ public class Valley
     public void startRain(int x){
         int j=0; 
         for (int i=0; i< listLonas.size();i++){                   
-            while  (j!= realY ){ 
-                
+            while  (j!= realY ){                 
                 if (VerificarHuecos(listLonas.get(i),x,j)){
-                    System.out.println("Estamos melos");
                     j=j+1;
                     Rain lluvia = new Rain (x,j);
                     break;
@@ -174,11 +171,7 @@ public class Valley
                     if (x <= listLonas.get(i).getPuntoDos()[0] && x >= listLonas.get(i).getPuntoUno()[0]){
                         float k= (listLonas.get(i).getPendiente()*x)+listLonas.get(i).getPuntoCorte();
                         //System.out.println(k+" "+j);
-                        if (realY-j==(int) k){
-                            
-                                
-                            
-                            
+                        if (realY-j==(int) k){                                                                                                                    
                             //System.out.println(listLonas.get(i).getPendiente());
                             if ((int) listLonas.get(i).getPendiente()>0){
                                  //System.out.println("pendiente positiva");  
@@ -193,20 +186,13 @@ public class Valley
                                 j=j-1;
                                 Rain lluvia = new Rain (x,j);  
                             }
-                        }
-                        
+                        }                        
                         else{
                             j=j+1;
                             Rain lluvia = new Rain (x,j);
-                        }
-                            
-                    }
-                    else if (VerificarHuecos(listLonas.get(i+1),x,j)){
-                        break;
-                    }
-            
-                    
-                    else if(i<listLonas.size()-1 && (x<= listLonas.get(i+1).getPuntoDos()[0] && x >= listLonas.get(i+1).getPuntoUno()[0])){
+                        }                            
+                    }                             
+                    else if(i<listLonas.size()-1 && (x<= listLonas.get(i+1).getPuntoDos()[0] && x >= listLonas.get(i+1).getPuntoUno()[0]) && !(VerificarHuecos(listLonas.get(i+1),x,j))){
                         break;
                     }
                     else{
@@ -214,10 +200,7 @@ public class Valley
                         Rain lluvia = new Rain (x,j);
                     }
                 }   
-            }
-        
-                
-                  
+            }                                          
         }
         
     }
@@ -297,28 +280,31 @@ public class Valley
     
     public int[][][] tarps(){
         int[][][] tarps = new int[listLonas.size()][listLonas.size()][listLonas.size()];
-        for (int i = 0; i<listLonas.size(); i++){
-            for (int j = 0; j<listLonas.size(); j++){
-                for (int k = 0; k<listLonas.size(); k++){
-                    if(i==j){
-                        int [] puntoUno = listLonas.get(i).getPuntoUno();
-                        tarps[i][j] = puntoUno;                        
-                    }
-                    else if(i==j+1){
-                        int [] puntoDos = listLonas.get(i).getPuntoDos();
-                        tarps[i][j+1] = puntoDos;      
-                    }else if(i-2 == k){
-                        int [] huecos = listLonas.get(i).posXHuecos();
-                        tarps[i][j+2] = huecos;      
-                    }
+        int[] puntoI = new int[2];
+        int[] puntoF = new int[2];
+        for (int i = 0; i<tarps.length; i++){
+            puntoI = listLonas.get(i).getPuntoUno();
+            puntoF = listLonas.get(i).getPuntoDos();
+            int[] huecos = listLonas.get(i).posXHuecos();   
+            int mat[][] = new int[3][3];
+            for (int j= 0; j<tarps[i].length;j++){
+                if(j==0){
+                    mat[j] = puntoI;
+                }else if(j==1){
+                    mat[j] = puntoF;
+
+                }else{
+                    mat[j] = huecos;
+                }
+                for(int k=0; k<tarps[i][j].length;k++){
+                    tarps[i] = mat;
                     
-                }               
+                }
             }
         }
-        return tarps;
-        
-    }
-    
-
+            return tarps;
+        }                        
 }
+
+
  
