@@ -12,6 +12,7 @@ public class Valley
     private  Rectangle valleyconstructor ;
     private int realY;
     private ArrayList <String> coloresDisponibles;
+    private static int vinedosX;
 
     /**
      * Contructor de type VineYard Objects 
@@ -28,9 +29,7 @@ public class Valley
        valleyconstructor.makeVisible();
        listVinedo  = new ArrayList<VineYard>();  
        listLonas = new ArrayList<Tarp>();
-       lluvias = new ArrayList<Rain> ();
-
-       
+       lluvias = new ArrayList<Rain> ();       
     }
     /**
      * Abre un nuevo VineYard teniendo en cuenta que no pueden estar uno encima del otro y ademas que tienen que tener nombre diferentes
@@ -45,8 +44,7 @@ public class Valley
             if (color==name){
             bandera=coloresDisponibles.indexOf(color);
             cont+=1;    
-            }  
-        
+            }          
         }
         if (bandera!=-1){
             coloresDisponibles.remove(bandera);
@@ -62,8 +60,7 @@ public class Valley
                 System.out.println("No se puede crear el viñedo,Ya existe uno con este nombre");
                 flag=false;
             }
-        }
-        
+        }        
         if (flag || listVinedo.size()==0 && cont==1) {
             VineYard vinedo = new VineYard(name,xi,xf,realY,true);
             listVinedo.add(vinedo);                           
@@ -166,26 +163,19 @@ public class Valley
                     j=j+1;
                     Rain lluvia = new Rain (x,j);
                     break;
-                }
+                }  
                 else{
-                    if (x <= listLonas.get(i).getPuntoDos()[0] && x >= listLonas.get(i).getPuntoUno()[0]){
-                        float k= (listLonas.get(i).getPendiente()*x)+listLonas.get(i).getPuntoCorte();
-                        //System.out.println(k+" "+j);
-                        if (realY-j==(int) k){                                                                                                                    
-                            //System.out.println(listLonas.get(i).getPendiente());
+                    if (x <= listLonas.get(i).getPuntoDos()[0] && x >= listLonas.get(i).getPuntoUno()[0]){                   
+                        float k= (listLonas.get(i).getPendiente()*x)+listLonas.get(i).getPuntoCorte();                       
+                        if (realY-j==(int) k){                                                                                                                                              
                             if ((int) listLonas.get(i).getPendiente()>0){
-                                 //System.out.println("pendiente positiva");  
-                                 //System.out.println(x+""+j); 
-                                 x=x-1;
-                                 j=j-1;
+                                 x=x-1;j=j-1;                 
                                  Rain lluvia = new Rain (x,j);
                             }
                             else{
-                                //System.out.println("pendiente negativa");  
-                                x=x+1;
-                                j=j-1;
+                                x=x+1; j=j-1;
                                 Rain lluvia = new Rain (x,j);  
-                            }
+                        }
                         }                        
                         else{
                             j=j+1;
@@ -199,11 +189,24 @@ public class Valley
                         j=j+1;
                         Rain lluvia = new Rain (x,j);
                     }
-                }   
-            }                                          
+                }                
+            }            
         }
-        
+        while  (j!= realY ){
+                j=j+1;
+                Rain lluvia = new Rain (x,j);
+        }
+        vinedosX=retornarX(x);
     }
+    
+    public int retornarX(int x){
+        return x;
+    }
+    
+    public void guardarPuntosLluvia(int x,int y){
+
+    }
+ 
     /**
      * Cuando se invoca este metodo para la lluvia 
      */ 
