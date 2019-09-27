@@ -50,6 +50,7 @@ public class TeatroColonGUI extends JFrame{
         botonDecision=new JButton("Decidan"); 
         botones.add(botonAccion);
         botones.add(botonCorten);
+ 
         botones.add(botonDecision); 
         
         add(contenedor,BorderLayout.CENTER);
@@ -83,7 +84,7 @@ public class TeatroColonGUI extends JFrame{
             }   
         }; 
         
-        botonCorten.addActionListener(oyenteBotonDecision);
+        botonDecision.addActionListener(oyenteBotonDecision);
         
         WindowListener w = new WindowAdapter() { 
             public void windowClosing(WindowEvent e) {
