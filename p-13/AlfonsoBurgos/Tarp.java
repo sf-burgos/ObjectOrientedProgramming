@@ -52,7 +52,15 @@ public class Tarp
     public double getLongitud(){
         return longitud;
     }
-    
+    public int puntoMinimoY(){
+        int minimo = 0;
+        if(puntoUno[1] < puntoDos[1]){
+            minimo = puntoUno[1];
+        }else{
+            minimo = puntoDos[1];
+        }
+        return minimo;
+    }
     public void hacerHueco(int x,int h){
         int punto;
         Puncture hueco;
