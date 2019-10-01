@@ -157,7 +157,7 @@ public class Valley
      */
     public void makePuncture(int trap, int x){
         Puncture hueco;
-        Tarp lona=listLonas.get(trap-1);
+        Tarp lona=listLonas.get(trap);
         lona.hacerHueco(x,realY);
     }
     /**

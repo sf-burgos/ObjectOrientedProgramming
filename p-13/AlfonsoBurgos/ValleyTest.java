@@ -43,7 +43,7 @@ public class ValleyTest
 
 
     @Test
-    public void segunIRLluviaLLegaAVieñedoGreen(){
+    public void segunIRLluviaLLegaAVieñedoRed(){
         Valley valley1 = new Valley(500, 500);
         valley1.openVineyard("red", 60, 120);
         int[] coorInicialTrapA = {40,200};
@@ -63,7 +63,35 @@ public class ValleyTest
         valley1.startRain(60);
         String[] resp = {"red"};
         assertEquals(resp, valley1.rainFalls());
-}
+    }
+    @Test
+    public void noDeberiaHaceHueco(){
+        Valley valley1 = new Valley(500, 500);
+        valley1.openVineyard("red", 60, 120);
+        int[] coorInicialTrapA = {40,200};
+        int[] coorFinalTrapA = {120,180};
+        valley1.addTrap(coorInicialTrapA , coorFinalTrapA);
+        valley1.makePuncture(0,20);
+    
+    }
+    @Test
+    public void numeroHuecos(){
+        Valley valley1 = new Valley(500, 500);
+        valley1.openVineyard("red", 100, 200);
+        int[] coorInicialTrapA = {100,100};
+        int[] coorFinalTrapA = {200,200};
+        valley1.addTrap(coorInicialTrapA , coorFinalTrapA);
+        valley1.makePuncture(0,120);
+        valley1.makePuncture(0,150);
+        valley1.makePuncture(0,180);
+        assertEquals(3,valley1.tarps()[0][2].length);
+        
+    
+    }
+    
+    
+    
+    
 }
 
 
