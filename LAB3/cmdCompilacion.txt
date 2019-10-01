@@ -1,0 +1,16 @@
+Directory of C:\Users\2141666\Documents\objects\LAB3\teatroColon
+
+10/01/2019  05:56 PM    <DIR>          .
+10/01/2019  05:56 PM    <DIR>          ..
+10/01/2019  05:37 PM    <DIR>          aplicacion
+10/01/2019  05:37 PM               819 package.bluej
+10/01/2019  05:37 PM    <DIR>          presentacion
+10/01/2019  05:37 PM               483 README.TXT
+               2 File(s)          1,302 bytes
+               4 Dir(s)  188,869,029,888 bytes free
+
+C:\Users\2141666\Documents\objects\LAB3\teatroColon>mkdir bin
+
+C:\Users\2141666\Documents\objects\LAB3\teatroColon>javac -d bin aplicacion/*.java presentacion/*.java
+
+C:\Users\2141666\Documents\objects\LAB3\teatroColon>java -cp bin presentacion.TeatroColonGUI
