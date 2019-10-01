@@ -181,9 +181,10 @@ public class Valley
                     break;
                 }else{
                     if (x <= listLonas.get(i).getPuntoDos()[0] && x >= listLonas.get(i).getPuntoUno()[0]){                   
-                        float k= (listLonas.get(i).getPendiente()*x)+listLonas.get(i).getPuntoCorte();                       
+                        float k= (listLonas.get(i).getPendiente()*x)+listLonas.get(i).getPuntoCorte();  
+                        System.out.println(listLonas.get(i).getPendiente());
                         if (realY-j==(int) k){                                                                                                                                              
-                            if ((int) listLonas.get(i).getPendiente()>0){
+                            if ((float) listLonas.get(i).getPendiente()>0){
                                  x=x-1;j=j-1;                 
                                  Rain lluvia = new Rain (x,j);
                             }

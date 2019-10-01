@@ -40,14 +40,30 @@ public class ValleyTest
     {
     }
 
+
+
     @Test
-    public void sadf()
-    {
-        Valley valley4 = new Valley(600, 600);
-        int [] brayan= {150,350};
-        int [] fonso= {200,400};
-        valley4.addTrap(brayan, fonso);
-        valley4.openVineyard("red", 100, 200);
-    }
+    public void segunIRLluviaLLegaAVieñedoGreen(){
+        Valley valley1 = new Valley(500, 500);
+        valley1.openVineyard("red", 60, 120);
+        int[] coorInicialTrapA = {40,200};
+        int[] coorFinalTrapA = {120,180};
+        valley1.addTrap(coorInicialTrapA , coorFinalTrapA);
+        int[] coorInicialTrapB = {65,140};
+        int[] coorFinalTrapB = {160,160};
+        valley1.addTrap(coorInicialTrapB , coorFinalTrapB);
+        int[] coorInicialTrapC = {40,80};
+        int[] coorFinalTrapC = {100,120};
+        valley1.addTrap(coorInicialTrapC , coorFinalTrapC);
+        int[] coorInicialTrapD = {60,60};
+        int[] coorFinalTrapD = {140,40};
+        valley1.addTrap(coorInicialTrapD , coorFinalTrapD);
+        valley1.makePuncture(2, 60);
+        valley1.makePuncture(3, 100);
+        valley1.startRain(60);
+        String[] resp = {"red"};
+        assertEquals(resp, valley1.rainFalls());
 }
+}
+
 
