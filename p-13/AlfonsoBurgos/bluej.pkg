@@ -1,5 +1,5 @@
 #BlueJ package file
-dependency1.from=Circle
+dependency1.from=Line
 dependency1.to=Canvas
 dependency1.type=UsesDependency
 dependency10.from=Valley
@@ -20,23 +20,31 @@ dependency14.type=UsesDependency
 dependency15.from=Tarp
 dependency15.to=Puncture
 dependency15.type=UsesDependency
-dependency2.from=VineYard
-dependency2.to=Rectangle
+dependency2.from=Circle
+dependency2.to=Canvas
 dependency2.type=UsesDependency
-dependency3.from=Rectangle
-dependency3.to=Canvas
+dependency3.from=Rain
+dependency3.to=Rectangle
 dependency3.type=UsesDependency
-dependency4.from=Puncture
-dependency4.to=Rectangle
+dependency4.from=ValleyTest
+dependency4.to=Valley
 dependency4.type=UsesDependency
-dependency5.from=Line
-dependency5.to=Canvas
+dependency5.from=VineYard
+dependency5.to=Rectangle
 dependency5.type=UsesDependency
+<<<<<<< HEAD
 dependency6.from=Rain
 dependency6.to=Rectangle
 dependency6.type=UsesDependency
 dependency7.from=Valley
 dependency7.to=VineYard
+=======
+dependency6.from=Rectangle
+dependency6.to=Canvas
+dependency6.type=UsesDependency
+dependency7.from=Puncture
+dependency7.to=Rectangle
+>>>>>>> c3d48c9b4a3eb17772ff42fb18c87dbcc303b018
 dependency7.type=UsesDependency
 dependency8.from=Valley
 dependency8.to=Tarp
@@ -44,6 +52,7 @@ dependency8.type=UsesDependency
 dependency9.from=Valley
 dependency9.to=Rectangle
 dependency9.type=UsesDependency
+<<<<<<< HEAD
 editor.fx.0.height=0
 editor.fx.0.width=0
 editor.fx.0.x=0
@@ -58,6 +67,22 @@ package.editor.x=493
 package.editor.y=89
 package.frame.height=735
 package.frame.width=697
+=======
+editor.fx.0.height=744
+editor.fx.0.width=1382
+editor.fx.0.x=-8
+editor.fx.0.y=-8
+objectbench.height=131
+objectbench.width=1346
+package.divider.horizontal=0.5997357992073976
+package.divider.vertical=0.7994186046511628
+package.editor.height=543
+package.editor.width=1217
+package.editor.x=0
+package.editor.y=120
+package.frame.height=788
+package.frame.width=1386
+>>>>>>> c3d48c9b4a3eb17772ff42fb18c87dbcc303b018
 package.numDependencies=15
 package.numTargets=10
 package.showExtends=true
@@ -109,7 +134,7 @@ target5.name=ValleyTest
 target5.showInterface=false
 target5.type=UnitTestTargetJunit4
 target5.width=90
-target5.x=0
+target5.x=10
 target5.y=370
 target6.height=50
 target6.name=VineYard
