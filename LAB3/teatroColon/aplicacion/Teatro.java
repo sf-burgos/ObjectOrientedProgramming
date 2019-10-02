@@ -13,6 +13,10 @@ import java.util.*;
 public class Teatro{
     public static final int MAXIMO = 500;
     private static Teatro teatro = null;
+    public static Actor romeo  = null;
+    public static Actor julieta  = null;
+    public static ActorNecio homero = null;
+    public static ActorNecio bart = null;
     
     public static Teatro demeTeatro() {
         if (teatro==null){
@@ -36,7 +40,11 @@ public class Teatro{
         elementos= new ArrayList<EnEscena>();
     }
     
-    public void algunosEnEscena(){    
+    public void algunosEnEscena(){ 
+        romeo = new Actor(this.teatro,"Romeo",10,100);
+        julieta = new Actor(this.teatro,"Julieta",10,200);
+        homero = new ActorNecio(this.teatro,"Homero",10,300);
+        bart = new ActorNecio(this.teatro,"Bart",100,400);
 
     }  
     
@@ -61,13 +69,25 @@ public class Teatro{
     
     
     public void accion(){
+        adicione(romeo); adicione(julieta); adicione(homero); adicione(bart); 
+        homero.corte();
+        bart.corte();
+        romeo.actue();
+        julieta.actue();
+        
     }
 
     
     public void corten(){
+        bart.actue();
+        homero.actue();
+        romeo.corte();
+        julieta.corte();
     }    
 
     public void decidan(){
+        romeo.decida();
+        julieta.decida(); 
     }  
     
 }

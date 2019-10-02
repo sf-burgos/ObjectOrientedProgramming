@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=ActorNecio
+comment1.params=teatro\ name\ posicionx\ posiciony
+comment1.target=ActorNecio(Teatro,\ java.lang.String,\ int,\ int)
+numComments=2

@@ -5,8 +5,8 @@ import java.awt.Color;
 public class Actor extends Persona implements EnEscena{
 	
 
-    private Teatro teatro;   
-	protected String palabras;
+    public Teatro teatro;  
+    protected String palabras;
 
 
 	public Actor(Teatro teatro,String name,int posicionx, int posiciony){
@@ -15,6 +15,9 @@ public class Actor extends Persona implements EnEscena{
 		color=Color.BLACK;
 		palabras="¡Hola!";
 	}
+	
+	
+	
 
 
 	private boolean puedeMover(char direccion) {
