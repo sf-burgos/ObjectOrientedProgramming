@@ -3,36 +3,33 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 
-public class ActorPerezoso extends Actor 
+public class ActorEnojon  extends Actor 
 {
-    /**
-     * creador del actor perezoso
+        /**
+     * creador del actor Enojon
      */
-    public ActorPerezoso(Teatro teatro, String name, int posicionx,int  posiciony){
+    public ActorEnojon (Teatro teatro, String name, int posicionx,int  posiciony){
         super (teatro, name, posicionx,posiciony);
-        color=Color.green;
-        palabras="!Perezoso!";
+        color=Color.black;
+        palabras="!enojon!";
     }
   
     
-    /**
-     * corta la escena del pezoso
-     * hace que el actor se siente
+        /**
+     * al actor no le gusta que lo corten, por lo que se enoja, "cambia de colo a ROJO"
      */
     public void corte(){
-        muevaBrazo('I','B'); 
-        //muevaPierna('I','S');
-        muevaBrazo('D','B'); 
-        //muevaPierna('I','S');       
-        palabras="¡aqui perezosos!";
-        for (int i=0;i<4;i++){
-            muevaPierna('I','S');
-            muevaPierna('D','S');
-        }
+        muevaBrazo('I','S'); 
+        muevaPierna('I','S');
+        muevaBrazo('D','S'); 
+        muevaPierna('I','S');       
+        palabras="¡no me gusta cortar!";
+        color=Color.red;
+        
     }
 
 
-    /**
+        /**
      * Actua con normalidad
      */
     public void actue(){
@@ -65,21 +62,22 @@ public class ActorPerezoso extends Actor
             muevaBrazo('I','S'); 
             muevaPierna('I','S');
         }       
-        muevase('P');   
-        palabras="Soy " + this;
+        muevase('P');
+        color=Color.black;
+        //palabras="Soy " + this;
     }
 
-    /**
-     * Mensaje del actor perezoso
+        /**
+     * mensaje del actor enojon
      */
     public String mensaje(){
         return  palabras;
     }
     /**
-     * El actorPerezoso decide siempre descansar
+     * El actorEnojon, le gusta que lo dejen decidir, por ello actua, ya que no le gusta que lo corten decide siempre descansa
      */
     public void decida(){
-        corte();
+        actue();
    
     
  

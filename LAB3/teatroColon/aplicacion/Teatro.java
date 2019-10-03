@@ -21,6 +21,10 @@ public class Teatro{
     public static ActorPerezoso bella = null;
     public static Luz centralIzquierda = null;
     public static Luz centralDerecha = null;
+    public static ActorEnojon brayan = null;
+    public static ActorEnojon alfonso = null;
+    public static Armario armario = null;
+    
     /**
      * Da el teatro que usan los actores 
      * @return Teatro teatro
@@ -53,6 +57,7 @@ public class Teatro{
      */
     private Teatro() {
         elementos= new ArrayList<EnEscena>();
+        
     }
     /**
      * Se crean los actores y se añaden al ArrayList EnEscena 
@@ -64,16 +69,31 @@ public class Teatro{
         bart = new ActorNecio(this.teatro,"Homer",200,10);
         eduard = new ActorPerezoso(this.teatro,"Eduard",250,10);
         bella = new ActorPerezoso(this.teatro,"Bella",300,10);
+        alfonso = new ActorEnojon(this.teatro,"Alfonso",350,10);
+        brayan = new ActorEnojon(this.teatro,"Brayan",400,10);
         centralIzquierda = new Luz(0,250);
         centralDerecha = new Luz(500,250);
+        armario = new Armario(0,500);
+        
         elementos.add(romeo);
         elementos.add(julieta);
+        //ActoresNecios
         elementos.add(homero);
         elementos.add(bart);
+        //ActoresPerezosos 
         elementos.add(eduard);
         elementos.add(bella);
+        //luces
         elementos.add(centralIzquierda);
         elementos.add(centralDerecha);
+        //ActoresEnojones
+        elementos.add(brayan);
+        elementos.add(alfonso);
+        //Armarios 
+        elementos.add(armario);
+    
+        
+        
 
     }  
     
