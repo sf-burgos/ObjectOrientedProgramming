@@ -88,8 +88,10 @@ public class Actor extends Persona implements EnEscena{
             muevaBrazo('I','S'); 
             muevaPierna('I','S');
         }       
-        muevase('S');   
+        muevase('S');
+       
         palabras="Soy " + this;
+    
     }
     /**
      * Devuelve las palabras que usa el actor

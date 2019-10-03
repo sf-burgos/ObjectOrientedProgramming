@@ -99,12 +99,14 @@ public class TeatroColonGUI extends JFrame{
     
     private void accion(){
          teatro.accion();
+         
          actualice();
     }
     
     
     private void corten(){       
         teatro.corten();
+        
         actualice();
     }       
     

@@ -19,8 +19,8 @@ public class Teatro{
     public static ActorNecio bart  = null;
     public static ActorPerezoso eduard = null;
     public static ActorPerezoso bella = null;
-    public static Luz luz = null;
-    
+    public static Luz centralIzquierda = null;
+    public static Luz centralDerecha = null;
     /**
      * Da el teatro que usan los actores 
      * @return Teatro teatro
@@ -64,14 +64,16 @@ public class Teatro{
         bart = new ActorNecio(this.teatro,"Homer",200,10);
         eduard = new ActorPerezoso(this.teatro,"Eduard",250,10);
         bella = new ActorPerezoso(this.teatro,"Bella",300,10);
-        luz = new Luz(100,450);
+        centralIzquierda = new Luz(0,250);
+        centralDerecha = new Luz(500,250);
         elementos.add(romeo);
         elementos.add(julieta);
         elementos.add(homero);
         elementos.add(bart);
         elementos.add(eduard);
         elementos.add(bella);
-        elementos.add(luz);
+        elementos.add(centralIzquierda);
+        elementos.add(centralDerecha);
 
     }  
     

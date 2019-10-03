@@ -11,15 +11,17 @@ public class Luz implements EnEscena {
     public Luz(int x,int y){
         posicionx = x;
         posiciony = y;
-        color = Color.yellow;        
+        color = Color.blue;        
     }
     public String forma(){
         return FORMAS[1];
     }
-    public void corte(){     
+    public void corte(){
+        color= Color.blue;
         
     } 
-    public void actue(){               
+    public void actue(){
+        color= Color.yellow;
         
     } 
     public Color getColor(){
