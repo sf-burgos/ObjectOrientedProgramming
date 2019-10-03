@@ -1,3 +1,13 @@
 #BlueJ class context
 comment0.target=Luz
-numComments=1
+comment1.params=
+comment1.target=void\ corte()
+comment2.params=
+comment2.target=void\ actue()
+comment3.params=
+comment3.target=java.awt.Color\ getColor()
+comment4.params=
+comment4.target=int\ getPosicionX()
+comment5.params=
+comment5.target=int\ getPosicionY()
+numComments=6

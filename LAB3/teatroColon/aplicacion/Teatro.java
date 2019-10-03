@@ -15,8 +15,9 @@ public class Teatro{
     private static Teatro teatro = null;
     public static Actor romeo  = null;
     public static Actor julieta  = null;
-    public static ActorNecio homero = null;
-    public static ActorNecio bart = null;
+    public static ActorNecio homero  = null;
+    public static ActorNecio bart  = null;
+
     
     public static Teatro demeTeatro() {
         if (teatro==null){
@@ -40,11 +41,15 @@ public class Teatro{
         elementos= new ArrayList<EnEscena>();
     }
     
-    public void algunosEnEscena(){ 
-        romeo = new Actor(this.teatro,"Romeo",10,100);
-        julieta = new Actor(this.teatro,"Julieta",10,200);
-        homero = new ActorNecio(this.teatro,"Homero",10,300);
-        bart = new ActorNecio(this.teatro,"Bart",100,400);
+    public void algunosEnEscena(){
+        romeo = new Actor(this.teatro,"Romeo",100,10);
+        julieta = new Actor(this.teatro,"Julieta",200,10);
+        homero = new ActorNecio(this.teatro,"Homer",300,10);
+        bart = new ActorNecio(this.teatro,"Homer",400,10);
+        elementos.add(romeo);
+        elementos.add(julieta);
+        elementos.add(homero);
+        elementos.add(bart);
 
     }  
     
@@ -59,9 +64,9 @@ public class Teatro{
     
     
     public void adicione(EnEscena e){
-	    elementos.add(e);
+        elementos.add(e);
     }
-	
+    
     public int numeroEnEscena(){
         return elementos.size();
     }
@@ -69,25 +74,22 @@ public class Teatro{
     
     
     public void accion(){
-        adicione(romeo); adicione(julieta); adicione(homero); adicione(bart); 
-        homero.corte();
-        bart.corte();
-        romeo.actue();
-        julieta.actue();
-        
+        for (int i=0;i<elementos.size();i++){
+            elementos.get(i).actue();
+        }
     }
 
     
     public void corten(){
-        bart.actue();
-        homero.actue();
-        romeo.corte();
-        julieta.corte();
+        for (int i=0;i<elementos.size();i++){
+            elementos.get(i).corte();
+        }
     }    
 
     public void decidan(){
-        romeo.decida();
-        julieta.decida(); 
+        for (int i=0;i<elementos.size();i++){
+            elementos.get(i).decida();
+        }
     }  
     
 }

@@ -50,7 +50,6 @@ public class TeatroColonGUI extends JFrame{
         botonDecision=new JButton("Decidan"); 
         botones.add(botonAccion);
         botones.add(botonCorten);
- 
         botones.add(botonDecision); 
         
         add(contenedor,BorderLayout.CENTER);
@@ -136,6 +135,7 @@ public class TeatroColonGUI extends JFrame{
         private int x,y;
         
         private static final int MAX=Teatro.MAXIMO;
+        
         
         
         public void actualice(){

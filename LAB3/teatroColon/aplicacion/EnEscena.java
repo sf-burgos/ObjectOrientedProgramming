@@ -37,5 +37,6 @@ public interface EnEscena{
         }else{
             corte();
         }
-    }    
+    }
+    
 }
