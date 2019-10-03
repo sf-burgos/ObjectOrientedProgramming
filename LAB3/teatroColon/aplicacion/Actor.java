@@ -1,13 +1,19 @@
 package aplicacion;
 
 import java.awt.Color;
-
+/**
+ * 
+ */
 public class Actor extends Persona implements EnEscena{
    
 
     private Teatro teatro;   
     protected String palabras;
-
+    /**
+     * @param Teatro teatro, String name, int posicionx, int posiciony
+     * Constructor de actor 
+     * @return Actor
+     */
 
     public Actor(Teatro teatro,String name,int posicionx, int posiciony){
         super(name,posicionx,posiciony);
@@ -15,7 +21,11 @@ public class Actor extends Persona implements EnEscena{
         color=Color.BLACK;
         palabras="¡Hola!";
     }
-
+    /**
+     * @param char direccion
+     * Define si el actor se puede mover o no segun el maximo del teatro
+     * @return boolean puede
+     */
 
     private boolean puedeMover(char direccion) {
         boolean puede=false;
@@ -36,7 +46,7 @@ public class Actor extends Persona implements EnEscena{
         } 
         return puede;
     }
-    
+
     
     public void corte(){
         muevaBrazo('I','B'); 
@@ -81,7 +91,10 @@ public class Actor extends Persona implements EnEscena{
         muevase('S');   
         palabras="Soy " + this;
     }
-
+    /**
+     * Devuelve las palabras que usa el actor
+     * @return String palabras 
+     */
 
     public String mensaje(){
         return  palabras;

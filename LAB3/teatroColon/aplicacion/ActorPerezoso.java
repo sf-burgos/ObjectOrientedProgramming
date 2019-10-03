@@ -65,6 +65,9 @@ public class ActorPerezoso extends Actor
     public String mensaje(){
         return  palabras;
     }
+    /**
+     * El actorPerezoso decide siempre descansa
+     */
     public void decida(){
         corte();
    

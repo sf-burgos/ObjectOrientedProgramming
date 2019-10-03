@@ -10,8 +10,15 @@ public interface EnEscena{
     int getPosicionX();
     int getPosicionY();
     Color getColor();
-
+    /**
+    * Realiza la accion actue segun el tipo de Actor:
+    * Actor, ActorNecio, ActorPerezoso
+    */
     void actue();
+    /**
+    * Realiza la accion corte segun el tipo de Actor
+    * Actor, ActorNecio, ActorPerezoso
+    */
     void corte();
     
     /**

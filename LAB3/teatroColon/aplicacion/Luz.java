@@ -5,30 +5,30 @@ import java.util.Random;
 
 
 public class Luz implements EnEscena {
-    protected Color color;
-    //public void paint (Graphics g)
-   // {
-    
-       // g.setColor (Color.red);
-        //g.fillOval (50,50,70,70);
-//}
-    public void corte(){
-  
-
+    public Color color;
+    int posicionx;
+    int posiciony;
+    public Luz(int x,int y){
+        posicionx = x;
+        posiciony = y;
+        color = Color.yellow;        
+    }
+    public String forma(){
+        return FORMAS[1];
+    }
+    public void corte(){     
         
     } 
-    public void actue(){
-         color=Color.WHITE;
-        
+    public void actue(){               
         
     } 
     public Color getColor(){
-        return null;
+        return color;
     } 
     public int getPosicionX(){
-        return 0;
+        return posicionx;
     }
     public int getPosicionY(){
-        return 0;
+        return posiciony;
     }
 }

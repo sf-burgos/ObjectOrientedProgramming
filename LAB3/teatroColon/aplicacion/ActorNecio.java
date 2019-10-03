@@ -14,7 +14,6 @@ public class ActorNecio extends Actor
         color=Color.BLACK;
         palabras="¡Hola!";
     }
-
     public void corte(){
     if (elNecio==3){
          if (getPosicionBrazo('I')==ABAJO && getPosicionBrazo('D')==ABAJO){
@@ -48,7 +47,7 @@ public class ActorNecio extends Actor
     muevase('S');   
     palabras="Soy " + this;
     decisiones=false;
-    elNecio=0;
+    elNecio=1;
 }
 else{
 super.corte();
@@ -66,7 +65,7 @@ elNecio+=1;
         muevaPierna('D','P');       
         palabras="";
         decisiones=true;
-        elNecio=0;
+        elNecio=1;
     }
     else{
     super.actue();
@@ -74,7 +73,7 @@ elNecio+=1;
 }
 }
     /**
-     * Decide aleatoriamente la acción a tomar
+     * Decide como actor necio cada 3 acciones 
      */
     public void decida(){
        if (elNecio==3){
@@ -86,7 +85,7 @@ elNecio+=1;
        actue();
        
     }
-    elNecio=0;
+    elNecio=1;
    
     }
     else{
