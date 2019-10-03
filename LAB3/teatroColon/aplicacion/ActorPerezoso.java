@@ -1,49 +1,28 @@
 package aplicacion;
-
 import java.awt.Color;
-
-public class Actor extends Persona implements EnEscena{
-   
-
-    private Teatro teatro;   
-    protected String palabras;
+import java.util.ArrayList;
 
 
-    public Actor(Teatro teatro,String name,int posicionx, int posiciony){
-        super(name,posicionx,posiciony);
-        this.teatro=teatro;
-        color=Color.BLACK;
-        palabras="¡Hola!";
+public class ActorPerezoso extends Actor 
+{
+    public ActorPerezoso(Teatro teatro, String name, int posicionx,int  posiciony){
+        super (teatro, name, posicionx,posiciony);
+        color=Color.green;
+        palabras="!Perezoso!";
     }
-
-
-    private boolean puedeMover(char direccion) {
-        boolean puede=false;
-        int posX = getPosicionX();
-        int posY = getPosicionY();
-        switch(direccion){
-            case 'N' : puede = (posY+1 < teatro.MAXIMO);
-            break;
-            case 'E' : puede = (posX+1 < teatro.MAXIMO);
-            break;
-            case 'S' :  puede = (posY-1 >= 0);
-            break;
-            case 'O':puede = (posX-1 >= 0);
-            break;
-            case 'P': puede =(posX==0);
-            break;
-            
-        } 
-        return puede;
-    }
+  
     
     
     public void corte(){
         muevaBrazo('I','B'); 
-        muevaPierna('I','P');
+        //muevaPierna('I','S');
         muevaBrazo('D','B'); 
-        muevaPierna('D','P');       
-        palabras="";
+        //muevaPierna('I','S');       
+        palabras="¡aqui perezosos!";
+        for (int i=0;i<4;i++){
+            muevaPierna('I','S');
+            muevaPierna('D','S');
+        }
     }
 
 
@@ -78,7 +57,7 @@ public class Actor extends Persona implements EnEscena{
             muevaBrazo('I','S'); 
             muevaPierna('I','S');
         }       
-        muevase('S');   
+        muevase('P');   
         palabras="Soy " + this;
     }
 
@@ -86,6 +65,11 @@ public class Actor extends Persona implements EnEscena{
     public String mensaje(){
         return  palabras;
     }
-
+    public void decida(){
+        corte();
+   
+    
+ 
+}
 }
 

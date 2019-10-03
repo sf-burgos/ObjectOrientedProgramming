@@ -17,7 +17,8 @@ public class Teatro{
     public static Actor julieta  = null;
     public static ActorNecio homero  = null;
     public static ActorNecio bart  = null;
-
+    public static ActorPerezoso eduard = null;
+    public static ActorPerezoso bella = null;
     
     public static Teatro demeTeatro() {
         if (teatro==null){
@@ -42,14 +43,18 @@ public class Teatro{
     }
     
     public void algunosEnEscena(){
-        romeo = new Actor(this.teatro,"Romeo",100,10);
-        julieta = new Actor(this.teatro,"Julieta",200,10);
-        homero = new ActorNecio(this.teatro,"Homer",300,10);
-        bart = new ActorNecio(this.teatro,"Homer",400,10);
+        romeo = new Actor(this.teatro,"Romeo",50,10);
+        julieta = new Actor(this.teatro,"Julieta",100,10);
+        homero = new ActorNecio(this.teatro,"Homer",150,10);
+        bart = new ActorNecio(this.teatro,"Homer",200,10);
+        eduard = new ActorPerezoso(this.teatro,"Eduard",250,10);
+        bella = new ActorPerezoso(this.teatro,"Bella",300,10);
         elementos.add(romeo);
         elementos.add(julieta);
         elementos.add(homero);
         elementos.add(bart);
+        elementos.add(eduard);
+        elementos.add(bella);
 
     }  
     
