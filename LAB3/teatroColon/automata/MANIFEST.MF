@@ -1,6 +1,0 @@
-Main-Class: bin/Presentacion/TeatroColonGUI
-
-
-
-
-
