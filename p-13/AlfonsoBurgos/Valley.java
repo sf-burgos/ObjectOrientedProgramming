@@ -64,7 +64,7 @@ public class Valley
         if (flag || listVinedo.size()==0 && cont==1) {
             VineYard vinedo = new VineYard(name,xi,xf,realY,true);
             listVinedo.add(vinedo);                           
-        }      
+        }   
     }
 
     /**
@@ -77,7 +77,8 @@ public class Valley
                 listVinedo.remove(i);
                 coloresDisponibles.add(name);
             }
-        }      
+        }
+        
     }
     /**
      * Crea una lona o Tarp 
@@ -240,9 +241,9 @@ public class Valley
     
     public void Do(char d){
         if (d == 'U'){
-        
+ 
         }else if (d =='R'){
-        
+            
         }                        
     }
     /**
@@ -360,8 +361,10 @@ public class Valley
      */    
     public int [][][] rains(){
     
+    
     return null;
     }
+
 }
 
 

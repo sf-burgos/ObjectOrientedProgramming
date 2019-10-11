@@ -13,15 +13,11 @@ public class Rain
      * Constructor for objects of class Rain
      */
      //public Rectangle(int newHeight, int newWidth, int newXPosition, int newYPosition,String newColor ){
-    public Rain (int x, int y){
-        
+    public Rain (int x, int y){        
         rain = new  Rectangle (1,1,x,y,"blue");
         rain.changeColor("blue");
         flagRain=true;
-        rain.makeVisible();
-        
-        
-    
+        rain.makeVisible();                    
     }
     
 }
