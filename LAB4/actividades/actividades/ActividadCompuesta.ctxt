@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=ActividadCompuesta
+comment1.params=id
+comment1.target=ActividadCompuesta(java.lang.String)
+comment2.params=a
+comment2.target=void\ actividad(Actividad)
+comment3.params=
+comment3.target=int\ creditos()
+comment4.params=
+comment4.target=int\ creditosDefinidos()
+comment5.params=descripcion
+comment5.target=int\ creditos(java.lang.String)
+numComments=6
