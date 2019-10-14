@@ -175,42 +175,33 @@ public class Valley
     public void startRain(int x){
         int j=0; 
         for (int i=0; i< listLonas.size();i++){                   
-            while  (j!= realY ){                 
-                if (VerificarHuecos(listLonas.get(i),x,j)){
-                    j=j+1;
-                    Rain lluvia = new Rain (x,j);
-                    break;
+            while  (j!= realY ){    
+                if (listLonas.get(i).verificarHueco(x,j)){
+                    j=j+1;Rain lluvia = new Rain (x,j);break;
                 }else{
                     if (x <= listLonas.get(i).getPuntoDos()[0] && x >= listLonas.get(i).getPuntoUno()[0]){                   
                         float k= (listLonas.get(i).getPendiente()*x)+listLonas.get(i).getPuntoCorte();  
                         if (realY-j==(int) k){                                                                                                                                              
                             if ((float) listLonas.get(i).getPendiente()>0){
-                                 x=x-1;j=j-1;                 
-                                 Rain lluvia = new Rain (x,j);
-                            }
-                            else{
+                                 x=x-1;j=j-1;Rain lluvia = new Rain (x,j);
+                            
+                            }else{
                                 x=x+1; j=j-1;
                                 Rain lluvia = new Rain (x,j);  
                         }
-                        }                        
-                        else{
-                            j=j+1;
-                            Rain lluvia = new Rain (x,j);
+                        }else{
+                            j=j+1;Rain lluvia = new Rain (x,j);
                         }                            
-                    }                             
-                    else if(i<listLonas.size()-1 && (x<= listLonas.get(i+1).getPuntoDos()[0] && x >= listLonas.get(i+1).getPuntoUno()[0]) && !(VerificarHuecos(listLonas.get(i+1),x,j))){
+                    }else if(i<listLonas.size()-1 && (x<= listLonas.get(i+1).getPuntoDos()[0] && x >= listLonas.get(i+1).getPuntoUno()[0]) && !(listLonas.get(i+1).verificarHueco(x,j))){
                         break;
-                    }
-                    else{
-                        j=j+1;
-                        Rain lluvia = new Rain (x,j);
+                    }else{
+                        j=j+1;Rain lluvia = new Rain (x,j);
                     }
                 }                
             }            
         }
         while  (j!= realY ){
-                j=j+1;
-                Rain lluvia = new Rain (x,j);
+                j=j+1;Rain lluvia = new Rain (x,j);
         }
         lluviaX=x;
     }
@@ -294,22 +285,8 @@ public class Valley
         Canvas canvas= Canvas.getCanvas();
         canvas.zoom(simbolo);
     }
-    /**
-     * @param Tarp lona, int x, int y 
-     * recibe una lona y un punto x y y y esta determina si en esta posicion existe un hueco 
-     * @return boolean 
-     */
-    public boolean VerificarHuecos(Tarp lona, int x, int y){
-        ArrayList<Puncture> huecos = new ArrayList <Puncture>();
-        huecos=lona.getHuecos();
-        for (int i=0; i<huecos.size(); i++){
-            if (x==huecos.get(i).getXPos() && y==huecos.get(i).getYPos()){
-                return true;
-             
-            }         
-        }
-        return false; 
-    }
+
+  
     /**
      * Esta funcion retorna los viñedos existentes sus coordenadas de inicio y fin 
      * @return int vinedos
@@ -329,32 +306,22 @@ public class Valley
      * retorna las lonas existentes sus coordenadas del punto uno(X1,Y1), punto dos(X2,Y2) y los huecos existentes en esta lona(Posicion en x) 
      * @return int[][][] tarps
      */
-    public int[][][] tarps(){
-        int[][][] tarps = new int[listLonas.size()][listLonas.size()][listLonas.size()];
-        int[] puntoI = new int[2];
-        int[] puntoF = new int[2];
+    
+    public int[][][] tarps(){  
+        int[][][] tarps = new int[listLonas.size()][listLonas.size()][listLonas.size()];int[] puntoI = new int[2];int[] puntoF = new int[2];
         for (int i = 0; i<tarps.length; i++){
-            puntoI = listLonas.get(i).getPuntoUno();
-            puntoF = listLonas.get(i).getPuntoDos();
-            int[] huecos = listLonas.get(i).posXHuecos();   
-            int mat[][] = new int[3][3];
+            puntoI = listLonas.get(i).getPuntoUno();puntoF = listLonas.get(i).getPuntoDos();int[] huecos = listLonas.get(i).posXHuecos();int mat[][] = new int[3][3];
             for (int j= 0; j<tarps[i].length;j++){
-                if(j==0){
-                    mat[j] = puntoI;
-                }else if(j==1){
-                    mat[j] = puntoF;
-
-                }else{
-                    mat[j] = huecos;
+                if(j==0){mat[j] = puntoI;
+                }else if(j==1){mat[j] = puntoF;
+                }else{mat[j] = huecos;
                 }
-                for(int k=0; k<tarps[i][j].length;k++){
-                    tarps[i] = mat;
-                    
+                for(int k=0; k<tarps[i][j].length;k++){tarps[i] = mat;   
                 }
             }
         }
             return tarps;
-    }      
+    }    
     /**
      * Retorna las coordenadas de la lluvia su posicion en X y en Y de cada punto de lluvia
      * @return int[][][] rain
@@ -364,6 +331,8 @@ public class Valley
     
     return null;
     }
+   
+    
 
 }
 

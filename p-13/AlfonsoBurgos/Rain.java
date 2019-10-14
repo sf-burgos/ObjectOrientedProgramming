@@ -1,4 +1,5 @@
-
+import java.util.ArrayList;
+import java.util.Arrays;
 /**
  * Write a description of class Rain here.
  *
@@ -8,7 +9,9 @@
 public class Rain
 {
     boolean flagRain;
-    Rectangle rain;       
+    Rectangle rain;
+    
+    private int lluviaX;
     /**
      * Constructor for objects of class Rain
      */
@@ -17,7 +20,10 @@ public class Rain
         rain = new  Rectangle (1,1,x,y,"blue");
         rain.changeColor("blue");
         flagRain=true;
-        rain.makeVisible();                    
+        rain.makeVisible();   
+      
     }
+
+    
     
 }

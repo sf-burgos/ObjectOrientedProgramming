@@ -113,7 +113,20 @@ public class Tarp
         }
         return huecosX;
     }
-        
-
-
+    /**
+     * @param Tarp lona, int x, int y 
+     * recibe una lona y un punto x y y y esta determina si en esta posicion existe un hueco 
+     * @return boolean 
+     */
+    public boolean verificarHueco(int x, int y){
+        //ArrayList<Puncture> huecos = new ArrayList <Puncture>();
+        //huecos=lona.getHuecos();
+        for (int i=0; i<huecos.size(); i++){
+            if (x==huecos.get(i).getXPos() && y==huecos.get(i).getYPos()){
+                return true;
+             
+            }         
+        }
+        return false; 
+    }
 }
