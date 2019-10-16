@@ -5,9 +5,9 @@ public class VineYard
     private int inicio;
     private int fin;
     private Rectangle rectangle;
+    private int altura;
     private boolean isVisible;
-    private int yPosition;
-    private int xPosition;
+
    
     /**
      * Contructor Objects type VineYard 
@@ -18,6 +18,7 @@ public class VineYard
         inicio = xi;
         fin = xf;
         this.name = name;
+        this.altura = y;
         rectangle = new Rectangle(3, xf-xi,xi,y, name);
         if(visible){
             rectangle.makeVisible();
@@ -57,6 +58,11 @@ public class VineYard
     public String getName(){
         return name;
     }
+    public String toStringCrear(){
+        return "Cvinedo"+","+name+","+inicio+","+fin;
+    }
 
-    
+    public String toStringBorrar(){
+        return "Bvinedo"+","+name+","+inicio+","+fin;
+    }
 }

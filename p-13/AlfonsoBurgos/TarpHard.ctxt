@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=TarpHard
+comment1.params=lowerEnd\ higherEnd\ h\ isVisible\ col
+comment1.target=TarpHard(int[],\ int[],\ int,\ boolean,\ java.lang.String)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ TarpHard\r\n
+comment2.params=x\ h
+comment2.target=void\ hacerHueco(int,\ int)
+numComments=3

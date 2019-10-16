@@ -4,22 +4,22 @@ import java.util.ArrayList;
  */
 
 public class Tarp
-
 {
     // instance variables - replace the example below with your own
     private Line lona;
-    private double longitud; 
     private int[] puntoUno; 
     private int[] puntoDos;    
     private float pendiente; 
     private float puntoCorte;
     private ArrayList<Puncture> huecos;
+
+    
     //private ArrayList
     /**
      * Constructor for objects of class Tarp
      * @param lowerEnd y higherEnd Arreglos con un punto como coordenada isVisible es el atributo de visibilidad en pantalla
      */
-    public Tarp(int[] lowerEnd ,int[] higherEnd,int h, boolean isVisible,String col){
+    public Tarp(int[] lowerEnd ,int[] higherEnd,int h, boolean isVisible,String col){        
         puntoUno= lowerEnd;
         puntoDos= higherEnd;
         lona = new Line(lowerEnd[0],h-lowerEnd[1],higherEnd[0],h-higherEnd[1],h,col);
@@ -44,13 +44,6 @@ public class Tarp
      */
     public void makeInvisible(){
         lona.makeInvisible(); 
-    }
-    /**
-     * Calcula la longitud de la lona 
-     * @return Longitud de la lona 
-     */
-    public double getLongitud(){
-        return longitud;
     }
     public int puntoMinimoY(){
         int minimo = 0;
@@ -128,5 +121,11 @@ public class Tarp
             }         
         }
         return false; 
+    }
+    public String toStringCrear(){
+        return "CTarp"+","+puntoUno[0]+","+puntoUno[1]+","+puntoDos[0]+","+puntoDos[1];
+    }
+    public String toStringBorrar(){
+        return "BTarp"+","+puntoUno[0]+","+puntoUno[1]+","+puntoDos[0]+","+puntoDos[1];
     }
 }

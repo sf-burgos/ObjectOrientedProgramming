@@ -29,7 +29,8 @@ public class Valley
        valleyconstructor.changeColor("green");
        valleyconstructor.makeVisible();
        listVinedo  = new ArrayList<VineYard>();  
-       listLonas = new ArrayList<Tarp>();      
+       listLonas = new ArrayList<Tarp>();
+       historialAcciones = new Stack<String>();
     }
     /**
      * Abre un nuevo VineYard teniendo en cuenta que no pueden estar uno encima del otro y ademas que tienen que tener nombre diferentes
@@ -63,7 +64,8 @@ public class Valley
         }        
         if (flag || listVinedo.size()==0 && cont==1) {
             VineYard vinedo = new VineYard(name,xi,xf,realY,true);
-            listVinedo.add(vinedo);                           
+            listVinedo.add(vinedo); 
+            historialAcciones.add(vinedo.toStringCrear());
         }   
     }
 
@@ -73,7 +75,8 @@ public class Valley
     public void closeVineyard(String name){        
         for (int i=0; i < listVinedo.size(); i++ ){
             if(listVinedo.get(i).getName().equals(name)){
-                listVinedo.get(i).makeInvisible(); 
+                listVinedo.get(i).makeInvisible();
+                historialAcciones.add(listVinedo.get(i).toStringBorrar());
                 listVinedo.remove(i);
                 coloresDisponibles.add(name);
             }
@@ -172,38 +175,9 @@ public class Valley
     /**
      * Cuando se ejecuta este metodo empieza a llover 
      */
-    public void startRain(int x){
-        int j=0; 
-        for (int i=0; i< listLonas.size();i++){                   
-            while  (j!= realY ){    
-                if (listLonas.get(i).verificarHueco(x,j)){
-                    j=j+1;Rain lluvia = new Rain (x,j);break;
-                }else{
-                    if (x <= listLonas.get(i).getPuntoDos()[0] && x >= listLonas.get(i).getPuntoUno()[0]){                   
-                        float k= (listLonas.get(i).getPendiente()*x)+listLonas.get(i).getPuntoCorte();  
-                        if (realY-j==(int) k){                                                                                                                                              
-                            if ((float) listLonas.get(i).getPendiente()>0){
-                                 x=x-1;j=j-1;Rain lluvia = new Rain (x,j);
-                            
-                            }else{
-                                x=x+1; j=j-1;
-                                Rain lluvia = new Rain (x,j);  
-                        }
-                        }else{
-                            j=j+1;Rain lluvia = new Rain (x,j);
-                        }                            
-                    }else if(i<listLonas.size()-1 && (x<= listLonas.get(i+1).getPuntoDos()[0] && x >= listLonas.get(i+1).getPuntoUno()[0]) && !(listLonas.get(i+1).verificarHueco(x,j))){
-                        break;
-                    }else{
-                        j=j+1;Rain lluvia = new Rain (x,j);
-                    }
-                }                
-            }            
-        }
-        while  (j!= realY ){
-                j=j+1;Rain lluvia = new Rain (x,j);
-        }
-        lluviaX=x;
+    public void startRain(int x){       
+        RainArcoiris lluvia = new RainArcoiris(x,0);
+        lluvia.startRain(x,listLonas,realY);
     }
     /**
      * Cuando se invoca este metodo para la lluvia 
@@ -231,10 +205,22 @@ public class Valley
      */
     
     public void Do(char d){
+        String accion = historialAcciones.pop();
+        String arregloAccion[] = accion.split(",");
         if (d == 'U'){
- 
+            if(arregloAccion[0].equals("Cvinedo")){
+                closeVineyard(arregloAccion[1]);
+            }else if(arregloAccion[0].equals("Bvinedo")){
+                openVineyard(arregloAccion[1],Integer.valueOf(arregloAccion[2]),Integer.valueOf(arregloAccion[3]));
+            }else if(arregloAccion[0].equals("CTarp")){
+
+            }            
         }else if (d =='R'){
-            
+            if(arregloAccion[0].equals("Bvinedo")){
+                openVineyard(arregloAccion[1],Integer.valueOf(arregloAccion[2]),Integer.valueOf(arregloAccion[3]));
+            }else if(arregloAccion[0].equals("Cvinedo")){
+                closeVineyard(arregloAccion[1]);
+            }
         }                        
     }
     /**

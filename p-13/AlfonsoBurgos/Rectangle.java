@@ -17,6 +17,7 @@ public class Rectangle{
     private int yPosition;
     private String color;
     private boolean isVisible;
+    
 
     /**
      * Create a new rectangle at default position with default color.

@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=TarpRadical
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ TarpRadical\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=lowerEnd\ higherEnd\ h\ isVisible\ col
+comment1.target=TarpRadical(int[],\ int[],\ int,\ boolean,\ java.lang.String)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ TarpHard\r\n
+comment2.params=x\ h
+comment2.target=void\ hacerHueco(int,\ int)
+numComments=3
