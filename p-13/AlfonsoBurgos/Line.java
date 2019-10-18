@@ -1,7 +1,7 @@
 
 import java.awt.*;
 import java.awt.geom.*;
-
+ 
 /**
  * La clase linea permite dibujar lineas entre dos puntos 
  * 

@@ -1,10 +1,11 @@
-  
+package shapes;
+
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 import java.util.*;
 import java.awt.geom.Line2D; 
-      
 
 /**
  * Canvas is a class to allow for simple graphical drawing on a canvas.

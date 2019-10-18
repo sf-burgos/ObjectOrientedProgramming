@@ -2,6 +2,6 @@
 comment0.target=TarpRebelde
 comment1.params=lowerEnd\ higherEnd\ h\ isVisible\ col
 comment1.target=TarpRebelde(int[],\ int[],\ int,\ boolean,\ java.lang.String)
-comment2.params=x\ h
-comment2.target=void\ hacerHueco(int,\ int)
+comment2.params=tarp\ x\ h
+comment2.target=void\ hacerHueco(int,\ int,\ int)
 numComments=3

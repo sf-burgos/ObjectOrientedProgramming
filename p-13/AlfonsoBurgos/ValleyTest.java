@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+ 
 /**
  * The test class ValleyTest.
  *
@@ -71,8 +71,7 @@ public class ValleyTest
         int[] coorInicialTrapA = {40,200};
         int[] coorFinalTrapA = {120,180};
         valley1.addTrap(coorInicialTrapA , coorFinalTrapA);
-        valley1.makePuncture(0,20);
-    
+        valley1.makePuncture(0,20);   
     }
     @Test
     public void numeroHuecos(){
@@ -87,6 +86,37 @@ public class ValleyTest
         assertEquals(3,valley1.tarps()[0][2].length);
         
     
+    }
+    @Test
+    public void noDeberiaLloverSobreViñedoRed(){
+        Valley valley1 = new Valley(500, 500);
+        valley1.openVineyard("red", 101, 200);
+        int[] coorInicialTrapA = {100,100};
+        int[] coorFinalTrapA = {200,200};
+        valley1.addTrap(coorInicialTrapA , coorFinalTrapA);
+        int[] coorInicialTrapB = {150,350};
+        int[] coorFinalTrapB = {200,400};
+        valley1.addTrap(coorInicialTrapB , coorFinalTrapB);
+        valley1.startRain(180);
+        assertEquals(0, (valley1.rainFalls()).length);
+    }
+    @Test
+    public void deberiaLloverAcidoSobreViñedo(){
+        Valley valley1 = new Valley(500, 500);
+        valley1.openVineyard("black",90,200);
+        int[] coorInicialTrapA = {100,100};
+        int[] coorFinalTrapA = {200,200};
+        valley1.addTrap(coorInicialTrapA , coorFinalTrapA);
+        int[] coorInicialTrapB = {150,350};
+        int[] coorFinalTrapB = {200,400};
+        valley1.addTrap(coorInicialTrapB , coorFinalTrapB);
+        int[] coorInicialTrapC = {120,250};
+        int[] coorFinalTrapC = {170,190};
+        valley1.addTrap(coorInicialTrapC , coorFinalTrapC);
+        valley1.startRainAcid(170);
+        String[] resp={"black"};
+        assertEquals(resp,valley1.rainFalls());
+
     }
     
     

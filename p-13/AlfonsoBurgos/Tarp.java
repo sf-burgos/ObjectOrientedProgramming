@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+
 /** 
  * La clase Tarp nos permitira la creacion de lonas, dando como parametros las coordenadas en X y en Y
  */
@@ -54,12 +55,13 @@ public class Tarp
         }
         return minimo;
     }
-    public void hacerHueco(int x,int h){
+    public void hacerHueco(int tarp,int x,int h){
         int punto;
         Puncture hueco;
         punto =(int) (h-((pendiente*x) + puntoCorte));
         if (x >= this.getPuntoUno()[0] && x <= this.getPuntoDos()[0]){
-            hueco = new Puncture(x,punto,true);
+            hueco = new Puncture(x,punto,true); 
+            hueco.darLona(tarp);
             huecos.add(hueco);
         }else{
             System.out.println("Posicion no valida para esta lona"); 
@@ -127,5 +129,13 @@ public class Tarp
     }
     public String toStringBorrar(){
         return "BTarp"+","+puntoUno[0]+","+puntoUno[1]+","+puntoDos[0]+","+puntoDos[1];
+    }
+    public String toStringHueco(int x,int y){
+        for(Puncture punto: huecos){
+            if (punto.getXPos()==x && punto.getYPos()==y){
+                return punto.toStringCrear();
+            }
+        }
+        return "";
     }
 }

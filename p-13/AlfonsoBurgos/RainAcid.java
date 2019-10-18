@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+ 
 public class RainAcid extends Rain
 {
     /**
@@ -19,7 +19,7 @@ public class RainAcid extends Rain
                     if (x <= listLonas.get(i).getPuntoDos()[0] && x >= listLonas.get(i).getPuntoUno()[0]){                   
                         float k= (listLonas.get(i).getPendiente()*x)+listLonas.get(i).getPuntoCorte();  
                         if (realY-j==(int) k){
-                            listLonas.get(i).hacerHueco(x,realY);
+                            listLonas.get(i).hacerHueco(i,x,realY);
                             j=j+1; 
                             break;
                         }else{

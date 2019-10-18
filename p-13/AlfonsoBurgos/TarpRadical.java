@@ -12,8 +12,8 @@ public class TarpRadical extends Tarp{
         public TarpRadical(int[] lowerEnd ,int[] higherEnd,int h, boolean isVisible,String col){
             super(lowerEnd,higherEnd,h,isVisible,col);                                         
         }
-        public void hacerHueco(int x,int h){
-        super.hacerHueco(x,h);
+        public void hacerHueco(int tarp,int x,int h){
+        super.hacerHueco(tarp,x,h);
         this.makeInvisible();
         }
         

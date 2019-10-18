@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+ 
 /**
  * Write a description of class Rain here.
  *

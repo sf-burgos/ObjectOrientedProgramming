@@ -1,4 +1,4 @@
- 
+
 public class VineYard
 {
     private String name;

@@ -6,6 +6,7 @@ public class Puncture
     private int xPosition; 
     private int yPosition;
     private boolean isVisible;
+    private int lona;
     /**
      * Constructor for objects of class Puncture
      * @param xPos posicion en X, yPos  posicion en Y, visible visibilidad del objeto 
@@ -41,10 +42,13 @@ public class Puncture
     public int getYPos(){
         return yPosition;
     }
+    public void darLona(int tarp){
+        lona = tarp;
+    }
     public String toStringCrear(){
-        return "CPuncture" + "," + xPosition + "," + yPosition;
+        return "CPuncture"+","+ lona + "," + xPosition + "," + yPosition;
     }
         public String toStringBorrar(){
-        return "BPuncture" + "," + xPosition + "," + yPosition;
+        return "BPuncture" +","+ lona+ "," + xPosition + "," + yPosition;
     }
 }       

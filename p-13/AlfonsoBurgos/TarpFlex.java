@@ -7,15 +7,15 @@ public class TarpFlex extends Tarp{
         public TarpFlex(int[] lowerEnd ,int[] higherEnd,int h, boolean isVisible,String col){
             super(lowerEnd,higherEnd,h,isVisible,col);                                         
         }
-        public void hacerHueco(int x,int h){
+        public void hacerHueco(int tarp,int x,int h){
             int [] huecosFlex = super.posXHuecos();
             if(huecosFlex.length >= 1){                
                 int huecoAnterior = huecosFlex[0];
-                super.hacerHueco(x,h);
+                super.hacerHueco(tarp,x,h);
                 super.parcharHueco(huecoAnterior); 
 
             }else{
-                super.hacerHueco(x,h);
+                super.hacerHueco(tarp,x,h);
             }
 
             
