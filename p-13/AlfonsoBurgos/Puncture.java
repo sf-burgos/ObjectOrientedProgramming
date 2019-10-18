@@ -41,4 +41,10 @@ public class Puncture
     public int getYPos(){
         return yPosition;
     }
+    public String toStringCrear(){
+        return "CPuncture" + "," + xPosition + "," + yPosition;
+    }
+        public String toStringBorrar(){
+        return "BPuncture" + "," + xPosition + "," + yPosition;
+    }
 }       

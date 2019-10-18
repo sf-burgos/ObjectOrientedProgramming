@@ -3,6 +3,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.Arrays;
 import java.util.Stack;
+import java.util.Arrays;
 public class Valley
 {
     private boolean ok;
@@ -12,8 +13,9 @@ public class Valley
     private  Rectangle valleyconstructor ;
     private int realY;
     private ArrayList <String> coloresDisponibles;
-    private int lluviaX;
-    private Stack<String> historialAcciones; 
+    private Stack<String> historialAcciones;
+    private int lluviaFinal;
+    private ArrayList<Rain> listaLluvia;
 
     /**
      * Contructor de type VineYard Objects 
@@ -31,6 +33,7 @@ public class Valley
        listVinedo  = new ArrayList<VineYard>();  
        listLonas = new ArrayList<Tarp>();
        historialAcciones = new Stack<String>();
+       listaLluvia  = new ArrayList<Rain>();
     }
     /**
      * Abre un nuevo VineYard teniendo en cuenta que no pueden estar uno encima del otro y ademas que tienen que tener nombre diferentes
@@ -100,6 +103,7 @@ public class Valley
        if(sePuede || listLonas.size() == 0){
            lona = new Tarp(lowerEnd, higherEnd,realY,true,col);
            listLonas.add(lona);
+           historialAcciones.add(lona.toStringCrear());
        }
        listLonas = ordenarLonas(listLonas);
     }
@@ -152,8 +156,9 @@ public class Valley
      * @param int position a borrar 
      */
     public void removeTrap(int position){
-        listLonas.get(position-1).makeInvisible(); 
-        listLonas.remove(position-1);
+        listLonas.get(position).makeInvisible();
+        historialAcciones.add(listLonas.get(position).toStringBorrar());
+        listLonas.remove(position);
     }
     /**
      * Realiza un hueco en una posicion Y dada y en un numero de lona dado 
@@ -176,8 +181,10 @@ public class Valley
      * Cuando se ejecuta este metodo empieza a llover 
      */
     public void startRain(int x){       
-        RainArcoiris lluvia = new RainArcoiris(x,0);
+        Rain lluvia = new Rain(x,0);
         lluvia.startRain(x,listLonas,realY);
+        lluviaFinal = lluvia.getLluviaX();    
+        listaLluvia.add(lluvia);
     }
     /**
      * Cuando se invoca este metodo para la lluvia 
@@ -192,7 +199,7 @@ public class Valley
     public String[] rainFalls(){
         ArrayList<String> listVinedosRegados = new ArrayList<String>();
         for(int i=0;i<listVinedo.size();i++){
-            if(lluviaX >= listVinedo.get(i).getInicio() && lluviaX <= listVinedo.get(i).getFin()){
+            if(lluviaFinal >= listVinedo.get(i).getInicio() && lluviaFinal <= listVinedo.get(i).getFin()){
                 listVinedosRegados.add(listVinedo.get(i).getName());
             }
         }
@@ -205,16 +212,25 @@ public class Valley
      */
     
     public void Do(char d){
-        String accion = historialAcciones.pop();
-        String arregloAccion[] = accion.split(",");
+        String accion = historialAcciones.pop();String arregloAccion[] = accion.split(",");
         if (d == 'U'){
             if(arregloAccion[0].equals("Cvinedo")){
                 closeVineyard(arregloAccion[1]);
             }else if(arregloAccion[0].equals("Bvinedo")){
                 openVineyard(arregloAccion[1],Integer.valueOf(arregloAccion[2]),Integer.valueOf(arregloAccion[3]));
             }else if(arregloAccion[0].equals("CTarp")){
-
-            }            
+                for(int i =0; i < listLonas.size();i++){
+                    int[] puntoUno = new int[2];puntoUno[0]=Integer.valueOf(arregloAccion[1]);puntoUno[1]=Integer.valueOf(arregloAccion[2]);
+                    int[] puntoDos = new int[2];puntoDos[0]=Integer.valueOf(arregloAccion[3]);puntoDos[1]=Integer.valueOf(arregloAccion[4]);                 
+                    if(Arrays.equals(listLonas.get(i).getPuntoUno(),puntoUno) && Arrays.equals(listLonas.get(i).getPuntoDos(),puntoDos)){                        
+                        removeTrap(i);
+                    }
+                }                
+            }else if(arregloAccion[0].equals("BTarp")){
+                int[] puntoUno = new int[2];puntoUno[0]=Integer.valueOf(arregloAccion[1]);puntoUno[1]=Integer.valueOf(arregloAccion[2]);
+                int[] puntoDos = new int[2];puntoDos[0]=Integer.valueOf(arregloAccion[3]);puntoDos[1]=Integer.valueOf(arregloAccion[4]);
+                addTrap(puntoUno,puntoDos);
+            }
         }else if (d =='R'){
             if(arregloAccion[0].equals("Bvinedo")){
                 openVineyard(arregloAccion[1],Integer.valueOf(arregloAccion[2]),Integer.valueOf(arregloAccion[3]));
@@ -313,9 +329,11 @@ public class Valley
      * @return int[][][] rain
      */    
     public int [][][] rains(){
-    
-    
-    return null;
+        int[][][] rain = new int[listaLluvia.size()][listaLluvia.size()][listaLluvia.size()];
+        for (int i=0; i<listaLluvia.size(); i++){
+            rain[i] = listaLluvia.get(i).getCoordenadasLluvia();        
+        }    
+    return rain;
     }
    
     

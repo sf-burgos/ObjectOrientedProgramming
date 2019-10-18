@@ -21,4 +21,5 @@ public class Gota
         this.color=color;      
         rain.makeVisible();
     }
+
 }
