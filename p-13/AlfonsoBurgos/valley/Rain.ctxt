@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=Rain
+comment1.params=x\ y
+comment1.target=Rain(int,\ int)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Rain\r\n
+comment2.params=x\ listLonas\ realY
+comment2.target=void\ startRain(int,\ java.util.ArrayList,\ int)
+comment3.params=position
+comment3.target=void\ stopRain(int)
+comment4.params=
+comment4.target=int\ getLluviaX()
+comment5.params=
+comment5.target=int[][]\ getCoordenadasLluvia()
+comment6.params=
+comment6.target=int\ getXInicial()
+comment7.params=
+comment7.target=void\ makeInvisible()
+numComments=8

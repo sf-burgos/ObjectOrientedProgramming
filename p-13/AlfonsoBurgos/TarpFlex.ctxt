@@ -1,8 +1,0 @@
-#BlueJ class context
-comment0.target=TarpFlex
-comment1.params=lowerEnd\ higherEnd\ h\ isVisible\ col
-comment1.target=TarpFlex(int[],\ int[],\ int,\ boolean,\ java.lang.String)
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ TarpHard\r\n
-comment2.params=tarp\ x\ h
-comment2.target=void\ hacerHueco(int,\ int,\ int)
-numComments=3

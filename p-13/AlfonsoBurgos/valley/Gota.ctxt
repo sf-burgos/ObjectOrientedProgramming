@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Gota
+comment1.params=x\ y
+comment1.target=Gota(int,\ int)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Rain\r\n
+comment2.params=color
+comment2.target=void\ changeColor(java.lang.String)
+comment3.params=
+comment3.target=void\ makeInvisible()
+numComments=4
