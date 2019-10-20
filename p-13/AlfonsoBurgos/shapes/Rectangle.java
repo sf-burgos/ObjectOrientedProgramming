@@ -45,24 +45,9 @@ public class Rectangle extends Figure {
         xPosition = newXPosition;
         yPosition = newYPosition;
         color = newColor;
-        isVisible = false;
+        isVisible = true;
     } 
 
-    /**
-     * Make this rectangle visible. If it was already visible, do nothing.
-     */
-    public void makeVisible(){
-        isVisible = true;
-        draw();
-    }
-    
-    /**
-     * Make this rectangle invisible. If it was already invisible, do nothing.
-     */
-    public void makeInvisible(){
-        erase();
-        isVisible = false;
-    }
     
     /**
      * Move the rectangle a few pixels to the right.

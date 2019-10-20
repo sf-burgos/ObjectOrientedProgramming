@@ -7,7 +7,7 @@ public class TarpHard extends Tarp
     public TarpHard(int[] lowerEnd ,int[] higherEnd,int h, boolean isVisible,String col){
         super(lowerEnd,higherEnd,h,isVisible,col);                                         
     }
-    public void hacerHueco(int x,int h){
+    public void hacerHueco(int tarp,int x,int h){
         System.out.println("No se puede hacer hueco, es una lona hard"); 
     }
     

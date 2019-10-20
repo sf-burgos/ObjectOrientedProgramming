@@ -24,13 +24,6 @@ public class Circle extends Figure{
      * Create a new circle at default position with default color.
      */
     
-    public Circle(){
-        diameter = 30;
-        xPosition = 0;
-        yPosition = 100;
-        color = "blue";
-        isVisible = false;
-    }
     public Circle(int d, int xPos, int yPos,String color){
         diameter = d;
         xPosition = xPos;
@@ -39,21 +32,6 @@ public class Circle extends Figure{
         isVisible = false;
     }
 
-    /**
-     * Make this circle visible. If it was already visible, do nothing.
-     */
-    public void makeVisible(){
-        isVisible = true;
-        draw();
-    }
-    
-    /**
-     * Make this circle invisible. If it was already invisible, do nothing.
-     */
-    public void makeInvisible(){
-        erase();
-        isVisible = false;
-    }
     
     /**
      * Move the circle a few pixels to the right.
@@ -155,25 +133,13 @@ public class Circle extends Figure{
         }
     }
 
-    /**
-     * Change the size.
-     * @param newDiameter the new size (in pixels). Size must be >=0.
-     */
-    public void changeSize(int newDiameter){
-        erase();
-        diameter = newDiameter;
-        draw();
-    }
 
     /**
      * Change the color. 
      * @param color the new color. Valid colors are "red", "yellow", "blue", "green",
      * "magenta" and "black".
      */
-    public void changeColor(String newColor){
-        color = newColor;
-        draw();
-    }
+
     /**
      * Calcula el area del circulo dibujado 
      */

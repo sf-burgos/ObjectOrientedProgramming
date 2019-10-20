@@ -45,8 +45,7 @@ public class Valley
        coloresDisponibles= new ArrayList<String>();
        coloresDisponibles.add("yellow");coloresDisponibles.add("magenta");coloresDisponibles.add("blue");coloresDisponibles.add("red");coloresDisponibles.add("white");       
        realY=y;
-       valleyconstructor = new  Rectangle (x,y);
-       valleyconstructor.changeColor("green");
+       valleyconstructor = new  Rectangle (x,y,0,0,"green");
        valleyconstructor.makeVisible();
        listVinedo  = new ArrayList<VineYard>();  
        listLonas = new ArrayList<Tarp>();
@@ -126,6 +125,94 @@ public class Valley
        listLonas = ordenarLonas(listLonas);
     }
     /**
+     * Crea una lona hard
+     * se caracteriza poir no dejarse agujerear
+     * @param lowerEnd coordenadas X1, Y1, higherEnd coordenadas X2, Y2    
+      */
+    public void addTrapHard(int[] lowerEnd, int[] higherEnd){
+       boolean sePuede = true;
+       TarpHard lona; 
+       for(Tarp lonas: listLonas){
+           if((lonas.getPuntoUno()[0] == lowerEnd[0] && lonas.getPuntoUno()[1] == lowerEnd[1])||(lonas.getPuntoUno()[0] == higherEnd[0] &&lonas.getPuntoUno()[1] == higherEnd[1])){
+                System.out.println("No se puede añadir una lona en esta posicion ya existe en este punto"); 
+                sePuede = false;               
+           }
+       }
+       String col=verificarColorLona(lowerEnd,higherEnd);
+       if(sePuede || listLonas.size() == 0){
+           lona = new TarpHard(lowerEnd, higherEnd,realY,true,col);
+           listLonas.add(lona);
+           historialAcciones.add(lona.toStringCrear());
+       }
+       listLonas = ordenarLonas(listLonas);
+    }
+    /**
+     * Crea una lona flexible
+     * se caracteriza por solo tener un hueco, si se abre otro se auto parcha el anterior
+     * @param lowerEnd coordenadas X1, Y1, higherEnd coordenadas X2, Y2    
+      */
+    public void addTrapFlex(int[] lowerEnd, int[] higherEnd){
+       boolean sePuede = true;
+       TarpFlex lona; 
+       for(Tarp lonas: listLonas){
+           if((lonas.getPuntoUno()[0] == lowerEnd[0] && lonas.getPuntoUno()[1] == lowerEnd[1])||(lonas.getPuntoUno()[0] == higherEnd[0] &&lonas.getPuntoUno()[1] == higherEnd[1])){
+                System.out.println("No se puede añadir una lona en esta posicion ya existe en este punto"); 
+                sePuede = false;               
+           }
+       }
+       String col=verificarColorLona(lowerEnd,higherEnd);
+       if(sePuede || listLonas.size() == 0){
+           lona = new TarpFlex(lowerEnd, higherEnd,realY,true,col);
+           listLonas.add(lona);
+           historialAcciones.add(lona.toStringCrear());
+       }
+       listLonas = ordenarLonas(listLonas);
+    }
+        /**
+     * Crea una lona rebelde
+     * se caracteriza por decidir hacerse visible o invisible cuando se hace un hueco
+     * @param lowerEnd coordenadas X1, Y1, higherEnd coordenadas X2, Y2    
+      */
+    public void addTrapRebelde(int[] lowerEnd, int[] higherEnd){
+       boolean sePuede = true;
+       TarpRebelde lona; 
+       for(Tarp lonas: listLonas){
+           if((lonas.getPuntoUno()[0] == lowerEnd[0] && lonas.getPuntoUno()[1] == lowerEnd[1])||(lonas.getPuntoUno()[0] == higherEnd[0] &&lonas.getPuntoUno()[1] == higherEnd[1])){
+                System.out.println("No se puede añadir una lona en esta posicion ya existe en este punto"); 
+                sePuede = false;               
+           }
+       }
+       String col=verificarColorLona(lowerEnd,higherEnd);
+       if(sePuede || listLonas.size() == 0){
+           lona = new TarpRebelde(lowerEnd, higherEnd,realY,true,col);
+           listLonas.add(lona);
+           historialAcciones.add(lona.toStringCrear());
+       }
+       listLonas = ordenarLonas(listLonas);
+    }
+      /**
+     * Crea una lona radical
+     * se caracteriza por hacerse invisible cuando se hace un hueco
+     * @param lowerEnd coordenadas X1, Y1, higherEnd coordenadas X2, Y2    
+      */
+    public void addTrapRadical(int[] lowerEnd, int[] higherEnd){
+       boolean sePuede = true;
+       TarpRadical lona; 
+       for(Tarp lonas: listLonas){
+           if((lonas.getPuntoUno()[0] == lowerEnd[0] && lonas.getPuntoUno()[1] == lowerEnd[1])||(lonas.getPuntoUno()[0] == higherEnd[0] &&lonas.getPuntoUno()[1] == higherEnd[1])){
+                System.out.println("No se puede añadir una lona en esta posicion ya existe en este punto"); 
+                sePuede = false;               
+           }
+       }
+       String col=verificarColorLona(lowerEnd,higherEnd);
+       if(sePuede || listLonas.size() == 0){
+           lona = new TarpRadical(lowerEnd, higherEnd,realY,true,col);
+           listLonas.add(lona);
+           historialAcciones.add(lona.toStringCrear());
+       }
+       listLonas = ordenarLonas(listLonas);
+    }
+    /**
      * @param ArrayList<Tarp> lonas arreglo de lonas en el valle 
      * organiza las lonas de un valle en un arrayList
      * return ArrayList<Tarp> lonasOrdenadas 
@@ -185,6 +272,8 @@ public class Valley
     public void makePuncture(int trap, int x){
         Tarp lona=listLonas.get(trap);
         lona.hacerHueco(trap,x,realY);
+        historialAcciones.add(lona.toStringCrearHueco(x));
+
     }
     /**
      * Elimina o parcha un hueco realizado dada una lona y una coordeanda lona 
@@ -192,13 +281,15 @@ public class Valley
      */
     public void patchPuncture(int trap, int position){
         Tarp lona = listLonas.get(trap);
-        lona.parcharHueco(position);                
+        historialAcciones.add(lona.toStringBorrarHueco(position));
+        lona.parcharHueco(position); 
+
     }
     /**
      * Cuando se ejecuta este metodo empieza a llover 
      */
     public void startRain(int x){       
-        RainStraight lluvia = new RainStraight(x,0);
+        Rain lluvia = new Rain(x,0);
         lluvia.startRain(x,listLonas,realY);
         lluviaFinal = lluvia.getLluviaX();    
         listaLluvia.add(lluvia);
@@ -214,6 +305,29 @@ public class Valley
         lluviaFinal = lluvia.getLluviaX();    
         listaLluvia.add(lluvia);
     }
+    /**
+     * Contructor de una lluvia arcoiris
+     * una lluvia arcoiris es identificada por cambiar de color mientras llueve
+     * @param x coordenada en x donde inicia a llover 
+     */
+    public void startRainArcoiris(int x){       
+        RainArcoiris lluvia = new RainArcoiris(x,0);
+        lluvia.startRain(x,listLonas,realY);
+        lluviaFinal = lluvia.getLluviaX();    
+        listaLluvia.add(lluvia);
+    }
+    /**
+     * Contructor de una lluvia straight
+     * una lluvia straight es identificada por mover su posicion  para mantenerse recta
+     * @param x coordenada en x donde inicia a llover 
+     */
+    public void startRainStraight(int x){       
+        RainStraight lluvia = new RainStraight(x,0);
+        lluvia.startRain(x,listLonas,realY);
+        lluviaFinal = lluvia.getLluviaX();    
+        listaLluvia.add(lluvia);
+    }
+    
     /**
      * Cuando se invoca este metodo para la lluvia 
      * @param posicion donde deberia dejar de llover
@@ -264,7 +378,10 @@ public class Valley
                 addTrap(puntoUno,puntoDos);
             }else if(arregloAccion[0].equals("CPuncture")){
                 patchPuncture(Integer.valueOf(arregloAccion[1]),Integer.valueOf(arregloAccion[2]));
+            }else if(arregloAccion[0].equals("BPuncture")){
+                makePuncture(Integer.valueOf(arregloAccion[1]),Integer.valueOf(arregloAccion[2]));
             }
+            
         }else if (d =='R'){
             if(arregloAccion[0].equals("Bvinedo")){
                 openVineyard(arregloAccion[1],Integer.valueOf(arregloAccion[2]),Integer.valueOf(arregloAccion[3]));

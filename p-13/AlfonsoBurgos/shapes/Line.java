@@ -21,25 +21,9 @@ public class Line extends Figure{
         this.y1=y1;
         this.y2=y2;
         color = col;
-        isVisible = false;
-    }
-        /**
-     * Make this rectangle visible. If it was already visible, do nothing.
-     */
-    public void makeVisible(){
         isVisible = true;
-        draw();
     }
-    
-    /**
-     * Make this rectangle invisible. If it was already invisible, do nothing.
-     */
-    public void makeInvisible(){
 
-        erase();
-        isVisible = false;
-        
-    }
     
     /**
      * Draw the line with current specifications on screen.

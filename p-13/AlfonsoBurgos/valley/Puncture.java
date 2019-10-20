@@ -1,5 +1,8 @@
 package valley;
 import shapes.*;
+import shapes.Canvas;
+import shapes.Rectangle;
+
 public class Puncture
 {
     // instance variables - replace the example below with your own

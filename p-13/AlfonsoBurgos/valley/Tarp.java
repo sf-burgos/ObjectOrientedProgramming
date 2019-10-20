@@ -3,6 +3,7 @@ package valley;
 import java.util.ArrayList;
 
 import shapes.*;
+import shapes.Rectangle;
 /** 
  * La clase Tarp nos permitira la creacion de lonas, dando como parametros las coordenadas en X y en Y
  */
@@ -133,10 +134,18 @@ public class Tarp
     public String toStringBorrar(){
         return "BTarp"+","+puntoUno[0]+","+puntoUno[1]+","+puntoDos[0]+","+puntoDos[1];
     }
-    public String toStringHueco(int x,int y){
+    public String toStringCrearHueco(int x){
         for(Puncture punto: huecos){
-            if (punto.getXPos()==x && punto.getYPos()==y){
+            if (punto.getXPos()==x){
                 return punto.toStringCrear();
+            }
+        }
+        return "";
+    }
+    public String toStringBorrarHueco(int x){
+        for(Puncture punto: huecos){
+            if (punto.getXPos()==x){
+                return punto.toStringBorrar();
             }
         }
         return "";
