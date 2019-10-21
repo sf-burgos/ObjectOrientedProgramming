@@ -120,10 +120,32 @@ public class ValleyTest
         assertEquals(resp,valley1.rainFalls());
 
     }
+    @Test
+    public void deberiaLloverArcoiris(){
+        Valley valley1 = new Valley(500, 500);
+        valley1.openVineyard("magenta", 0, 200);
+        int[] coorInicialTrapA = {50,230};
+        int[] coorFinalTrapA = {100,200};
+        valley1.addTrap(coorInicialTrapA , coorFinalTrapA);
+        int[] coorInicialTrapB = {45,150};
+        int[] coorFinalTrapB = {170,120};
+        valley1.addTrap(coorInicialTrapB , coorFinalTrapB);
+        int[] coorInicialTrapC = {20,70};
+        int[] coorFinalTrapC = {90,100};
+        valley1.addTrap(coorInicialTrapC , coorFinalTrapC);
+        int[] coorInicialTrapD = {40,70};
+        int[] coorFinalTrapD = {100,50};
+        valley1.addTrap(coorInicialTrapD , coorFinalTrapD);
+        valley1.makePuncture(2, 60);
+        valley1.makePuncture(3, 100);
+        valley1.makePuncture(1,150);
+        valley1.startRainArcoiris(60);
+        String[] resp = {"magenta"};
+        assertEquals(resp, valley1.rainFalls());
     
     
     
-    
+    }
 }
 
 
