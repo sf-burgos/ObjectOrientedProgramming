@@ -72,13 +72,15 @@ public class Valley
         }
         for (int i=0; i<listVinedo.size(); i++){
             if(((listVinedo.get(i).getInicio()<=xi) && xi<=listVinedo.get(i).getFin())||( (listVinedo.get(i).getFin()<=xf) && (xf<=listVinedo.get(i).getFin()))){
-                System.out.println("Operacion invalida debido a existencia de un viñedo en esta posicion");
+                JOptionPane.showMessageDialog(null, "Operacion invalida debido a existencia de un viñedo en esta posicion");     
+                
                 flag=false; 
             }
         } 
         for (int j=0; j<listVinedo.size(); j++){
             if(listVinedo.get(j).getName().equals(name) && cont==0){
-                System.out.println("No se puede crear el viñedo,Ya existe uno con este nombre");
+                JOptionPane.showMessageDialog(null, "No se puede crear el viñedo,Ya existe uno con este nombre");  
+               
                 flag=false;
             }
         }        
@@ -112,8 +114,8 @@ public class Valley
        Tarp lona; 
        for(Tarp lonas: listLonas){
            if((lonas.getPuntoUno()[0] == lowerEnd[0] && lonas.getPuntoUno()[1] == lowerEnd[1])||(lonas.getPuntoUno()[0] == higherEnd[0] &&lonas.getPuntoUno()[1] == higherEnd[1])){
-                System.out.println("No se puede añadir una lona en esta posicion ya existe en este punto"); 
-                sePuede = false;               
+               JOptionPane.showMessageDialog(null, "No se puede añadir una lona en esta posicion ya existe en este punto");  
+               sePuede = false;               
            }
        }
        String col=verificarColorLona(lowerEnd,higherEnd);
@@ -134,8 +136,8 @@ public class Valley
        TarpHard lona; 
        for(Tarp lonas: listLonas){
            if((lonas.getPuntoUno()[0] == lowerEnd[0] && lonas.getPuntoUno()[1] == lowerEnd[1])||(lonas.getPuntoUno()[0] == higherEnd[0] &&lonas.getPuntoUno()[1] == higherEnd[1])){
-                System.out.println("No se puede añadir una lona en esta posicion ya existe en este punto"); 
-                sePuede = false;               
+               JOptionPane.showMessageDialog(null, "No se puede añadir una lona en esta posicion ya existe en este punto"); 
+               sePuede = false;               
            }
        }
        String col=verificarColorLona(lowerEnd,higherEnd);
@@ -156,8 +158,8 @@ public class Valley
        TarpFlex lona; 
        for(Tarp lonas: listLonas){
            if((lonas.getPuntoUno()[0] == lowerEnd[0] && lonas.getPuntoUno()[1] == lowerEnd[1])||(lonas.getPuntoUno()[0] == higherEnd[0] &&lonas.getPuntoUno()[1] == higherEnd[1])){
-                System.out.println("No se puede añadir una lona en esta posicion ya existe en este punto"); 
-                sePuede = false;               
+               JOptionPane.showMessageDialog(null, "No se puede añadir una lona en esta posicion ya existe en este punto");   
+               sePuede = false;               
            }
        }
        String col=verificarColorLona(lowerEnd,higherEnd);
@@ -178,8 +180,9 @@ public class Valley
        TarpRebelde lona; 
        for(Tarp lonas: listLonas){
            if((lonas.getPuntoUno()[0] == lowerEnd[0] && lonas.getPuntoUno()[1] == lowerEnd[1])||(lonas.getPuntoUno()[0] == higherEnd[0] &&lonas.getPuntoUno()[1] == higherEnd[1])){
-                System.out.println("No se puede añadir una lona en esta posicion ya existe en este punto"); 
-                sePuede = false;               
+               JOptionPane.showMessageDialog(null, "No se puede añadir una lona en esta posicion ya existe en este punto");  
+               
+               sePuede = false;               
            }
        }
        String col=verificarColorLona(lowerEnd,higherEnd);
@@ -200,8 +203,9 @@ public class Valley
        TarpRadical lona; 
        for(Tarp lonas: listLonas){
            if((lonas.getPuntoUno()[0] == lowerEnd[0] && lonas.getPuntoUno()[1] == lowerEnd[1])||(lonas.getPuntoUno()[0] == higherEnd[0] &&lonas.getPuntoUno()[1] == higherEnd[1])){
-                System.out.println("No se puede añadir una lona en esta posicion ya existe en este punto"); 
-                sePuede = false;               
+               JOptionPane.showMessageDialog(null, "No se puede añadir una lona en esta posicion ya existe en este punto");   
+               
+               sePuede = false;               
            }
        }
        String col=verificarColorLona(lowerEnd,higherEnd);
@@ -488,6 +492,9 @@ public class Valley
             rain[i] = listaLluvia.get(i).getCoordenadasLluvia();        
         }    
     return rain;
+    }
+    public ArrayList<Rain> getListLluvia(){
+        return listaLluvia;
     }
 }
 

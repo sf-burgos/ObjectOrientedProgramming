@@ -1,7 +1,7 @@
 package valley;
 
 import java.util.ArrayList;
-
+import javax.swing.JOptionPane;
 import shapes.*;
 import shapes.Rectangle;
 /** 
@@ -13,7 +13,9 @@ public class Tarp
     // instance variables - replace the example below with your own
     private Line lona;
     private int[] puntoUno; 
-    private int[] puntoDos;    
+    private int[] puntoDos;
+    private int[] puntoUnoInicial; 
+    private int[] puntoDosInicial;
     private float pendiente; 
     private float puntoCorte;
     private ArrayList<Puncture> huecos;
@@ -25,8 +27,20 @@ public class Tarp
      * @param lowerEnd y higherEnd Arreglos con un punto como coordenada isVisible es el atributo de visibilidad en pantalla
      */
     public Tarp(int[] lowerEnd ,int[] higherEnd,int h, boolean isVisible,String col){        
-        puntoUno= lowerEnd;
-        puntoDos= higherEnd;
+        puntoUnoInicial= lowerEnd;
+        puntoDosInicial= higherEnd;
+        if (lowerEnd[0]<higherEnd[0]){
+            puntoUno=lowerEnd;
+            puntoDos=higherEnd;
+            puntoDos[0]=puntoDos[0]-1;
+        }
+        else{
+        puntoUno=higherEnd;
+        puntoDos=lowerEnd;
+        puntoUno[0]=puntoUno[0]-1;
+        }
+        
+        
         lona = new Line(lowerEnd[0],h-lowerEnd[1],higherEnd[0],h-higherEnd[1],h,col);
         pendiente = (float)(higherEnd[1]-lowerEnd[1])/(higherEnd[0]-lowerEnd[0]);
         puntoCorte = (float) lowerEnd[1]-(pendiente*lowerEnd[0]);  
@@ -59,6 +73,13 @@ public class Tarp
         }
         return minimo;
     }
+    //Entrada básica con un cuadro de dialogo.
+
+
+
+ // JOptionPane.showMessageDialog( null, mensaje, JOptionPane.INFORMATION_MESSAGE );
+
+
     public void hacerHueco(int tarp,int x,int h){
         int punto;
         Puncture hueco;
@@ -68,8 +89,7 @@ public class Tarp
             hueco.darLona(tarp);
             huecos.add(hueco);
         }else{
-            System.out.println("Posicion no valida para esta lona"); 
-        }        
+            JOptionPane.showMessageDialog(null, "posicion no valida para esta lona ");        }        
     }
     
     public void parcharHueco(int x){

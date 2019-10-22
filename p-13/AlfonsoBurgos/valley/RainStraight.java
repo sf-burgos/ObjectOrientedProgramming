@@ -68,26 +68,23 @@ public class RainStraight extends Rain
             
             int puntoUno = lona.getPuntoUno()[0];
             int puntoDos = lona.getPuntoDos()[0];
-            if (puntoUno<x && x<puntoDos){
-                if (x-puntoUno>puntoDos-x){
-                    salidasPosibles.add(puntoDos+1);
-                }
-                else{
-                    salidasPosibles.add(puntoUno-1);
-                }
+            salidasPosibles.add(puntoUno);
+            salidasPosibles.add(puntoDos); 
+        }
             
         
-            }
-    }
+    
+    
     
     Collections.sort(salidasPosibles);
     for(Integer str: salidasPosibles){
-			System.out.println(str);
-		}
+        System.out.println(str);
+        }
     if (x-salidasPosibles.get(0)> salidasPosibles.get(salidasPosibles.size()-1)-x){
-        return salidasPosibles.get(salidasPosibles.size()-1);
+        return salidasPosibles.get(salidasPosibles.size()-1)+1;
     }
-    return salidasPosibles.get(0);
+    return salidasPosibles.get(0)-1;
+
 }
 }       
     
