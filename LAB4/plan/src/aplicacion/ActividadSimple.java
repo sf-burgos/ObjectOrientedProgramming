@@ -1,4 +1,4 @@
-
+package aplicacion;
 
 public class ActividadSimple extends Actividad{
     private Integer creditos;
@@ -7,7 +7,7 @@ public class ActividadSimple extends Actividad{
         super(id);
         this.creditos=creditos;
     }
-    public ActividadSimple(String id, Integer creditos,String descripcion){  
+    public ActividadSimple(String id,String descripcion, Integer creditos){  
         super(id,descripcion);
         this.creditos=creditos;
     }

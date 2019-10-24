@@ -1,3 +1,4 @@
+package aplicacion;
 import java.util.ArrayList;
 
 public class ActividadCompuesta extends Actividad{
@@ -40,6 +41,11 @@ public class ActividadCompuesta extends Actividad{
         }if(numeroVeces>1) throw new ActividadExcepcion(ActividadExcepcion.DOS_ACTIVIDADES_CON_DESCRIPCION);                
      return 1;
     }
+
+    public ArrayList<Actividad> getActividades() {
+    	return actividades;
+    }
+
     
     
 }

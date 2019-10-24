@@ -23,8 +23,12 @@ public class ActividadCompuesta extends Actividad{
     }    
     public  int creditosDefinidos(){
         int numeroCreditos =0; 
-        for(Actividad act: actividades){
-            numeroCreditos += act.creditosDefinidos();
+        if (actividades.size()==0){
+            return numeroCreditos;
+        }else{
+            for(Actividad act: actividades){
+                numeroCreditos += act.creditosDefinidos();
+            }
         }
         return numeroCreditos;
         

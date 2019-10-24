@@ -60,8 +60,8 @@ public class Plan{
 
     
     /**
-     * Consulta las actividades que inician con un prefijo
-     * @param prefijo El prefijo a buscar
+     * Consulta las actividades que contienen una informacion
+     * @param subCadena La información a buscar
      * @return 
      */
     public ArrayList<Actividad> busque(String subCadena){
@@ -75,7 +75,7 @@ public class Plan{
     }
 
     /**
-     * Consulta el numero de actividad
+     * Consulta el numero de actividades
      * @return 
      */
     public int numeroActividades(){
