@@ -1,4 +1,6 @@
  package valley;
+ import java.awt.*;
+ import javax.swing.*;
 public class TarpHard extends Tarp
 {
     /**
@@ -8,7 +10,7 @@ public class TarpHard extends Tarp
         super(lowerEnd,higherEnd,h,isVisible,col);                                         
     }
     public void hacerHueco(int tarp,int x,int h){
-        System.out.println("No se puede hacer hueco, es una lona hard"); 
+        JOptionPane.showMessageDialog(null, "No se puede hacer hueco, es una lona hard"); 
     }
     
 }

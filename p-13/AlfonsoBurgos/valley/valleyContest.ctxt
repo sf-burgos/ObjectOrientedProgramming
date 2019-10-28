@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=valleyContest
+comment1.params=
+comment1.target=valleyContest()
+comment2.params=vineyard\ tarp
+comment2.target=int\ solve(int[],\ int[][])
+comment3.params=x\ y
+comment3.target=int\ posibleSolucion(int,\ int)
+comment4.params=sol\ vineyard\ n
+comment4.target=int[][][]\ matrizSolucion(int[][],\ int[],\ int)
+comment5.params=A\ izq\ der
+comment5.target=void\ quicksort(int[][],\ int,\ int)
+numComments=6
