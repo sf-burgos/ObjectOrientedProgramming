@@ -52,7 +52,7 @@ public class RainStraight extends Rain
         lluviaX=x;
     }
     public void stopRain(int position){
-        makeInvisible();
+        super.stopRain(position);
     }
     
     public int getLluviaX(){
@@ -82,6 +82,9 @@ public class RainStraight extends Rain
         }
     if (x-salidasPosibles.get(0)> salidasPosibles.get(salidasPosibles.size()-1)-x){
         return salidasPosibles.get(salidasPosibles.size()-1)+1;
+    }
+    else if(salidasPosibles.get(0)-1 < 0){
+            return salidasPosibles.get(salidasPosibles.size()-1)+1;
     }
     return salidasPosibles.get(0)-1;
 

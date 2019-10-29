@@ -161,23 +161,23 @@ public class Valley
        }
        String col=verificarColorLona(lowerEnd,higherEnd);
        if(sePuede || listLonas.size() == 0){
-           if(type.equals("normal")){
+           if(type.toLowerCase().equals("normal")){
                lona = new Tarp(lowerEnd, higherEnd,realY,true,col);
                listLonas.add(lona);
                historialAcciones.add(lona.toStringCrear());
-           }else if(type.equals("hard")){
+           }else if(type.toLowerCase().equals("hard")){
                lona = new TarpHard(lowerEnd, higherEnd,realY,true,col);
                listLonas.add(lona);
                historialAcciones.add(lona.toStringCrear());
-           }else if(type.equals("radical")){
+           }else if(type.toLowerCase().equals("radical")){
                lona = new TarpRadical(lowerEnd, higherEnd,realY,true,col);
                listLonas.add(lona);
                historialAcciones.add(lona.toStringCrear());
-            }else if(type.equals("flexible")){
+            }else if(type.toLowerCase().equals("flexible")){
                lona = new TarpFlex(lowerEnd, higherEnd,realY,true,col);
                listLonas.add(lona);
                historialAcciones.add(lona.toStringCrear());
-            }else if(type.equals("rebelde")){
+            }else if(type.toLowerCase().equals("rebelde")){
                lona = new TarpRebelde(lowerEnd, higherEnd,realY,true,col);
                listLonas.add(lona);
                historialAcciones.add(lona.toStringCrear());
@@ -287,22 +287,22 @@ public class Valley
      * @param x coordenada en x donde inicia a llover 
      */  
     public void startRain(String type,int x){
-        if(type.equals("normal")){
+        if(type.toLowerCase().equals("normal")){
             Rain lluvia = new Rain(x,0);
             lluvia.startRain(x,listLonas,realY);
             lluviaFinal = lluvia.getLluviaX();    
             listaLluvia.add(lluvia);
-        }else if(type.equals("acid")){
+        }else if(type.toLowerCase().equals("acid")){
             Rain lluvia = new RainAcid(x,0);
             lluvia.startRain(x,listLonas,realY);
             lluviaFinal = lluvia.getLluviaX();    
             listaLluvia.add(lluvia);
-        }else if(type.equals("straight")){
+        }else if(type.toLowerCase().equals("straight")){
             Rain lluvia = new RainStraight(x,0);
             lluvia.startRain(x,listLonas,realY);
             lluviaFinal = lluvia.getLluviaX();    
             listaLluvia.add(lluvia);
-        }else if(type.equals("arcoiris")){
+        }else if(type.toLowerCase().equals("arcoiris")){
             Rain lluvia = new RainArcoiris(x,0);
             lluvia.startRain(x,listLonas,realY);
             lluviaFinal = lluvia.getLluviaX();    
@@ -316,9 +316,16 @@ public class Valley
      * @param posicion donde deberia dejar de llover
      */ 
     public void stopRain(int position){  
-
-        stopRain(position);
+        for(Rain lluvia: listaLluvia){
+            if(lluvia.getXInicial()==position){
+                lluvia.stopRain(position);
+                lluvia.makeInvisible();
+            }else{
+                JOptionPane.showMessageDialog(null, "No llueve en esta posicion"); 
+            }
         }
+        
+    }
     
     
     /**

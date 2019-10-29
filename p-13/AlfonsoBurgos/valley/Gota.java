@@ -12,12 +12,16 @@ public class Gota
     boolean flagRain;
     Rectangle rain;  
     String color;
+    int xPosition;
+    int yPosition;
     /**
      * Constructor for objects of class Rain
      */
      //public Rectangle(int newHeight, int newWidth, int newXPosition, int newYPosition,String newColor ){
     public Gota(int x, int y){        
         rain = new  Rectangle (1,1,x,y,"blue"); 
+        xPosition=x;
+        yPosition=y;
         rain.changeColor("blue");
         flagRain=true;
         rain.makeVisible();   
@@ -30,7 +34,11 @@ public class Gota
         
     }
     public void makeInvisible(){
-    rain.makeInvisible();
+        rain.makeInvisible();
     }
+    public int getXPosition(){
+        return xPosition;
+    }
+    
 
 }

@@ -65,7 +65,12 @@ public class Rain
         lluviaX=x;
     }
     public void stopRain(int position){
-        makeInvisible();
+
+            for(Gota gotas: gotasDeLluvia){
+                gotas.makeInvisible();
+            }            
+
+        
     }
     
     public int getLluviaX(){

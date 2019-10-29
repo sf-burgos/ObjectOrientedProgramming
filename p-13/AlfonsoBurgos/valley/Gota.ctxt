@@ -7,4 +7,6 @@ comment2.params=color
 comment2.target=void\ changeColor(java.lang.String)
 comment3.params=
 comment3.target=void\ makeInvisible()
-numComments=4
+comment4.params=
+comment4.target=int\ getXPosition()
+numComments=5

@@ -1,7 +1,8 @@
 package valley;
 
 import java.util.ArrayList;
-
+import javax.swing.*;
+import javax.swing.JOptionPane;
 
 public class RainAcid extends Rain
 {
@@ -41,5 +42,12 @@ public class RainAcid extends Rain
         }
         lluviaX=x;
     }
+    public void stopRain(int position){
+
+            JOptionPane.showMessageDialog(null, "La lluvia acida no para"); 
+
+        
+    }
+    
     
 }
