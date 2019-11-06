@@ -1,4 +1,5 @@
 package presentacion;
+import aplicacion.*;
 import java.awt.*; 
 import java.awt.event.*;
 import java.awt.event.ActionListener;
@@ -28,6 +29,9 @@ public class ReplicateGUI extends JFrame{
 	private JButton cambiarDimension;
 	private JButton refrescar;
 	private JButton[][] matrizBotones;
+	
+	/**Control Botones presionados*/
+	private int[][] controlBotones;
 	
 	/**Colores */
 	private Color colorAnteriorM;
@@ -109,9 +113,9 @@ public class ReplicateGUI extends JFrame{
 		for (int i=0;i<matrizBotones.length;i++){
 			for(int j=0;j<matrizBotones[0].length;j++){
 				matrizBotones[i][j].addActionListener(new ActionListener(){
-					public void actionPerformed(ActionEvent e){						
+					public void actionPerformed(ActionEvent e){							
 						JButton evento = (JButton)e.getSource();
-						evento.setBackground(Color.BLACK);
+						evento.setBackground(colorAnteriorR);						
 					}
 				});
 			}
@@ -136,6 +140,11 @@ public class ReplicateGUI extends JFrame{
 				cambiarDimensionTablero(numeroFilas,numeroColumnas);
 			}
 		});
+		replicar.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				refresh();
+			}
+		});
 	}
 	
 	public void salga(){
@@ -147,15 +156,18 @@ public class ReplicateGUI extends JFrame{
 	
 	/**Iniciar tablero */ 
 	
-	public JPanel prepareElementosTablero(int filas,int columnas){
+	public JPanel prepareElementosTablero(int filas,int columnas){		
 		//principal = new JPanel();
 		matrizBotones = new JButton[filas][columnas];
+		controlBotones = new int[filas][columnas];
+		
 		setContentPane(principal);
 		principal.setLayout(new BorderLayout());	
 		//JPanel tablero = new JPanel();
 		tablero.setLayout(new GridLayout(filas,columnas));		
 		for(int i=0; i<matrizBotones.length;i++){
 			for(int j=0;j<matrizBotones[0].length;j++){
+				controlBotones[i][j]=0;
 				matrizBotones[i][j] = new JButton();
 				matrizBotones[i][j].setBackground(Color.white);
 				tablero.add(matrizBotones[i][j]);
@@ -180,19 +192,9 @@ public class ReplicateGUI extends JFrame{
 		return principal;
 	}
 	
-	public void refresh(){
-		colorAnteriorM = Color.white;
-		colorAnteriorR = Color.black;
-		for(int i=0; i<matrizBotones.length;i++){
-			for(int j=0;j<matrizBotones[0].length;j++){				
-				tablero.remove(matrizBotones[i][j]);
-				matrizBotones[i][j] = new JButton();
-				matrizBotones[i][j].setBackground(colorAnteriorM);
-				tablero.add(matrizBotones[i][j]);
-			}
-		}
-		prepareAcciones();
-	}
+	/**public void refresh(){
+		
+	}*/
 	
 	public void cambiarLosColores(){
 		Color colorNuevoM = JColorChooser.showDialog(null,"Seleccione color para la matriz",colorAnteriorM);
@@ -221,6 +223,36 @@ public class ReplicateGUI extends JFrame{
 		}
 		prepareElementosTablero(filas,columnas);
 		prepareAcciones();
+		
+		
+	}
+	
+	public int[][] generarMatrizControl(){
+		for (int i=0;i<matrizBotones.length;i++){
+			for(int j=0;j<matrizBotones[0].length;j++){
+				if(matrizBotones[i][j].getBackground().equals(Color.BLACK)){
+					controlBotones[i][j] = 1;
+				}
+			}
+		}
+		return controlBotones;
+	}
+	
+	public void refresh(){
+		int[][]matrizReplicar = generarMatrizControl();
+		Replicate replica = new Replicate(matrizReplicar);
+		controlBotones = replica.replicarMatriz();
+		for(int i=0;i<controlBotones.length;i++){
+			for(int j=0;j<controlBotones[0].length;j++){
+				if (controlBotones[i][j] ==1){
+					matrizBotones[i][j].setBackground(colorAnteriorR);
+				}else if(controlBotones[i][j] == 0){
+					matrizBotones[i][j].setBackground(colorAnteriorM);
+				}
+			}
+		}
+		
+
 	}
 
 
