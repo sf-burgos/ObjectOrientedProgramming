@@ -28,8 +28,8 @@ public class Replicate{
 	
 	public int[][] replicarMatriz(){
 		this.inicializarReplica();
-		for (int i=0;i<matriz.length;i++){
-			for(int j=0;j<matriz[0].length;j++){
+		for (int i=1;i<matriz.length-1;i++){
+			for(int j=1;j<matriz[0].length-1;j++){
 				int contador = 0;
 				if(i!=0 && i!=matriz.length-1 && j != 0 && j!= matriz[0].length-1){
 					if(matriz[i][j] == 1){
