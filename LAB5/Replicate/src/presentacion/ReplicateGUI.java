@@ -27,9 +27,8 @@ public class ReplicateGUI extends JFrame{
 	private JButton terminarReplica;
 	private JButton cambiarColor;
 	private JButton cambiarDimension;
-	private JButton refrescar;
 	private JButton[][] matrizBotones;
-	
+	private int numeroReplica;
 	/**Control Botones presionados*/
 	private int[][] controlBotones;
 	
@@ -44,6 +43,7 @@ public class ReplicateGUI extends JFrame{
 		colorAnteriorR = Color.black;
 		prepareElementos();		
 		prepareAcciones();
+		numeroReplica=0;
 
 		
 	}
@@ -111,20 +111,22 @@ public class ReplicateGUI extends JFrame{
 			}
 		});
 		for (int i=1;i<matrizBotones.length-1;i++){
-			for(int j=1;j<matrizBotones[0].length-1;j++){
-				matrizBotones[i][j].addActionListener(new ActionListener(){
-					public void actionPerformed(ActionEvent e){							
-						JButton evento = (JButton)e.getSource();
-						evento.setBackground(colorAnteriorR);						
-					}
-				});
-			}
-		}
-		refrescar.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				refresh();
-			}
-		});
+            for(int j=1;j<matrizBotones[0].length-1;j++){
+                matrizBotones[i][j].addActionListener(new ActionListener(){
+                    public void actionPerformed(ActionEvent e){
+                        JButton evento = (JButton)e.getSource();
+                        if(evento.getBackground().equals(colorAnteriorM)){
+                            
+                            evento.setBackground(colorAnteriorR);
+                        }else if(evento.getBackground().equals(colorAnteriorR)){
+                            evento.setBackground(colorAnteriorM);
+                            
+                        }
+                    }
+                });
+            }
+        }
+		
 		cambiarColor.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				cambiarLosColores();
@@ -145,6 +147,26 @@ public class ReplicateGUI extends JFrame{
 				refresh();
 			}
 		});
+		nuevo.addActionListener(new ActionListener(){
+			public void actionPerformed (ActionEvent e){
+				numeroReplica=0;
+				reiniciarTablero();
+				
+			}
+			
+		});
+		numeroReplicas.addActionListener(new ActionListener(){
+			public void actionPerformed (ActionEvent e){
+				mostrarNumeroReplica();
+				
+			}
+		});
+		terminarReplica.addActionListener(new ActionListener(){
+			public void actionPerformed (ActionEvent e){
+				terminarDeReplicar();
+			}
+		});
+	
 	}
 	
 	public void salga(){
@@ -180,14 +202,12 @@ public class ReplicateGUI extends JFrame{
 		terminarReplica = new JButton("Terminar Replicar");
 		cambiarColor = new JButton("Cambiar Color");
 		cambiarDimension = new JButton("Cambiar Dimension");
-		refrescar = new JButton("Refrescar");
 		botones.setLayout(new GridLayout(2,3));
 		botones.add(replicar);
 		botones.add(numeroReplicas);
 		botones.add(terminarReplica);
 		botones.add(cambiarColor);
 		botones.add(cambiarDimension);
-		botones.add(refrescar);
 		principal.add(botones, BorderLayout.SOUTH);		
 		return principal;
 	}
@@ -226,6 +246,19 @@ public class ReplicateGUI extends JFrame{
 		
 		
 	}
+	public void reiniciarTablero(){
+		colorAnteriorM = Color.white;
+		colorAnteriorR = Color.black;
+		for(int i=1; i<matrizBotones.length-1;i++){
+			for(int j=1;j<matrizBotones[0].length-1;j++){				
+				tablero.remove(matrizBotones[i][j]);		
+			}
+		}
+		prepareElementosTablero(matrizBotones.length-2,matrizBotones[0].length-2);
+		prepareAcciones();
+		
+		
+	}
 	
 	public int[][] generarMatrizControl(){
 		for (int i=1;i<matrizBotones.length-1;i++){
@@ -237,8 +270,15 @@ public class ReplicateGUI extends JFrame{
 		}
 		return controlBotones;
 	}
-	
+	public void mostrarNumeroReplica(){
+		JOptionPane.showMessageDialog(null,"El numero de Replicas es:"+numeroReplica);
+		
+	}
+	public void terminarDeReplicar(){
+		replicar.setEnabled(false);
+	}
 	public void refresh(){
+		numeroReplica+=1;
 		int[][]matrizReplicar = generarMatrizControl();
 		Replicate replica = new Replicate(matrizReplicar);
 		controlBotones = replica.replicarMatriz();
@@ -251,7 +291,7 @@ public class ReplicateGUI extends JFrame{
 				}
 			}
 		}
-		
+	
 
 	}
 
