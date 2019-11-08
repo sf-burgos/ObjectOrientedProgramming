@@ -152,6 +152,7 @@ public class ReplicateGUI extends JFrame{
 				numeroReplica=0;
 				reiniciarTablero();
 				
+				
 			}
 			
 		});
@@ -234,6 +235,7 @@ public class ReplicateGUI extends JFrame{
 	}
 	
 	public void cambiarDimensionTablero(int filas,int columnas){
+	
 		colorAnteriorM = Color.white;
 		colorAnteriorR = Color.black;
 		for(int i=1; i<matrizBotones.length-1;i++){
@@ -241,12 +243,14 @@ public class ReplicateGUI extends JFrame{
 				tablero.remove(matrizBotones[i][j]);		
 			}
 		}
-		prepareElementosTablero(filas+2,columnas+2);
+		prepareElementosTablero(filas,columnas);
+		replicar.setEnabled(true);
 		prepareAcciones();
 		
 		
 	}
 	public void reiniciarTablero(){
+		replicar.setEnabled(true);
 		colorAnteriorM = Color.white;
 		colorAnteriorR = Color.black;
 		for(int i=1; i<matrizBotones.length-1;i++){
@@ -256,6 +260,7 @@ public class ReplicateGUI extends JFrame{
 		}
 		prepareElementosTablero(matrizBotones.length-2,matrizBotones[0].length-2);
 		prepareAcciones();
+		
 		
 		
 	}
