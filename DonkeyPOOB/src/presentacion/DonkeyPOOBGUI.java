@@ -12,8 +12,11 @@ import java.awt.event.WindowEvent;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -43,12 +46,14 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		juego.setVisible(true);
 		
 	}
+	
+
 
 	public void prepareElementosInicial() {
-		layout = new CardLayout();
-		setSize(new Dimension(900, 590));
-		principal = new JPanel(layout);
+		this.setSize(new Dimension(900, 900));
 		menuInicial = new PantallaInicial(PantallaInicial.fondoInicial);
+		setContentPane(menuInicial);		
+
 	}
 	
 	@Override
