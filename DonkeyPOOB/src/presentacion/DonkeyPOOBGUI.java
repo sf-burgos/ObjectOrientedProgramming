@@ -36,6 +36,9 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	private PantallaInicial menuInicial;
 	private JPanel principal;
 	private CardLayout layout;
+	private JMenuBar barraMenu;
+	private JMenu menu;
+	private JMenuItem nuevo, abrir, guardar, salir, importar;
 	
 	public DonkeyPOOBGUI() {
 		this.setTitle("DonkeyPOOB");
@@ -58,10 +61,31 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		setSize(new Dimension(900, 900));
 		setLocationRelativeTo(null);
 	    prepareElementosInicial(); 
+	    prepareElementosMenu();
 	    
 	}
 
-
+	private void prepareElementosMenu() {
+		barraMenu = new JMenuBar();
+		menu = new JMenu("Menu");
+		nuevo = new JMenuItem("Nuevo");
+		abrir = new JMenuItem("Abrir");
+		guardar = new JMenuItem("Guardar");
+		salir = new JMenuItem("Salir");
+		importar = new JMenuItem("Importar");
+		menu.add(nuevo);
+		menu.addSeparator();
+		menu.add(abrir);
+		menu.addSeparator();
+		menu.add(guardar);
+		menu.addSeparator();
+		menu.add(importar);
+		menu.addSeparator();
+		menu.add(salir);
+		barraMenu.add(menu);
+		setJMenuBar(barraMenu);
+	}
+	
 	public void prepareElementosInicial() {
 		layout = new CardLayout();
 		setSize(new Dimension(900, 900));
@@ -76,7 +100,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	public void prepareAcciones() {
 		menuInicial.unPlayer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				iniciar();
 			}
 		});
 		menuInicial.dosPlayer.addActionListener(new ActionListener() {
@@ -141,6 +165,14 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 				prepareAcciones();
 			}
 		});
+	}
+	
+	public void iniciar() {
+		ponerElementos();
+	}
+	
+	public void ponerElementos() {
+		menuInicial.prepareElegirElementos();
 	}
 	
 	@Override
