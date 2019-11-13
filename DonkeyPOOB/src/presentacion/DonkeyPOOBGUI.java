@@ -39,8 +39,10 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	
 	public DonkeyPOOBGUI() {
 		this.setTitle("DonkeyPOOB");
-		prepareElementosInicial();
+		prepareElementos();
 		prepareAcciones();
+		addKeyListener(this);
+		setFocusable(true);
 	}
 	
 	public static void main(String args[]) {
@@ -50,12 +52,25 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	}
 	
 
+	private void prepareElementos() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
+		setSize(new Dimension(900, 900));
+		setLocationRelativeTo(null);
+	    prepareElementosInicial(); 
+	    
+	}
+
 
 	public void prepareElementosInicial() {
-		this.setSize(new Dimension(900,900 ));
+		layout = new CardLayout();
+		setSize(new Dimension(900, 900));
+		principal = new JPanel(layout);
 		menuInicial = new PantallaInicial(PantallaInicial.fondoInicial);
-		setContentPane(menuInicial);		
-
+		add(principal);
+		principal.add(menuInicial);
+		layout.show(principal,"tini");		
+		setContentPane(principal);
 	}
 	
 	public void prepareAcciones() {
@@ -78,9 +93,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		menuInicial.instrucciones.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				menuInicial.prepareElementosControl();
-				prepareAccionesControl();
-				
-				
+				prepareAccionesControl();							
 			}
 		});
 		menuInicial.abrir.addActionListener(new ActionListener() {
@@ -153,9 +166,4 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		// TODO Auto-generated method stub
 		
 	}
-
-
-
-	
-
 }

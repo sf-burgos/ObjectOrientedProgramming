@@ -36,7 +36,6 @@ public class PantallaInicial extends JPanel {
 	
 	public void prepareElementosInicio(){
 		removeAll();
-		this.setLayout(null);
 		setFondo(PantallaInicial.fondoInicial);		
 		unPlayer = new Boton("1Jugador",120,500);
 		add(unPlayer);		
@@ -55,8 +54,9 @@ public class PantallaInicial extends JPanel {
 	}
 	
 	
-	public void paint(Graphics g) {
-		g.drawImage(imagenFondo,0,0,getWidth(),getHeight(),this);
+	public void paintBorder(Graphics g) {
+		super.paintComponents(g);
+		g.drawImage(imagenFondo,0,0,getSize().width, getSize().height,null);
 	
 	}
 	
@@ -84,7 +84,4 @@ public class PantallaInicial extends JPanel {
 		setFondo(PantallaInicial.fondoInstrucciones);
 		repaint();
 	}
-	
-	
-
 }
