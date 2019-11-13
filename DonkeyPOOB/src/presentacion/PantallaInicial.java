@@ -14,12 +14,13 @@ import javax.swing.JPanel;
 import java.awt.event.*;
 
 public class PantallaInicial extends JPanel {
-	public static final String fondoInicial = "rsc/donkeyInicial.png";
-	protected JButton unPlayer,dosPlayer,playerVsCpu,cpuProtector,cpuMimo,cpuTemeroso,instrucciones,abrir,salir;
+	public static final String fondoInicial = "rsc/donkeyIni.png";
+	public static final String fondoInstrucciones = "rsc/donkeyInstrucciones.png";
+	protected JButton unPlayer,dosPlayer,playerVsCpu,cpuProtector,cpuMimo,cpuTemeroso,instrucciones,abrir,salir,volver;
 	private Image imagenFondo;
 	
 	public PantallaInicial(String imagen)  {
-	
+		super(null);
 		prepareElementosInicio();
 		setFondo(imagen);
 		
@@ -35,31 +36,21 @@ public class PantallaInicial extends JPanel {
 	
 	public void prepareElementosInicio(){
 		removeAll();
-		setFondo(PantallaInicial.fondoInicial);
-		//JPanel botones = new JPanel();
-		//botones.setLayout(new FlowLayout(FlowLayout.LEFT, getWidth(), 650));
-		
-		unPlayer = new JButton("1 player");
-		unPlayer.setBackground(Color.gray);
-		unPlayer.setBounds(100, 100, 100, 100);
-		add(unPlayer);
-		
-		//botones.add(unPlayer);
-		
-		dosPlayer = new  JButton("2 player");
-		//botones.add(dosPlayer);
-		
-		playerVsCpu = new  JButton("player vs CPU");
-		//botones.add(playerVsCpu);
-		
-		instrucciones = new  JButton("instrucciones");
-		//botones.add(instrucciones);
-	
-		abrir = new  JButton("abrir");
-		//botones.add(abrir);
-		
-		salir = new  JButton("salir");
-		//botones.add(salir);
+		this.setLayout(null);
+		setFondo(PantallaInicial.fondoInicial);		
+		unPlayer = new Boton("1Jugador",120,500);
+		add(unPlayer);		
+		dosPlayer = new Boton("2Jugador",350,500);		
+		add(dosPlayer);
+		playerVsCpu = new Boton("vsCPU",620,500);
+		add(playerVsCpu);
+		instrucciones = new Boton("controles",120,600);		
+		add(instrucciones);
+		abrir = new Boton("Abrir",380,600);
+		add(abrir);		
+		salir = new Boton("salir",630,600);
+		add(salir);
+		repaint();
 		
 	}
 	
@@ -67,7 +58,33 @@ public class PantallaInicial extends JPanel {
 	public void paint(Graphics g) {
 		g.drawImage(imagenFondo,0,0,getWidth(),getHeight(),this);
 	
-    }
+	}
+	
+	public void prepareElementosCpu() {
+		removeAll();
+		
+		cpuProtector = new Boton("salir",100,500);
+		add(cpuProtector);
+		
+		cpuMimo = new Boton("salir",230,500);
+		add(cpuMimo);
+		
+		cpuTemeroso = new Boton("salir",360,500);
+		add(cpuTemeroso);
+		
+		volver = new  Boton("atras", 10, 10);
+		add(volver);
+		repaint();
+	}
+	
+	public void prepareElementosControl() {
+		removeAll();
+		volver = new  Boton("atras", 10, 10);
+		add(volver);
+		setFondo(PantallaInicial.fondoInstrucciones);
+		repaint();
+	}
+	
 	
 
 }

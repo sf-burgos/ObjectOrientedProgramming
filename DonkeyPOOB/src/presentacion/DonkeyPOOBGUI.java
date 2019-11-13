@@ -38,7 +38,9 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	private CardLayout layout;
 	
 	public DonkeyPOOBGUI() {
+		this.setTitle("DonkeyPOOB");
 		prepareElementosInicial();
+		prepareAcciones();
 	}
 	
 	public static void main(String args[]) {
@@ -50,10 +52,82 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 
 
 	public void prepareElementosInicial() {
-		this.setSize(new Dimension(900, 900));
+		this.setSize(new Dimension(900,900 ));
 		menuInicial = new PantallaInicial(PantallaInicial.fondoInicial);
 		setContentPane(menuInicial);		
 
+	}
+	
+	public void prepareAcciones() {
+		menuInicial.unPlayer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		menuInicial.dosPlayer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		menuInicial.playerVsCpu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				menuInicial.prepareElementosCpu();
+				prepareAccionesCPU();
+			}
+		});
+		menuInicial.instrucciones.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				menuInicial.prepareElementosControl();
+				prepareAccionesControl();
+				
+				
+			}
+		});
+		menuInicial.abrir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		menuInicial.salir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				salir();
+			}
+		});
+		addWindowListener(new WindowAdapter(){
+			public void windowClosing(WindowEvent e){
+				salir();
+			}
+		});
+		
+	
+	}
+	
+	private void prepareAccionesControl() {
+		menuInicial.volver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setSize(new Dimension(900, 900));
+				menuInicial.prepareElementosInicio();
+				prepareAcciones();
+			}
+		});
+	}
+	public void salir(){
+		int result = JOptionPane.showConfirmDialog(null, "¿Seguro que desea salir?", "Confirmacion de salida: ",
+				JOptionPane.YES_NO_OPTION);
+		if (result == JOptionPane.YES_OPTION)
+			System.exit(0);
+		else if (result == JOptionPane.NO_OPTION)
+			setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+	}
+	
+	private void prepareAccionesCPU() {		
+		menuInicial.volver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setSize(new Dimension(900, 900));
+				menuInicial.prepareElementosInicio();
+				prepareAcciones();
+			}
+		});
 	}
 	
 	@Override
