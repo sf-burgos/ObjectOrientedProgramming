@@ -38,7 +38,7 @@ public class PantallaInicial extends JPanel {
 		removeAll();
 		setFondo(PantallaInicial.fondoInicial);		
 		unPlayer = new Boton("1Jugador",120,500);
-		add(unPlayer);		
+		add(unPlayer);			
 		dosPlayer = new Boton("2Jugador",350,500);		
 		add(dosPlayer);
 		playerVsCpu = new Boton("vsCPU",620,500);

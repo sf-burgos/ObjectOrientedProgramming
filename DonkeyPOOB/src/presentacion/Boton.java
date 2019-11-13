@@ -25,5 +25,11 @@ public class Boton extends JButton{
 	public void paint(Graphics g){
 		g.drawImage(imagen, 0, 0, null);
 	}
+	
+	public void setBounds(int widht,int height) {
+		this.setBounds(widht, height);
+		
+	}
+	
 
 }
