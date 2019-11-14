@@ -39,7 +39,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	private JMenuBar barraMenu;
 	private JMenu menu;
 	private JMenuItem nuevo, abrir, guardar, salir, importar;
-	
+	//private donkeyPOOB juego;
 	public DonkeyPOOBGUI() {
 		this.setTitle("DonkeyPOOB");
 		prepareElementos();
@@ -62,6 +62,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		setLocationRelativeTo(null);
 	    prepareElementosInicial(); 
 	    prepareElementosMenu();
+	   
 	    
 	}
 
@@ -137,6 +138,8 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		});
 		
 	
+		
+	
 	}
 	
 	private void prepareAccionesControl() {
@@ -173,6 +176,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	
 	public void ponerElementos() {
 		menuInicial.prepareElegirElementos();
+		prepareAccionesElementos();
 	}
 	
 	@Override
@@ -198,4 +202,29 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		// TODO Auto-generated method stub
 		
 	}
+	private void prepareAccionesElementos() {
+		menuInicial.volver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setSize(new Dimension(900, 900));
+				menuInicial.prepareElementosInicio();
+				prepareAcciones();
+			}
+		});
+	
+		menuInicial.aceptar.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				//ponerElementosJuego();
+			}
+		});
+	}	
+	private void  ponerElementosJuegos() {
+		
+		
+	}
 }
+		
+	
+	
+		
+
