@@ -44,6 +44,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	private Icon icono; 
 	private Tablero tablero;
 	private DonkeyPOOB juego;
+	private Thread t; 
 	public DonkeyPOOBGUI() {
 		super("DonkeyPOOB");
 		prepareElementos();
@@ -101,7 +102,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		principal = new JPanel(layout);
 		menuInicial = new PantallaInicial(PantallaInicial.fondoInicial);
 		add(principal);
-		principal.add(menuInicial);
+		principal.add(menuInicial,"tini");
 		layout.show(principal,"tini");		
 	
 	}
@@ -240,7 +241,10 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	private void prepareElementosJuego(int jugadores){
 		setSize(new Dimension(900, 900));
 		tablero = new Tablero(jugadores);
-		principal.add(tablero);		
+		principal.add(tablero,"tablero");		
+		t = new Thread(this);
+		layout.show(principal,"tablero");
+		t.start();
 	}
 }
 		
