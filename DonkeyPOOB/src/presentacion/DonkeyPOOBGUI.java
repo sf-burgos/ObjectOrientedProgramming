@@ -1,5 +1,7 @@
 package presentacion;
 
+import aplicacion.DonkeyPOOB;
+import aplicacion.DonkeyPOOBException;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -39,13 +41,19 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	private JMenuBar barraMenu;
 	private JMenu menu;
 	private JMenuItem nuevo, abrir, guardar, salir, importar;
-	//private donkeyPOOB juego;
+	private Icon icono; 
+	private Tablero tablero;
+	private DonkeyPOOB juego;
 	public DonkeyPOOBGUI() {
-		this.setTitle("DonkeyPOOB");
+		super("DonkeyPOOB");
 		prepareElementos();
 		prepareAcciones();
 		addKeyListener(this);
 		setFocusable(true);
+		ImageIcon icono = new ImageIcon("rsc/donkeyKongLogo.png");
+		Image icon = icono.getImage();
+		setIconImage(icon);
+		
 	}
 	
 	public static void main(String args[]) {
@@ -95,13 +103,14 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		add(principal);
 		principal.add(menuInicial);
 		layout.show(principal,"tini");		
-		setContentPane(principal);
+	
 	}
 	
 	public void prepareAcciones() {
 		menuInicial.unPlayer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				iniciar();
+				menuInicial.numeroJugadores = 1;
+				iniciar(1);
 			}
 		});
 		menuInicial.dosPlayer.addActionListener(new ActionListener() {
@@ -170,7 +179,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		});
 	}
 	
-	public void iniciar() {
+	public void iniciar(int jugadores) {
 		ponerElementos();
 	}
 	
@@ -214,13 +223,24 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		menuInicial.aceptar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				//ponerElementosJuego();
+				prepareElementosJuego(1);
+				ponerElementosJuego();
 			}
 		});
 	}	
-	private void  ponerElementosJuegos() {
-		
-		
+	private void  ponerElementosJuego() {
+		try {
+			juego.barrilesParaJugar(menuInicial.barrilesSelecionados);
+			juego.sorpresasParaJugar(menuInicial.sorpresasSelecionados);
+		}catch(DonkeyPOOBException e){
+			JOptionPane.showMessageDialog(null, e.getMessage(), "¡Cuidado!", JOptionPane.WARNING_MESSAGE, icono);
+		}
+	}
+	
+	private void prepareElementosJuego(int jugadores){
+		setSize(new Dimension(900, 900));
+		tablero = new Tablero(jugadores);
+		principal.add(tablero);		
 	}
 }
 		

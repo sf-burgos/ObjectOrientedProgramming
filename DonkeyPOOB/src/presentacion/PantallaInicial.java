@@ -15,11 +15,13 @@ import java.awt.event.*;
 
 public class PantallaInicial extends JPanel {
 	public static final String fondoInicial = "rsc/donkeyIni.png";
+	public static final String fondoSeleccion = "rsc/fondoSeleccion.png";
 	public static final String fondoInstrucciones = "rsc/donkeyInstrucciones.png";
 	protected JButton unPlayer,dosPlayer,playerVsCpu,cpuProtector,cpuMimo,cpuTemeroso,instrucciones,abrir,salir,volver,aceptar;
 	protected JCheckBox barrilAzul, barrilAmarillo, barrilRojo, barrilVerde, cereza, manzana, corazon, hongo, martillo,soga,mario,luigi;
 	private Image imagenFondo;
 	private boolean elementos;
+	protected int numeroJugadores;
 	
 	protected int[] barrilesSelecionados;
 	protected int[] sorpresasSelecionados;
@@ -71,6 +73,7 @@ public class PantallaInicial extends JPanel {
 			g.drawString("Sorpresas:", 100, 540);
 			elementos  = false;
 		}
+		paintComponents(g);
 	}
 	
 	public void prepareElementosCpu() {
@@ -193,7 +196,7 @@ public class PantallaInicial extends JPanel {
 		mario.setBounds(700, 470, 20, 20);
 		add(mario);
 		
-		luigi = new JCheckBox("",true);
+		luigi = new JCheckBox("",false);
 		luigi.setOpaque(false);
 		luigi.setBackground(Color.white);
 		luigi.setBounds(800, 470, 20, 20);
@@ -205,12 +208,15 @@ public class PantallaInicial extends JPanel {
 	
 	public void prepareElegirElementos() {
 		removeAll();
+		setFondo(PantallaInicial.fondoSeleccion);
 		elementos = true;
 		tipoBarril();
 		personajePrincipal();
 		sorpresas();
-		//botonDeVolver
-		
+		prepareAccionesBarriles();
+		prepareAccionesSorpresas();
+		prepareAccionesPersonajes();
+		//botonDeVolver		
 		volver = new  Boton("atras", 10, 10);
 		add(volver);
 		
@@ -331,8 +337,11 @@ public class PantallaInicial extends JPanel {
 			public void itemStateChanged(ItemEvent e) {
 				if(e.getStateChange()==ItemEvent.SELECTED) {
 					personajesSelecionados[0] = 1;
+					personajesSelecionados[1] = 0;	
+					luigi.setSelected(false);
 				}else {
 					personajesSelecionados[0] = 0;
+					personajesSelecionados[1] = 1;				
 				}
 			}
 		});
@@ -341,8 +350,11 @@ public class PantallaInicial extends JPanel {
 			public void itemStateChanged(ItemEvent e) {
 				if(e.getStateChange()==ItemEvent.SELECTED) {
 					personajesSelecionados[1] = 1;
+					personajesSelecionados[0] = 0;
+					mario.setSelected(false);
 				}else {
 					personajesSelecionados[1] = 0;
+					personajesSelecionados[0] = 1;
 				}
 			}
 		});

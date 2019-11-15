@@ -16,6 +16,31 @@ import javax.swing.JPanel;
 
 
 public class Tablero extends JPanel{
+	private BufferedImage nivel; 
+	private ArrayList<Sprite> bloques;
+	private ArrayList<Sprite> jugadores;
+	private ArrayList<Sprite> sorpresas;
+	private ArrayList<Sprite> vidas; 
+	private String[] puntajes;
+	private boolean terminar, gameOver, enPausa;
 	
+	public Tablero(int numeroJugadores) {
+		puntajes = new String[numeroJugadores];
+		bloques = new ArrayList<Sprite>();
+		jugadores = new ArrayList<Sprite>();
+		vidas = new ArrayList<Sprite>();
+		sorpresas = new ArrayList<Sprite>();
+		terminar = false;
+		try {
+			nivel = ImageIO.read(new File("rsc/nivel1.png"));
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	}
 	
+	public void paint(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(nivel, 0, 0, this);
+		paintComponents(g);
+	}
 }
