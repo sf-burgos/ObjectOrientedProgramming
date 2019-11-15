@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Armario
+comment1.params=x\ y
+comment1.target=Armario(int,\ int)
+comment2.params=
+comment2.target=java.lang.String\ forma()
+comment3.params=
+comment3.target=void\ corte()
+comment4.params=
+comment4.target=void\ actue()
+comment5.params=
+comment5.target=void\ decida()
+comment6.params=
+comment6.target=java.awt.Color\ getColor()
+comment7.params=
+comment7.target=int\ getPosicionX()
+comment8.params=
+comment8.target=int\ getPosicionY()
+numComments=9

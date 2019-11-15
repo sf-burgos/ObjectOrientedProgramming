@@ -19,6 +19,16 @@ public class TeatroColonGUI extends JFrame{
     private JButton botonAccion;
     private JButton botonCorten;
     private JButton botonDecision;  
+	
+	/**Barra menu */
+	private JMenuBar menu;
+	private JMenu archivo;
+	private JMenuItem nuevo;
+	private JMenuItem abrir;
+	private JMenuItem importar;
+	private JMenuItem exportar;
+	private JMenuItem guardarComo;
+	private JMenuItem salir;
     
    
     private FotoTeatro foto;
@@ -59,8 +69,29 @@ public class TeatroColonGUI extends JFrame{
         setSize(Teatro.MAXIMO+100,Teatro.MAXIMO+135);
 
         setResizable(false);
+		prepareElementosMenu();
+		
     }
-    
+    	public void prepareElementosMenu(){
+		menu=new JMenuBar();
+		archivo= new JMenu("Archivo");
+		nuevo= new JMenuItem("Nuevo");
+		abrir= new JMenuItem("Abrir");
+		importar= new JMenuItem("Importar");
+		exportar= new JMenuItem("Exportar");
+		guardarComo= new JMenuItem("Guardar Como");
+		salir= new JMenuItem("Salir");
+		archivo.add(nuevo);
+		archivo.add(abrir);
+		archivo.add(importar);
+		archivo.add(exportar);
+		archivo.add(guardarComo);
+		archivo.add(salir);
+		menu.add(archivo);
+		
+		setJMenuBar(menu);
+		
+	}
     
     private void acciones(){
         ActionListener oyenteBotonAccion=new ActionListener(){
@@ -87,15 +118,21 @@ public class TeatroColonGUI extends JFrame{
         
         WindowListener w = new WindowAdapter() { 
             public void windowClosing(WindowEvent e) {
-                salir();
+                salga();
             }
         };  
         
         this.addWindowListener(w);
         
-    }   
-    
-    
+     
+		salir.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				salir();
+			}
+			
+		});
+		
+		}
     
     private void accion(){
          teatro.accion();
@@ -216,6 +253,13 @@ public class TeatroColonGUI extends JFrame{
             }
         }
     }
+		public void salga(){
+			
+			int valor=JOptionPane.showConfirmDialog(this,"Esta seguro de salir?","Advertencia",JOptionPane.YES_NO_OPTION);
+			if(valor==JOptionPane.YES_OPTION){
+				System.exit(0);
+			}
+	}
 }
 
 
