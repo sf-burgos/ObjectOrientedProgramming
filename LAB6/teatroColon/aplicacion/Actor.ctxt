@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Actor
+comment0.text=\r\n\ \r\n
+comment1.params=teatro\ name\ posicionx\ posiciony
+comment1.target=Actor(Teatro,\ java.lang.String,\ int,\ int)
+comment1.text=\r\n\ @param\ Teatro\ teatro,\ String\ name,\ int\ posicionx,\ int\ posiciony\r\n\ Constructor\ de\ actor\ \r\n\ @return\ Actor\r\n
+comment2.params=direccion
+comment2.target=boolean\ puedeMover(char)
+comment2.text=\r\n\ @param\ char\ direccion\r\n\ Define\ si\ el\ actor\ se\ puede\ mover\ o\ no\ segun\ el\ maximo\ del\ teatro\r\n\ @return\ boolean\ puede\r\n
+comment3.params=
+comment3.target=void\ corte()
+comment4.params=
+comment4.target=void\ actue()
+comment5.params=
+comment5.target=java.lang.String\ mensaje()
+comment5.text=\r\n\ Devuelve\ las\ palabras\ que\ usa\ el\ actor\r\n\ @return\ String\ palabras\ \r\n
+numComments=6
