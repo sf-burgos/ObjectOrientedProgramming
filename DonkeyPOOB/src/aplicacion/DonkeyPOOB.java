@@ -18,7 +18,7 @@ import javax.sound.sampled.DataLine;
 
 public class DonkeyPOOB {
 	private static DonkeyPOOB juego = null; 
-	//private Jugador[] jugadores; 
+	private Jugador[] jugadores; 
 	//private Barril[] barriles;
 	//private ArrayList<Sorpresa> sorpresas; 
 	private boolean enPausa; 
@@ -38,8 +38,28 @@ public class DonkeyPOOB {
 		juego = new DonkeyPOOB();
 	}
 	
-	public void prepareJugadores(int numeroJugador,int maquina) {
-		
+	public void prepareJugadores(int NJugadores,int maquina){
+		jugadores = new Jugador[NJugadores];
+		if(NJugadores == 2){
+			jugadores[0] = new Usuario(188,550); //Posicion izquierda
+			if(maquina > 0) {
+				switch (maquina){
+				case 1:
+					jugadores[1] = new Protector(556,550); //Posicion derecha
+					break;
+				case 2:
+					jugadores[1] = new Temeroso(556,550); //Posicion derecha
+					break;
+				default:
+					jugadores[1] = new Mimo(556,550); //Posicion derecha
+					break;
+					}
+			}else {
+				jugadores[1] = new Usuario(556,550); //Posicion derecha
+			}
+		}else{
+			jugadores[0] = new Usuario(400,550); //Posicion centro
+		}
 	}
 	
 	public void barrilesParaJugar(int[] barriles) throws DonkeyPOOBException{
@@ -65,6 +85,22 @@ public class DonkeyPOOB {
 			throw new DonkeyPOOBException(DonkeyPOOBException.SIN_SORPRESAS);
 		}
 	}
+	
+	public int numeroJugadores() {
+		return jugadores.length;
+	}
+	
+	public Jugador getJugador(int i){
+		Jugador jugador = null;
+		if (i >- 1 && i < jugadores.length) {
+			jugador = jugadores[i];
+		}
+		return jugador;
+	}
+	
+	
+	
+	
 	
 	
 }

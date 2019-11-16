@@ -111,7 +111,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		menuInicial.unPlayer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				menuInicial.numeroJugadores = 1;
-				iniciar(1);
+				iniciar(1,0);
 			}
 		});
 		menuInicial.dosPlayer.addActionListener(new ActionListener() {
@@ -180,9 +180,10 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		});
 	}
 	
-	public void iniciar(int jugadores) {
+	public void iniciar(int jugadores,int maquinas) {
 		DonkeyPOOB.nuevoJuego();
 		juego = DonkeyPOOB.getJuego();
+		juego.prepareJugadores(jugadores, maquinas);
 		ponerElementos();
 	}
 	
@@ -246,9 +247,29 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		tablero = new Tablero(jugadores);
 		principal.add(tablero,"tablero");		
 		t = new Thread(this);
+		prepareJugadores();
 		layout.show(principal,"tablero");
 		t.start();
 	}
+	
+	private void prepareJugadores() {
+		for (int i = 0; i < juego.numeroJugadores(); i++) {
+			tablero.addJugador();
+			tablero.getJugador(i).setRoot(juego.getJugador(i).getRoot());
+			
+		}
+		actualizarJugadores();
+	}
+	private void actualizarJugadores(){
+		for(int i = 0; i < juego.numeroJugadores(); i++){
+			Sprite s = tablero.getJugador(i);
+			s.setX(juego.getJugador(i).getX());
+			s.setY(juego.getJugador(i).getY());
+			s.setRoot(juego.getJugador(i).getRoot());
+		}
+	}
+	
+
 }
 		
 	
