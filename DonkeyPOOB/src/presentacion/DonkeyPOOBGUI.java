@@ -181,6 +181,8 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	}
 	
 	public void iniciar(int jugadores) {
+		DonkeyPOOB.nuevoJuego();
+		juego = DonkeyPOOB.getJuego();
 		ponerElementos();
 	}
 	
@@ -224,8 +226,9 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		menuInicial.aceptar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				prepareElementosJuego(1);
 				ponerElementosJuego();
+				prepareElementosJuego(1);
+				
 			}
 		});
 	}	
