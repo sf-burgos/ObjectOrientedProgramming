@@ -17,16 +17,17 @@ import javax.swing.JPanel;
 
 public class Tablero extends JPanel{
 	private BufferedImage nivel; 
-	private ArrayList<Sprite> bloques;
+	private ArrayList<Sprite> barriles;
 	private ArrayList<Sprite> jugadores;
 	private ArrayList<Sprite> sorpresas;
 	private ArrayList<Sprite> vidas; 
 	private String[] puntajes;
 	private boolean terminar, gameOver, enPausa;
+	protected JButton guardar,abrir,reiniciar;
 	
 	public Tablero(int numeroJugadores) {
 		puntajes = new String[numeroJugadores];
-		bloques = new ArrayList<Sprite>();
+		barriles = new ArrayList<Sprite>();
 		jugadores = new ArrayList<Sprite>();
 		vidas = new ArrayList<Sprite>();
 		sorpresas = new ArrayList<Sprite>();
@@ -37,6 +38,65 @@ public class Tablero extends JPanel{
 			e.printStackTrace();
 		}
 	}
+	
+	public void addBarril() {
+		barriles.add(new Sprite(0,0,false));
+	}
+	
+	public void addJugador() {
+		jugadores.add(new Sprite(0,550,true));
+		addVidas();
+	}
+	
+	public void addSorpresa() {
+		sorpresas.add(new Sprite(0,550,true,0,0));
+	}
+	
+	public void addVidas() {
+		for(int i = 0; i<3 ; i++) {
+			if(jugadores.size() == 1) {
+				vidas.add(new Sprite(20 + (i*42), 25,true,40,10));
+			}else{
+				vidas.add(new Sprite(750 + (i*42), 25,true,40,10));
+			}
+		}
+	}
+	
+	public void setPuntaje(int jugador,int puntaje) {
+		puntajes[jugador] = Integer.toString(puntaje);
+	}
+	
+	public Sprite getJugador(int i) {
+		return jugadores.get(i);
+	}
+	
+	public Sprite getSorpresa(int i) {
+		return sorpresas.get(i);
+	}
+	
+	public Sprite getBarril(int i) {
+		return barriles.get(i);
+	}
+	
+	public ArrayList<Sprite> getVidas(){
+		return vidas;
+	}
+	
+	public void Fin(boolean razon) {
+		terminar = true;
+		gameOver = razon;
+		reiniciar =  new Boton("reiniciar",300,415); add(reiniciar);
+		repaint();		
+	}
+	
+	public void pausa() {
+		enPausa = !enPausa;
+	}
+	
+	public void setPausa(boolean pausa) {
+		enPausa = pausa;
+	}
+	
 	
 	public void paint(Graphics g) {
 		super.paintComponent(g);
