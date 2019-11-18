@@ -46,17 +46,17 @@ public class PantallaInicial extends JPanel {
 	public void prepareElementosInicio(){
 		removeAll();
 		setFondo(PantallaInicial.fondoInicial);		
-		unPlayer = new Boton("1Jugador",120,500);
+		unPlayer = new Boton("1Jugador",120,600);
 		add(unPlayer);			
-		dosPlayer = new Boton("2Jugador",350,500);		
+		dosPlayer = new Boton("2Jugador",350,600);		
 		add(dosPlayer);
-		playerVsCpu = new Boton("vsCPU",620,500);
+		playerVsCpu = new Boton("vsCPU",620,600);
 		add(playerVsCpu);
-		instrucciones = new Boton("controles",120,600);		
+		instrucciones = new Boton("controles",120,720);		
 		add(instrucciones);
-		abrir = new Boton("Abrir",380,600);
+		abrir = new Boton("Abrir",380,720);
 		add(abrir);		
-		salir = new Boton("salir",630,600);
+		salir = new Boton("salir",630,720);
 		add(salir);
 		repaint();
 		
@@ -68,9 +68,9 @@ public class PantallaInicial extends JPanel {
 		if(elementos){
 			g.setColor(Color.white);
 			g.setFont(new Font("Proxy 1", Font.BOLD, 20));
-			g.drawString("Selecione los elementos para su juego:           Personajes:", 100, 400);
-			g.drawString("Barriles:", 100, 430);
-			g.drawString("Sorpresas:", 100, 540);
+			g.drawString("Selecione los elementos para su juego:           Personajes:", 100, 450);
+			g.drawString("Barriles:", 100, 470);
+			g.drawString("Sorpresas:", 100, 590);
 			elementos  = false;
 		}
 		paintComponents(g);
@@ -102,34 +102,34 @@ public class PantallaInicial extends JPanel {
 	}
 	
 	public void tipoBarril() {
-		add(new Boton("barrilAmarillo",100,450));
-		add(new Boton("barrilAzul",200,450));
-		add(new Boton("barrilVerde",300,450));
-		add(new Boton("barrilRojo",400,450));
+		add(new Boton("barrilAmarillo",100,480));
+		add(new Boton("barrilAzul",200,480));
+		add(new Boton("barrilVerde",300,480));
+		add(new Boton("barrilRojo",400,480));
 		
 		
 		barrilAmarillo = new JCheckBox("",true);
 		barrilAmarillo.setOpaque(false);
 		barrilAmarillo.setBackground(Color.white);
-		barrilAmarillo.setBounds(100, 500, 20, 20);
+		barrilAmarillo.setBounds(100, 530, 20, 20);
 		add(barrilAmarillo);
 		
 		barrilAzul = new JCheckBox("",true);
 		barrilAzul.setOpaque(false);
 		barrilAzul.setBackground(Color.white);
-		barrilAzul.setBounds(200, 500, 20, 20);
+		barrilAzul.setBounds(200, 530, 20, 20);
 		add(barrilAzul);
 		
 		barrilVerde = new JCheckBox("",true);
 		barrilVerde.setOpaque(false);
 		barrilVerde.setBackground(Color.white);
-		barrilVerde.setBounds(300, 500, 20, 20);
+		barrilVerde.setBounds(300, 530, 20, 20);
 		add(barrilVerde);
 		
 		barrilRojo = new JCheckBox("",true);
 		barrilRojo.setOpaque(false);
 		barrilRojo.setBackground(Color.white);
-		barrilRojo.setBounds(400, 500, 20, 20);
+		barrilRojo.setBounds(400, 530, 20, 20);
 		add(barrilRojo);
 		
 		int[] todos = {1,1,1,1};
@@ -139,47 +139,47 @@ public class PantallaInicial extends JPanel {
 	}
 	
 	public void sorpresas() {
-		add(new Boton("cereza",100,550));
-		add(new Boton("manzana",200,550));
-		add(new Boton("corazon",300,550));
-		add(new Boton("hongo",400,550));
-		add(new Boton("martillo",500,550));
-		add(new Boton("soga",590,550));
+		add(new Boton("cereza",100,600));
+		add(new Boton("manzana",200,600));
+		add(new Boton("corazon",300,600));
+		add(new Boton("hongo",400,600));
+		add(new Boton("martillo",500,600));
+		add(new Boton("soga",590,600));
 		
 		cereza = new JCheckBox("",true);
 		cereza.setOpaque(false);
 		cereza.setBackground(Color.white);
-		cereza.setBounds(100, 600, 20, 20);
+		cereza.setBounds(100, 660, 20, 20);
 		add(cereza);
 		
 		manzana = new JCheckBox("",true);
 		manzana.setOpaque(false);
 		manzana.setBackground(Color.white);
-		manzana.setBounds(200, 600, 20, 20);
+		manzana.setBounds(200, 660, 20, 20);
 		add(manzana);
 		
 		corazon = new JCheckBox("",true);
 		corazon.setOpaque(false);
 		corazon.setBackground(Color.white);
-		corazon.setBounds(300, 600, 20, 20);
+		corazon.setBounds(300, 660, 20, 20);
 		add(corazon);
 		
 		hongo = new JCheckBox("",true);
 		hongo.setOpaque(false);
 		hongo.setBackground(Color.white);
-		hongo.setBounds(400, 600, 20, 20);
+		hongo.setBounds(400, 660, 20, 20);
 		add(hongo);
 		
 		martillo = new JCheckBox("",true);
 		martillo.setOpaque(false);
 		martillo.setBackground(Color.white);
-		martillo.setBounds(500, 600, 20, 20);
+		martillo.setBounds(500, 660, 20, 20);
 		add(martillo);
 		
 		soga = new JCheckBox("",true);
 		soga.setOpaque(false);
 		soga.setBackground(Color.white);
-		soga.setBounds(590, 600, 20, 20);
+		soga.setBounds(590, 660, 20, 20);
 		add(soga);
 		
 		int[] todos = {1,1,1,1,1,1};
@@ -187,19 +187,19 @@ public class PantallaInicial extends JPanel {
 	}
 	
 	public void personajePrincipal() {
-		add(new Boton("mario",700,420));
-		add(new Boton("luigi",800,420));
+		add(new Boton("mario",550,500));
+		add(new Boton("luigi",650,500));
 		
 		mario = new JCheckBox("",true);
 		mario.setOpaque(false);
 		mario.setBackground(Color.white);
-		mario.setBounds(700, 470, 20, 20);
+		mario.setBounds(550, 530, 20, 20);
 		add(mario);
 		
 		luigi = new JCheckBox("",false);
 		luigi.setOpaque(false);
 		luigi.setBackground(Color.white);
-		luigi.setBounds(800, 470, 20, 20);
+		luigi.setBounds(650, 530, 20, 20);
 		add(luigi);
 		
 		int[] todos = {1,1};
