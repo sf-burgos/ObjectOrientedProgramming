@@ -4,7 +4,9 @@ public abstract class Personaje extends Elemento {
 	
 	public static final int limiteXFinal = 890;
 	public static final int limiteXInicial = 10;
-	protected static final int velocidad = 15; 
+	protected static final int velocidad = 15;
+	public int moveCont=0; 
+	public int estado=4; 
 	
 	
 	public Personaje(int x, int y, String imagen) {
@@ -17,7 +19,14 @@ public abstract class Personaje extends Elemento {
 			x += velocidad;
 		}else {
 			x = limiteXFinal;
-		}		
+		}
+		if (estado == 4) {
+			estado = 5;
+		}else if(estado == 5) {
+			estado = 4;
+		}else {
+			estado = 4;
+		}
 	}
 	
 	public void moverIzquierda(){
@@ -26,10 +35,21 @@ public abstract class Personaje extends Elemento {
 		}else {
 			x = limiteXInicial;
 		}
+		if (estado == 3) {
+			estado = 2;
+		}else if(estado == 2) {
+			estado = 3;
+		}else {
+			estado = 3;
+		}
 	}
 	
 	public void saltar() {
 		y += velocidad;
+	}
+	
+	public int getEstado() {
+		return estado;
 	}
 	
 }

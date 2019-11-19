@@ -58,7 +58,7 @@ public class DonkeyPOOB {
 				jugadores[1] = new Usuario(556,550); //Posicion derecha
 			}
 		}else{
-			jugadores[0] = new Usuario(400,550); //Posicion centro
+			jugadores[0] = new Usuario(100,765); //Posicion centro
 		}
 	}
 	

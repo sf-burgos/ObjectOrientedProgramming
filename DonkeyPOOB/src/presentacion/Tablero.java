@@ -4,6 +4,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.PointerInfo;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -24,13 +30,14 @@ public class Tablero extends JPanel{
 	private String[] puntajes;
 	private boolean terminar, gameOver, enPausa;
 	protected JButton guardar,abrir,reiniciar;
-	
+	private int[][] puntosMapa = {{355,179},{544,179},{0,270},{837,283},{62,390},{893,352},{0,458},{838,498},{60,604}};
 	public Tablero(int numeroJugadores) {
 		puntajes = new String[numeroJugadores];
 		barriles = new ArrayList<Sprite>();
 		jugadores = new ArrayList<Sprite>();
 		vidas = new ArrayList<Sprite>();
 		sorpresas = new ArrayList<Sprite>();
+
 		terminar = false;
 		try {
 			nivel = ImageIO.read(new File("rsc/nivel1.png"));
@@ -97,6 +104,13 @@ public class Tablero extends JPanel{
 		enPausa = pausa;
 	}
 	
+	public void getPuntosMapa() {
+		for(int i = 0; i < puntosMapa.size(); i++) {
+			System.out.println(puntosMapa.get(i)[0]+ " " +puntosMapa.get(i)[0]);
+		}
+		
+	}
+	
 	
 	public void paint(Graphics g) {
 		super.paintComponent(g);
@@ -104,4 +118,5 @@ public class Tablero extends JPanel{
 		for (Sprite j: jugadores) j.paint((Graphics2D) g);
 		paintComponents(g);
 	}
+
 }
