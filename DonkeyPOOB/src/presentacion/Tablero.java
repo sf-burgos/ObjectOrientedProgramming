@@ -116,7 +116,7 @@ public class Tablero extends JPanel{
 		super.paintComponent(g);
 		g.drawImage(nivel, 0, 0, this);
 		for (Sprite j: jugadores) j.paint((Graphics2D) g);
-		paintComponents(g);
+			paintComponents(g);
 	}
 
 }

@@ -221,7 +221,7 @@ public class PantallaInicial extends JPanel {
 		add(volver);
 		
 		//botonAceptar
-		aceptar = new Boton("aceptar",670,700);
+		aceptar = new Boton("aceptar",670,600);
 		add(aceptar);
 		
 		repaint();

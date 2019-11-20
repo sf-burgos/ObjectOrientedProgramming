@@ -102,9 +102,14 @@ public class DonkeyPOOB {
 		enPausa = !enPausa;
 	}
 	
-	public void JugadorRigth(int n) {
+	public void JugadorRight(int n) {
 		jugadores[n].moveRight();
 	}
-	
+	public void JugadorLeft(int n) {
+		jugadores[n].moveLeft();
+	}
+	public void JugadorUp(int n) {
+		//jugadores[n].moveUp();
+	}
 	
 }
