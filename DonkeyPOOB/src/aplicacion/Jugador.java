@@ -4,7 +4,7 @@ public abstract class Jugador {
 	protected Personaje personaje; 
 	public static final int limiteXFinal = 890;
 	public static final int limiteXInicial = 10;
-	protected static final int velocidad = 15; 
+	protected static final int velocidad = 5; 
 	private int vidas;
 	private int puntaje;
 	protected boolean esHumano;
@@ -22,6 +22,14 @@ public abstract class Jugador {
 	
 	public void moveLeft() {
 		personaje.moverIzquierda();
+	}
+	
+	public void moveUp() {
+		personaje.moverArriba();
+	}
+	
+	public void moveDown() {
+		personaje.moverAbajo();
 	}
 	
 	public String getRoot() {
@@ -45,6 +53,9 @@ public abstract class Jugador {
 		return personaje;
 	}
 	
+	public int getVidas() {
+		return vidas;
+	}
 	
 	
 	

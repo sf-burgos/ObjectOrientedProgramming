@@ -6,10 +6,10 @@ public abstract class Personaje extends Elemento {
 	
 	public static final int limiteX = 850;
 	public static final int limiteY = 800;
-	protected static final int VELOCIDAD = 30;
-	
+	protected static final int Desplazamiento = 5;
+	public static int estado=0; 
 	//Variables de imagen
-	private final String right;
+	/**private final String right;
 	private final String rightRun;
 	private final String rightJump;
 	private final String left;
@@ -17,7 +17,9 @@ public abstract class Personaje extends Elemento {
 	private final String leftJump;
 	private final String scaleLeft;
 	private final String scaleRight;
-	private final String kill;
+	private final String kill;*/
+	
+	
 	
 	//variables de juego
 	//por agregar
@@ -26,46 +28,40 @@ public abstract class Personaje extends Elemento {
 	public Personaje(int x, int y, String marioRight, String marioRRun, String marioR, String marioLeft, String marioLRun, String marioL, String kill, String scaleL, String scaleR) {
 		super(x,y);
 		super.setImagen("rsc/"+marioRight+".png");
-		 right =  "rsc/"+marioRight+".png";
-		 rightRun =  "rsc/"+marioRRun+".png";
-		 rightJump =  "rsc/"+marioR+".png";
-		 left =  "rsc/"+marioLeft+".png"; 
-		 leftRun =  "rsc/"+marioLRun+".png";
-		 leftJump =  "rsc/"+marioL+".png";
-		 scaleLeft =  "rsc/"+scaleL+".png";
-		 scaleRight =  "rsc/"+scaleR+".png";
-		 this.kill =  "rsc/"+kill+".png";	
+
 	}
 	
 	//Metodos de movimiento
 	public void moverArriba(){
-		if(y-VELOCIDAD > -16)
-			y-=VELOCIDAD;
+		if(y-Desplazamiento > 2)
+			y-=Desplazamiento;
 	}
 		
-	public void moveAbajo(){
-		if(y+VELOCIDAD < limiteY)
-			
-			y+=VELOCIDAD;
+	public void moverAbajo(){
+		if(y+Desplazamiento < limiteY)
+			y+=Desplazamiento;
 	}
 		
 	public void moverDerecha(){
 		
-		if(x+VELOCIDAD < limiteX) {
-			System.out.println("here");
-			x+=VELOCIDAD;
-			setX(x);
+		if(x+Desplazamiento < limiteX) {
+				x+=Desplazamiento;
+			}
+			if(estado == 1) {
+				estado = 0;
+			}else {
+				estado = 1; 
 			}
 		}
 	
 	public void moverIzquierda(){
-		if(x-VELOCIDAD > -16)
-			super.setImagen(left);
-		System.out.println("estoy aqui");
-			x-=VELOCIDAD;
+		if(x-Desplazamiento > 10) {
+			x-=Desplazamiento; 
+		}if(estado == 3) {
+			estado = 2;
+		}else {
+			estado = 3;
+		}
 	}
-		
-	
 
-	
 }

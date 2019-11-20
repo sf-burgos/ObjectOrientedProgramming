@@ -108,8 +108,30 @@ public class DonkeyPOOB {
 	public void JugadorLeft(int n) {
 		jugadores[n].moveLeft();
 	}
+	
 	public void JugadorUp(int n) {
-		//jugadores[n].moveUp();
+		jugadores[n].moveUp();
 	}
+	
+	public void JugadorDown(int n) {
+		jugadores[n].moveDown();
+	}
+	
+	public boolean gameOver() {
+		boolean aunActivo = false;
+		for(Jugador j: jugadores) {
+			aunActivo = (j.getVidas()==0)?true:aunActivo;
+		}
+		return aunActivo;
+	}
+	
+	public boolean finished() {
+		return false;
+	}
+	
+	public boolean enPausa() {
+		return enPausa; 
+	}
+	
 	
 }

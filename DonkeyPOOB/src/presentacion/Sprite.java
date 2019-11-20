@@ -20,8 +20,8 @@ public class Sprite {
 
 	public Sprite(int x, int y, boolean visible, int width, int height){
 		this(x,y,visible);
-		this.width = width;
-		this.height = height;
+		this.width = width+30;
+		this.height = height+30;
 	}
 	
 	public void setX(int x) {
@@ -35,6 +35,7 @@ public class Sprite {
 	public void setVisible(boolean v) {
 		this.visible = v;
 	}
+	
 
 	public void setRoot(String root) {
 		try {
@@ -44,8 +45,8 @@ public class Sprite {
 		}
 	}
 	
-	public int isVisible() {
-		return x;
+	public boolean isVisible() {
+		return visible;
 	}
 	
 	public void paint(Graphics2D g) {
@@ -53,6 +54,7 @@ public class Sprite {
 			if(width==0 && height == 0)
 				g.drawImage(imagen, x, y, null);
 			else
-				g.drawImage(imagen, x, y, width, height, null);
+				g.drawImage(imagen, x, y, width, height, null);			
 	}
+
 }

@@ -7,4 +7,5 @@ public  class Mario extends Personaje {
 		super(x, y, "marioSprite0","marioSprite4","marioSprite5","marioSprite1", "marioSprite2", "marioSprite3", "kill", "scaleL", "scaleR");
 	}
 
+
 }

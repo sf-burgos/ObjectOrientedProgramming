@@ -37,7 +37,6 @@ public class Tablero extends JPanel{
 		jugadores = new ArrayList<Sprite>();
 		vidas = new ArrayList<Sprite>();
 		sorpresas = new ArrayList<Sprite>();
-
 		terminar = false;
 		try {
 			nivel = ImageIO.read(new File("rsc/nivel1.png"));
@@ -51,7 +50,7 @@ public class Tablero extends JPanel{
 	}
 	
 	public void addJugador() {
-		jugadores.add(new Sprite(0,550,true));
+		jugadores.add(new Sprite(0,550,true,3,3));
 		addVidas();
 	}
 	
@@ -116,7 +115,9 @@ public class Tablero extends JPanel{
 		super.paintComponent(g);
 		g.drawImage(nivel, 0, 0, this);
 		for (Sprite j: jugadores) j.paint((Graphics2D) g);
-			paintComponents(g);
+		paintComponents(g);
 	}
+	
 
+	
 }
