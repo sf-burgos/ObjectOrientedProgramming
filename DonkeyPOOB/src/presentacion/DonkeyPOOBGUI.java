@@ -208,7 +208,14 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
+		int keyCode = e.getKeyCode();
+		if (juego != null && tablero != null) {
+			if(keyCode == KeyEvent.VK_P) {
+				juego.pausa();
+				tablero.pausa();
+			}
+			if(keyCode == KeyEvent.VK_D) juego.JugadorRigth(0);
+		}
 		
 	}
 
@@ -251,6 +258,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		principal.add(tablero,"tablero");		
 		t = new Thread(this);
 		prepareJugadores();
+		actualizar();
 		layout.show(principal,"tablero");
 		t.start();
 	}
@@ -310,6 +318,23 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 			s.setY(juego.getJugador(i).getY());
 			s.setRoot(juego.getJugador(i).getRoot());
 		}
+	}
+	
+	public void actualizar() {
+		actualizarSprite();
+	}
+	
+	private void actualizarSprite() {
+		Sprite s;
+		s = tablero.getJugador(0);
+		if(s == null) {
+			tablero.addJugador();
+			s = tablero.getJugador(0);
+		}
+		s.setX(juego.getJugador(0).getX());
+		s.setY(juego.getJugador(0).getY());
+		s.setRoot(juego.getJugador(0).getPersonaje().getImagen());
+		s.setVisible(juego.getJugador(0).getPersonaje().isVisible());
 	}
 	
 

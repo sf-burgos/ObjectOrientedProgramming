@@ -41,6 +41,10 @@ public abstract class Jugador {
 		return personaje.getY();
 	}
 	
+	public Personaje getPersonaje() {
+		return personaje;
+	}
+	
 	
 	
 	

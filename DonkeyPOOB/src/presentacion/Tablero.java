@@ -104,12 +104,12 @@ public class Tablero extends JPanel{
 		enPausa = pausa;
 	}
 	
-	public void getPuntosMapa() {
+	/**public void getPuntosMapa() {
 		for(int i = 0; i < puntosMapa.size(); i++) {
 			System.out.println(puntosMapa.get(i)[0]+ " " +puntosMapa.get(i)[0]);
 		}
 		
-	}
+	}*/
 	
 	
 	public void paint(Graphics g) {

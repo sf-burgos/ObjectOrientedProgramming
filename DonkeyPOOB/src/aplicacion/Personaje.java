@@ -4,14 +4,14 @@ public abstract class Personaje extends Elemento {
 	
 	public static final int limiteXFinal = 890;
 	public static final int limiteXInicial = 10;
-	protected static final int velocidad = 15;
+	protected static final int velocidad = 5;
 	public int moveCont=0; 
-	public int estado=4; 
+	public int estado=0; 
 	
 	
 	public Personaje(int x, int y, String imagen) {
 		super(x,y);
-		super.setImagen("rsc/"+imagen+".png");		
+		super.setImagen("rsc/"+imagen+estado+".png");		
 	}
 	
 	public void moverDerecha() {
