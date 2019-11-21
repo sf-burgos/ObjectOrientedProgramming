@@ -188,6 +188,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		DonkeyPOOB.nuevoJuego();
 		juego = DonkeyPOOB.getJuego();
 		juego.prepareJugadores(jugadores, maquinas);
+		juego.addPlataformas();
 		ponerElementos();
 	}
 	

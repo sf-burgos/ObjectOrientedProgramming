@@ -19,12 +19,14 @@ import javax.sound.sampled.DataLine;
 public class DonkeyPOOB {
 	private static DonkeyPOOB juego = null; 
 	private Jugador[] jugadores; 
+	private ArrayList<Plataforma> piso; 
 	//private Barril[] barriles;
 	//private ArrayList<Sorpresa> sorpresas; 
 	private boolean enPausa; 
 	
 	public DonkeyPOOB() {
 		//sorpresas = new ArrayList<sorpresas>; 
+		piso = new ArrayList<Plataforma>();
 	}
 	
 	public static DonkeyPOOB getJuego() {
@@ -133,5 +135,26 @@ public class DonkeyPOOB {
 		return enPausa; 
 	}
 	
+	public void addPlataformas() {
+		int[] puntoCero = {0,675};int[] puntoUno = {836,712};
+ 		Plataforma plataformaUno = new Plataforma(puntoCero, puntoUno);
+ 		piso.add(plataformaUno);
+		int[] puntoDos = {61,604};int[] puntoTres = {900,565};		
+		Plataforma plataformaDos = new Plataforma(puntoDos, puntoTres);
+		piso.add(plataformaDos);
+		int[] puntoCuatro = {0,459};int[] puntoCinco = {836,498};		
+		Plataforma plataformaTres = new Plataforma(puntoDos, puntoTres);
+		piso.add(plataformaTres);
+		int[] puntoSeis = {60,391};int[] puntoSiete = {892,351};		
+		Plataforma plataformaCuatro = new Plataforma(puntoDos, puntoTres);
+		piso.add(plataformaCuatro);
+		int[] puntoOcho = {0,270};int[] puntoNueve = {837,285};		
+		Plataforma plataformaCinco = new Plataforma(puntoOcho, puntoNueve);
+		piso.add(plataformaCinco);
+		int[] puntoDiez = {546,177};int[] puntoOnce = {354,177};		
+		Plataforma plataformaSeis = new Plataforma(puntoDos, puntoTres);
+		piso.add(plataformaSeis);
+	}
+
 	
 }
