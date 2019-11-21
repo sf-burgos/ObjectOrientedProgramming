@@ -46,7 +46,7 @@ public class TeatroColonGUI extends JFrame{
         } catch(Exception e) {
             e.printStackTrace();
         }
-		 File archivoPrueba = new File ("src/data/hola.dat");
+		 //File archivoPrueba = new File ("src/data/hola.dat");
     }
     
     private void elementos() throws TeatroColonException {
@@ -156,8 +156,8 @@ public class TeatroColonGUI extends JFrame{
 			if (result == JFileChooser.APPROVE_OPTION) {
 				File f = fileChooser.getSelectedFile();
 					try{
-					teatro.abrir(f);
-					teatro  = teatro.getTeatro();
+					Teatro.abrir(f);
+					teatro  = Teatro.getTeatro();
 					//detenerSonidos();
 					elementos();
 				//actualizar();

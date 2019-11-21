@@ -188,7 +188,7 @@ public  class Teatro implements Serializable{
 	}
 	public void exporte(File archivo)  throws TeatroColonException{	
 	}
-	public Teatro getTeatro(){
+	public static Teatro getTeatro(){
 		return teatro;
 	}
 }
