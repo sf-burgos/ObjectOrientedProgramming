@@ -6,7 +6,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.lang.Thread;
 import java.io.*;
-
+import java.io.File;
+import aplicacion.TeatroColonException;
 
 import aplicacion.*;
 
@@ -45,10 +46,10 @@ public class TeatroColonGUI extends JFrame{
         } catch(Exception e) {
             e.printStackTrace();
         }
-		archivoPrueba = new File("src/data/prueba.txt"); 
+		 File archivoPrueba = new File ("src/data/hola.dat");
     }
     
-    private void elementos() throws Exception {
+    private void elementos() throws TeatroColonException {
         
         setLayout(new BorderLayout());    
         contenedor = new JScrollPane();
@@ -128,7 +129,19 @@ public class TeatroColonGUI extends JFrame{
         
 		prepareAccionesMenu();
 	}
-	public void prepareAccionesMenu() {
+	public void prepareAccionesMenu(){
+		nuevo.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				//elementos();
+				teatro.nuevoTeatro();
+				teatro.demeTeatro();
+				teatro.algunosEnEscena();
+				acciones();
+				repaint();
+			
+			}
+			
+		});
 		salir.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				salir();
@@ -137,19 +150,43 @@ public class TeatroColonGUI extends JFrame{
 		});
 		abrir.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				Teatro.abrir(archivoPrueba);
+			JFileChooser fileChooser = new JFileChooser();
+			fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+			int result = fileChooser.showOpenDialog(null);
+			if (result == JFileChooser.APPROVE_OPTION) {
+				File f = fileChooser.getSelectedFile();
+					try{
+					teatro.abrir(f);
+					teatro  = teatro.getTeatro();
+					//detenerSonidos();
+					elementos();
+				//actualizar();
+				}catch(TeatroColonException ec) {
+				JOptionPane.showMessageDialog(null, ec.getMessage(), "¡Cuidado!", JOptionPane.WARNING_MESSAGE);
+				}
+			}
 			}
 		});
 		
-			guardarComo.addActionListener(new ActionListener(){
+		guardarComo.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				Teatro.salve(archivoPrueba);
+				JFileChooser chooser = new JFileChooser();
+				chooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+				int result = chooser.showSaveDialog(null);
+				if (result == JFileChooser.APPROVE_OPTION) {
+					File f = new File("./"+chooser.getSelectedFile().getName()+".dat");
+					try {
+					teatro.salvar(f);
+					}catch(TeatroColonException ec) {
+						JOptionPane.showMessageDialog(null, ec.getMessage(), "¡Cuidado!", JOptionPane.WARNING_MESSAGE);
+					}
 				
+				}
 			}
-		});
+				});
 		
-	}	
-    
+				
+    }
     private void accion(){
          teatro.accion();
          
@@ -281,6 +318,7 @@ public class TeatroColonGUI extends JFrame{
 				
 			}
 		}
+		
 	
 	
 }

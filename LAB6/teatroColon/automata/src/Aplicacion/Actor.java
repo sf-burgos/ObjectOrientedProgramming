@@ -1,9 +1,7 @@
 package aplicacion;
 
 import java.awt.Color;
-/**
- * 
- */
+
 public class Actor extends Persona implements EnEscena{
    
 

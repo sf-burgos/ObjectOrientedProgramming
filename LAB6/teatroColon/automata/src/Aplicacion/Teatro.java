@@ -1,6 +1,15 @@
 package aplicacion;
 import java.util.*;
-
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * @author ECI 2014
@@ -10,7 +19,7 @@ import java.util.*;
  * @author ECI
  * Constructor de Teatro
  */
-public class Teatro{
+public  class Teatro implements Serializable{
     public static final int MAXIMO = 500;
     private static Teatro teatro = null;
     public static Actor romeo  = null;
@@ -38,7 +47,7 @@ public class Teatro{
     /**
      * Crea un nuevo Teatro 
      */
-    private static void nuevoTeatro() {
+    public static void nuevoTeatro() {
         teatro=new Teatro();
     }   
     /**
@@ -138,6 +147,7 @@ public class Teatro{
      * Recorre los elementos EnEscena y ejecuta corte 
      */
     
+	
     public void corten(){
         for (int i=0;i<elementos.size();i++){
             elementos.get(i).corte();
@@ -151,17 +161,34 @@ public class Teatro{
             elementos.get(i).decida();
         }
     }
-	public void abrir(File archivo) throws TeatroColonException {
-		
+	public static void abrir(File archivo) throws TeatroColonException {
+		try {
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivo));
+			cambieTeatro((Teatro)ois.readObject() );
+		} catch (Exception e) {
+			throw new TeatroColonException(TeatroColonException.NO_ABRIR);
+		}
+	
 	}	
 	
-	public void salve(File archivo)  throws TeatroColonException{
-		
+	public void salvar (File archivo) throws TeatroColonException {
+		if (teatro == null) {
+			throw new TeatroColonException(TeatroColonException.SIN_JUEGO);
+		}
+		try{
+			ObjectOutputStream out = new ObjectOutputStream( new FileOutputStream(archivo));
+			out.writeObject(teatro);
+			out.close();
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
 	}
-	public void importe(File archivo)  throws TeatroColonException{
-		
+	public void importe(File archivo)  throws TeatroColonException{	
 	}
-	public void exporte(File archivo)  throws TeatroColonException
-	{	
-    
+	public void exporte(File archivo)  throws TeatroColonException{	
+	}
+	public Teatro getTeatro(){
+		return teatro;
+	}
 }
