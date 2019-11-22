@@ -45,4 +45,8 @@ public class Armario implements EnEscena,Serializable {
     public int getPosicionY(){
         return posiciony;
     }
+	
+	public String toString(){
+		return "Armario "+posicionx+" "+ posiciony;
+	}
 }

@@ -81,8 +81,12 @@ public class ActorPerezoso extends Actor
     public void decida(){
         corte();
    
-    
- 
-}
+    }
+	public String toString(){
+		String cadena = "ActorPerezoso ";
+		cadena = cadena + this.getPosicionX()+ " " + this.getPosicionY() + " " + this.getNombre() + "\n";
+		return cadena;
+		
+	}
 }
 

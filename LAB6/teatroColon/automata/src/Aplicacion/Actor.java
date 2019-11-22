@@ -100,6 +100,13 @@ public class Actor extends Persona implements EnEscena, Serializable{
     public String mensaje(){
         return  palabras;
     }
+	
+	public String toString(){
+		String cadena = "Actor ";
+		cadena = cadena + this.getPosicionX()+ " " + this.getPosicionY() + " " + this.getNombre() + "\n";
+		return cadena;
+		
+	}
 
 }
 

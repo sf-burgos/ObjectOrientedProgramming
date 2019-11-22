@@ -89,9 +89,13 @@ elNecio+=1;
    
     }
     else{
-    super.decida();
+		super.decida();
     elNecio+=1;
     }
-    
-}
+	}
+	public String toString(){
+		String cadena = "ActorNecio ";
+		cadena = cadena + this.getPosicionX()+ " " + this.getPosicionY() + " " + this.getNombre() + "\n";
+		return cadena;
+	}
 }

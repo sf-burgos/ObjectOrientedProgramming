@@ -78,9 +78,13 @@ public class ActorEnojon  extends Actor
      */
     public void decida(){
         actue();
-   
-    
- 
-}
+	}
+	
+	public String toString(){
+		String cadena = "ActorEnojon ";
+		cadena = cadena + this.getPosicionX()+ " " + this.getPosicionY() + " " + this.getNombre() + "\n";
+		return cadena;
+		
+	}
 }
 

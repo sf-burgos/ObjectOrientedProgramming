@@ -124,6 +124,8 @@ public class Persona implements Serializable{
 	public final int getPosicionY(){
 		return posiciony;
 	}	
-
+	public String getNombre(){
+		return nombre;
+	}
 }
 

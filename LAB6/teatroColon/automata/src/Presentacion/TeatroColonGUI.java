@@ -204,15 +204,18 @@ public class TeatroColonGUI extends JFrame{
 		exportar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				JFileChooser chooser = new JFileChooser();
-				String ruta = "";
-				try{ 
-					if(chooser.showOpenDialog(null)==chooser.APPROVE_OPTION){ 
-						ruta = chooser.getSelectedFile().getAbsolutePath(); 
-					} 
-				}catch (Exception ex){ 
-					ex.printStackTrace(); 
+				chooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+				int result = chooser.showSaveDialog(null);
+				if (result == JFileChooser.APPROVE_OPTION) {
+					File f = new File("./"+chooser.getSelectedFile().getName()+".txt");
+					try {
+						teatro.exporte(f);
+					}catch(TeatroColonException ec) {
+						JOptionPane.showMessageDialog(null, ec.getMessage(), "¡Cuidado!", JOptionPane.WARNING_MESSAGE);
+					}
+				
 				}
-				//teatro.exporte(ruta);
+				
 			}
 		});
 	

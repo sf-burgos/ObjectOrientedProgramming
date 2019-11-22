@@ -7,8 +7,8 @@ import java.io.Serializable;
 
 public class Luz implements EnEscena, Serializable {
     public Color color;
-    int posicionx;
-    int posiciony;
+    private int posicionx;
+    private int posiciony;
     public Luz(int x,int y){
         posicionx = x;
         posiciony = y;
@@ -34,4 +34,8 @@ public class Luz implements EnEscena, Serializable {
     public int getPosicionY(){
         return posiciony;
     }
+	
+	public String toString(){
+		return "Luz" + " " + posicionx + " " + posiciony+"\n";
+	}
 }

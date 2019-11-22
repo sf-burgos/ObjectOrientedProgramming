@@ -201,6 +201,16 @@ public  class Teatro implements Serializable{
 		}
 	}
 	public void exporte(File archivo)  throws TeatroColonException{	
+		try{
+			File arc = new File(archivo.getAbsolutePath());
+			FileWriter escribir = new FileWriter(arc,false);
+			for (EnEscena ele: elementos){
+				escribir.write(ele.toString());
+			}
+			escribir.close();
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 	public static Teatro getTeatro(){
 		return teatro;

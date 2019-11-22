@@ -1,0 +1,11 @@
+Actor 50 10 Romeo
+Actor 100 10 Julieta
+ActorNecio 150 10 Homer
+ActorNecio 200 10 Homer
+ActorPerezoso 250 10 Eduard
+ActorPerezoso 300 10 Bella
+Luz 0 250
+Luz 500 250
+ActorEnojon 400 10 Brayan
+ActorEnojon 350 10 Alfonso
+Armario 0 500
