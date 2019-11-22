@@ -2,9 +2,10 @@ package aplicacion;
 import java.applet.*;
 import java.awt.*;
 import java.util.Random;
+import java.io.Serializable;
 
 
-public class Luz implements EnEscena {
+public class Luz implements EnEscena, Serializable {
     public Color color;
     int posicionx;
     int posiciony;

@@ -1,10 +1,11 @@
 package aplicacion;
 import java.applet.*;
 import java.awt.*;
+import java.io.Serializable;
 import java.util.Random;
 
 
-public class Armario implements EnEscena {
+public class Armario implements EnEscena,Serializable {
     public Color color;
     int posicionx;
     int posiciony;

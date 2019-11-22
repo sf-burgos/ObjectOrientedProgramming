@@ -10,7 +10,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-
+import java.io.*;
 /**
  * @author ECI 2014
  * 
@@ -173,7 +173,7 @@ public  class Teatro implements Serializable{
 	
 	public void salvar (File archivo) throws TeatroColonException {
 		if (teatro == null) {
-			throw new TeatroColonException(TeatroColonException.SIN_JUEGO);
+			throw new TeatroColonException(TeatroColonException.SIN_TEATRO);
 		}
 		try{
 			ObjectOutputStream out = new ObjectOutputStream( new FileOutputStream(archivo));
@@ -185,6 +185,20 @@ public  class Teatro implements Serializable{
 		}
 	}
 	public void importe(File archivo)  throws TeatroColonException{	
+		String texto = archivo.getAbsolutePath();
+		int k = 0;
+		String cadena = "";
+		try{
+			FileReader leer = new FileReader(archivo);
+			BufferedReader contenido = new BufferedReader(leer);
+			while((texto=contenido.readLine())!=null){
+				k++;
+				String[] s=(texto.split(" "));
+				
+			}
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 	public void exporte(File archivo)  throws TeatroColonException{	
 	}

@@ -1,8 +1,9 @@
 package aplicacion;
 
 import java.awt.Color;
+import java.io.Serializable;
 
-public class Actor extends Persona implements EnEscena{
+public class Actor extends Persona implements EnEscena, Serializable{
    
 
     private Teatro teatro;   

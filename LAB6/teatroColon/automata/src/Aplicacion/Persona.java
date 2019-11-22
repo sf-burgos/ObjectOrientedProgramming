@@ -1,8 +1,8 @@
 package aplicacion;
-
+import java.io.Serializable;
 import java.awt.Color;
 
-public class Persona {
+public class Persona implements Serializable{
 
 	//Posiciones
 	public final static int ARRIBA=0;

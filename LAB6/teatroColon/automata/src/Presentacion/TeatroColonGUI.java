@@ -131,13 +131,14 @@ public class TeatroColonGUI extends JFrame{
 	}
 	public void prepareAccionesMenu(){
 		nuevo.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+			public void actionPerformed(ActionEvent e) {
 				//elementos();
+				repaint();
 				teatro.nuevoTeatro();
-				teatro.demeTeatro();
+		
 				teatro.algunosEnEscena();
 				acciones();
-				repaint();
+				
 			
 			}
 			
@@ -160,6 +161,7 @@ public class TeatroColonGUI extends JFrame{
 					teatro  = Teatro.getTeatro();
 					//detenerSonidos();
 					elementos();
+					acciones();
 				//actualizar();
 				}catch(TeatroColonException ec) {
 				JOptionPane.showMessageDialog(null, ec.getMessage(), "¡Cuidado!", JOptionPane.WARNING_MESSAGE);
@@ -184,6 +186,36 @@ public class TeatroColonGUI extends JFrame{
 				}
 			}
 				});
+		importar.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				JFileChooser chooser = new JFileChooser();
+				String ruta = "";
+				try{ 
+					if(chooser.showOpenDialog(null)==chooser.APPROVE_OPTION){ 
+						ruta = chooser.getSelectedFile().getAbsolutePath(); 
+					} 
+				}catch (Exception ex){ 
+					ex.printStackTrace(); 
+				}
+				//teatro.importe(ruta);
+			}
+		});
+		
+		exportar.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				JFileChooser chooser = new JFileChooser();
+				String ruta = "";
+				try{ 
+					if(chooser.showOpenDialog(null)==chooser.APPROVE_OPTION){ 
+						ruta = chooser.getSelectedFile().getAbsolutePath(); 
+					} 
+				}catch (Exception ex){ 
+					ex.printStackTrace(); 
+				}
+				//teatro.exporte(ruta);
+			}
+		});
+	
 		
 				
     }
