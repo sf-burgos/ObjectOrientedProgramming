@@ -1,8 +1,8 @@
 package aplicacion;
 
 public abstract class Elemento {
-	protected int x;
-	protected int y;
+	protected static int  x;
+	protected static int y;
 	protected int deltaX;
 	protected int deltaY;
 	protected String imagen;
@@ -20,11 +20,11 @@ public abstract class Elemento {
 		return imagen;
 	}
 	
-	public int getX() {
+	public static int getX() {
 		return x; 
 	}
 	
-	public int getY() {
+	public static int getY() {
 		return y; 
 	}
 	

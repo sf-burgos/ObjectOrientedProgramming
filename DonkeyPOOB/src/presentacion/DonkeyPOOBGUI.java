@@ -49,6 +49,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	private DonkeyPOOB juego;
 	private Thread t; 
 	
+	
 	public DonkeyPOOBGUI() {
 		super("DonkeyPOOB");
 		prepareElementos();
@@ -60,14 +61,19 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		setIconImage(icon);
 		
 	}
-	
+	/**
+	*Constructor del DonkeyPoob
+	*@param string arg[]
+	*/
 	public static void main(String args[]) {
 		DonkeyPOOBGUI juego = new DonkeyPOOBGUI();
 		juego.setVisible(true);
 		
 	}
 	
-
+	/**
+	*Se preparan los elementos de la ventana principal del DonkeyPOOB
+	*/
 	private void prepareElementos() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -78,7 +84,10 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	   
 	    
 	}
-
+	
+	/**
+	*Ventana desplegable del menú en la parte superior derecha y botones necesarios en el proceso inicial
+	*/
 	private void prepareElementosMenu() {
 		barraMenu = new JMenuBar();
 		menu = new JMenu("Menu");
@@ -100,6 +109,9 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		setJMenuBar(barraMenu);
 	}
 	
+	/**
+	*Elementos como la dimensión, el panel e importar las imágenes que se desean
+	*/
 	public void prepareElementosInicial() {
 		layout = new CardLayout();
 		setSize(new Dimension(900, 900));
@@ -111,6 +123,9 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	
 	}
 	
+	/**
+	*Creación de los oyentes necesarios para el menú inicial
+	*/
 	public void prepareAcciones() {
 		menuInicial.unPlayer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -156,6 +171,9 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	
 	}
 	
+	/**
+	*Añadiendo los botones de regreso para controlar la operación
+	*/
 	private void prepareAccionesControl() {
 		menuInicial.volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -165,6 +183,10 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 			}
 		});
 	}
+	
+	/**
+	*Método para salir de la aplicación, con la flecha de la parte superior derecha
+	*/
 	public void salir(){
 		int result = JOptionPane.showConfirmDialog(null, "¿Seguro que desea salir?", "Confirmacion de salida: ",
 				JOptionPane.YES_NO_OPTION);
@@ -173,7 +195,9 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		else if (result == JOptionPane.NO_OPTION)
 			setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	}
-	
+	/**
+	*Añadiendo los botones de regreso para controlar la operación
+	*/
 	private void prepareAccionesCPU() {		
 		menuInicial.volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -184,6 +208,10 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		});
 	}
 	
+	/**
+	*Inicio del juego teniendo en cuentas los personajes, barriles, sorpresas y demás elementos para crear el tablero
+	*@param int jugadores @param int maquinas
+	*/
 	public void iniciar(int jugadores,int maquinas) {
 		DonkeyPOOB.nuevoJuego();
 		juego = DonkeyPOOB.getJuego();
@@ -191,6 +219,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		juego.addPlataformas();
 		ponerElementos();
 	}
+	
 	
 	public void ponerElementos() {
 		menuInicial.prepareElegirElementos();
@@ -237,6 +266,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 			if(keyCode == KeyEvent.VK_DOWN) {
 				juego.JugadorDown(0);
 				//System.out.println("I don't wanna go mr Stark");
+				actualizarJugadores();
 			}
 		}
 		
