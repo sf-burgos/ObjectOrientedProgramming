@@ -45,7 +45,7 @@ public class Tablero extends JPanel{
 	}
 	
 	public void addBarril() {
-		barriles.add(new Sprite(0,0,false));
+		barriles.add(new Sprite(0,0,true));
 	}
 	
 	public void addJugador() {

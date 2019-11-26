@@ -5,7 +5,7 @@ import java.util.ArrayList;
 //import java.io.Serializable;
 //import java.util.*;
 
-public abstract class Personaje extends Elemento implements Runnable {
+public abstract class Personaje extends Elemento{
 	
 	public static final int limiteX = 850;
 	public static final int limiteY = 805;

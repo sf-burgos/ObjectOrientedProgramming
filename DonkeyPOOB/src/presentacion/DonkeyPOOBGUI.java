@@ -1,6 +1,7 @@
 package presentacion;
 
 import aplicacion.DonkeyPOOB;
+import aplicacion.Barril;
 import aplicacion.DonkeyPOOBException;
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -216,7 +217,8 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		DonkeyPOOB.nuevoJuego();
 		juego = DonkeyPOOB.getJuego();
 		juego.addPlataformas();
-		juego.prepareJugadores(jugadores, maquinas);		
+		juego.prepareJugadores(jugadores, maquinas);	
+		juego.prepareBarriles(1);
 		ponerElementos();
 	}
 	
@@ -330,6 +332,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		principal.add(tablero,"tablero");		
 		t = new Thread(this);
 		prepareJugadores();
+		prepareBarriles();
 		layout.show(principal,"tablero");
 		t.start();
 	}
@@ -404,6 +407,31 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		actualizarJugadores();
 		tablero.repaint();
 	}
+	
+	private void prepareBarriles() {
+
+			tablero.addBarril();
+			tablero.getBarril(0).setRoot(juego.getBarril(0).getImagen());
+	}
+	/**private void actualizarBarriles() {
+		Barril[] barriles = juego.getBarriles(); 
+		for (int i = 0; i < barriles.length; i++) {
+			Sprite s;
+			try {
+				s = tablero.getBarril(i);
+			} catch (IndexOutOfBoundsException ex) {
+				tablero.addBarril();
+				s = tablero.getBarril(i);
+			}
+			if (juego.getBarril(i).isVisible()) {
+				s.setX(barriles[i].getX());
+				s.setY(barriles[i].getY());
+				s.setRoot(barriles[i].getImagen());
+			} 
+			s.setVisible(barriles[i].isVisible());
+		}
+		
+	}*/
 
 	
 	

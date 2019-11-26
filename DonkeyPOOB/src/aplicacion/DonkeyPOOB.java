@@ -19,12 +19,14 @@ import javax.sound.sampled.DataLine;
 public class DonkeyPOOB {
 	private static DonkeyPOOB juego = null; 
 	private Jugador[] jugadores; 
+	private Barril[] barriles;
 	public static ArrayList<Plataforma> piso; 
 	private boolean enPausa; 
 	
 	public DonkeyPOOB() {
 
 		piso = new ArrayList<Plataforma>();
+		prepareBarriles(1);
 	}
 	
 	public static DonkeyPOOB getJuego() {
@@ -36,6 +38,13 @@ public class DonkeyPOOB {
 	
 	public static void nuevoJuego() {
 		juego = new DonkeyPOOB();
+	}
+	
+	public void prepareBarriles(int Nbarriles) {
+		barriles = new Barril[Nbarriles];
+		barriles[0]= new BarrilAmarillo(0,0,"barrilBajando");
+		
+		
 	}
 	
 	public void prepareJugadores(int NJugadores,int maquina){
@@ -163,4 +172,21 @@ public class DonkeyPOOB {
 		return piso; 
 		
 	}  
+	
+	public Barril[] getBarriles() {
+		return barriles;
+	}
+	
+	/**
+	 * Da un bloque en una posicion i especifica
+	 * @param i posicion del bloque
+	 * @return el bloque en la posicion i, si no hay retorna null
+	 */
+	public Barril getBarril(int i){
+		Barril barril = null;
+		if (i >- 1 && i< barriles.length) {
+			barril = barriles[i];
+		}
+		return barril;
+	}
 }
