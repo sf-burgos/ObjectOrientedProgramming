@@ -15,7 +15,7 @@ public abstract class Personaje extends Elemento implements Runnable {
 	public double gravity = 0.0;
 	
 	public  int  [][] puntosPlataforma = {{0,270},{580,270},{581,273},{645,273},{646,276},{710,276},
-										{711,279},{776,279},{777,282},{841,282}};
+										{711,279},{776,279},{777,282},{841,282},{840,350},{900,352},{774,356}};
 	public int [] salida,salidaDos;
 	public double corte; 
 	
@@ -56,13 +56,7 @@ public abstract class Personaje extends Elemento implements Runnable {
 	public void moverAbajo() {
 		
 		if(y+Desplazamiento < limiteY)
-			y+=Desplazamiento;
-			while(caida) {
 				y+=Desplazamiento;
-				System.out.println(y);
-				estaSobreUnaPlataforma(x,y+33);
-			}
-			caida=true;
 			
 			
 	}
@@ -101,12 +95,14 @@ public abstract class Personaje extends Elemento implements Runnable {
 			 if (x>=salida[0] && x<=salidaDos[0]) {
 				 if (i%2==0) {
 						System.out.println(y+" Y");
-						//System.out.println(pendiente+" pendiente");
+						System.out.println(pendiente+" pendiente");
 						//System.out.println(x+" X");
 						//System.out.println(corte+" corte");
 					 if (y==(pendiente*x)+corte) {
 					 	//System.out.println("sisa,todo bien")
 						 caida=false;
+					 }else {
+						 caida = true;
 					 }
 			
 				 	}	
@@ -114,7 +110,12 @@ public abstract class Personaje extends Elemento implements Runnable {
 			
 			 }
 	}
-	public void moverHastaUnaPlataforma(int x,int y){
+	public void moverHastaUnaPlataforma(){
+		while(caida) {
+			
+			moverAbajo();
+			estaSobreUnaPlataforma(x,y+33);
+		}
 		
 	}	
 	

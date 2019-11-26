@@ -397,6 +397,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 			s = tablero.getJugador(0);
 		}
 		if (juego.getJugador(0).getPersonaje().isVisible()) {
+			juego.getJugador(0).getPersonaje().moverHastaUnaPlataforma();
 			s.setX(juego.getJugador(0).getX());
 			s.setY(juego.getJugador(0).getY());
 			s.setRoot(juego.getJugador(0).getRoot());

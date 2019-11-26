@@ -132,12 +132,16 @@ public class TeatroColonGUI extends JFrame{
 	public void prepareAccionesMenu(){
 		nuevo.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				//elementos();
-				repaint();
-				teatro.nuevoTeatro();
-		
-				teatro.algunosEnEscena();
-				acciones();
+				try{
+					repaint();
+					teatro.nuevoTeatro();
+					teatro = teatro.demeTeatro();	
+					teatro.algunosEnEscena();
+					elementos();
+					acciones();
+				}catch(TeatroColonException ex){
+					JOptionPane.showMessageDialog(null, ex.getMessage(), "¡Cuidado!", JOptionPane.WARNING_MESSAGE);
+				}
 				
 			
 			}
@@ -159,10 +163,8 @@ public class TeatroColonGUI extends JFrame{
 					try{
 					Teatro.abrir(f);
 					teatro  = Teatro.getTeatro();
-					//detenerSonidos();
 					elementos();
 					acciones();
-				//actualizar();
 				}catch(TeatroColonException ec) {
 				JOptionPane.showMessageDialog(null, ec.getMessage(), "¡Cuidado!", JOptionPane.WARNING_MESSAGE);
 				}
@@ -188,16 +190,22 @@ public class TeatroColonGUI extends JFrame{
 				});
 		importar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				JFileChooser chooser = new JFileChooser();
-				String ruta = "";
-				try{ 
-					if(chooser.showOpenDialog(null)==chooser.APPROVE_OPTION){ 
-						ruta = chooser.getSelectedFile().getAbsolutePath(); 
-					} 
-				}catch (Exception ex){ 
-					ex.printStackTrace(); 
-				}
-				//teatro.importe(ruta);
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+				int result = fileChooser.showOpenDialog(null);
+				if (result == JFileChooser.APPROVE_OPTION) {
+					File f = fileChooser.getSelectedFile();
+					try{
+							repaint();
+							teatro.nuevoTeatro();
+							teatro = teatro.demeTeatro();
+							teatro.importe(f);
+							elementos();
+							acciones();
+					}catch(TeatroColonException ec) {
+						JOptionPane.showMessageDialog(null, ec.getMessage(), "¡Cuidado!", JOptionPane.WARNING_MESSAGE);
+					}
+			}
 			}
 		});
 		

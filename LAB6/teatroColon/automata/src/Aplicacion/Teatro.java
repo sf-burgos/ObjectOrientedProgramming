@@ -72,7 +72,7 @@ public  class Teatro implements Serializable{
      * Se crean los actores y se añaden al ArrayList EnEscena 
      */
     public void algunosEnEscena(){
-        romeo = new Actor(this.teatro,"Romeo",50,10);
+        //romeo = new Actor(this.teatro,"Romeo",50,10);
         julieta = new Actor(this.teatro,"Julieta",100,10);
         homero = new ActorNecio(this.teatro,"Homer",150,10);
         bart = new ActorNecio(this.teatro,"Homer",200,10);
@@ -84,7 +84,7 @@ public  class Teatro implements Serializable{
         centralDerecha = new Luz(500,250);
         armario = new Armario(0,500);
         
-        elementos.add(romeo);
+        //elementos.add(romeo);
         elementos.add(julieta);
         //ActoresNecios
         elementos.add(homero);
@@ -186,15 +186,24 @@ public  class Teatro implements Serializable{
 	}
 	public void importe(File archivo)  throws TeatroColonException{	
 		String texto = archivo.getAbsolutePath();
-		int k = 0;
-		String cadena = "";
 		try{
 			FileReader leer = new FileReader(archivo);
 			BufferedReader contenido = new BufferedReader(leer);
 			while((texto=contenido.readLine())!=null){
-				k++;
-				String[] s=(texto.split(" "));
-				
+				String[] s = (texto.split(" "));
+				if(s[0].equals("Actor")){
+					adicione(new Actor(this.teatro,s[3],Integer.parseInt(s[1]),Integer.parseInt(s[2])));
+				}else if(s[0].equals("ActorNecio")){
+					adicione(new ActorNecio(this.teatro,s[3],Integer.parseInt(s[1]),Integer.parseInt(s[2])));
+				}else if(s[0].equals("ActorEnojon")){
+					adicione(new ActorEnojon(this.teatro,s[3],Integer.parseInt(s[1]),Integer.parseInt(s[2])));
+				}else if(s[0].equals("ActorPerezoso")){
+					adicione(new ActorPerezoso(this.teatro,s[3],Integer.parseInt(s[1]),Integer.parseInt(s[2])));
+				}else if(s[0].equals("Luz")){
+					adicione(new Luz(Integer.parseInt(s[1]),Integer.parseInt(s[2])));
+				}else if(s[0].equals("Armario")){
+					adicione(new Armario(Integer.parseInt(s[1]),Integer.parseInt(s[2])));
+				}
 			}
 		}catch(Exception ex){
 			ex.printStackTrace();
