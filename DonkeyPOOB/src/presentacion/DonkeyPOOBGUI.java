@@ -215,8 +215,8 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	public void iniciar(int jugadores,int maquinas) {
 		DonkeyPOOB.nuevoJuego();
 		juego = DonkeyPOOB.getJuego();
-		juego.prepareJugadores(jugadores, maquinas);
 		juego.addPlataformas();
+		juego.prepareJugadores(jugadores, maquinas);		
 		ponerElementos();
 	}
 	
@@ -286,11 +286,6 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 				Thread.sleep(5);
 				while(!juego.gameOver()) {
 					if(!juego.enPausa()){
-						/**if (juego.creoBola())Thread.sleep(1000);
-						juego.mover();
-						if (juego.actualizarBloques()) {
-							actualizarBloques();
-						}*/
 						actualizar();
 					}
 				}

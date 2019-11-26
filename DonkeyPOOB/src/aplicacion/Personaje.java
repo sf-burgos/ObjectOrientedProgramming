@@ -1,27 +1,30 @@
 package aplicacion;
+
+import java.util.ArrayList;
+
 //import java.io.Serializable;
 //import java.util.*;
 
 public abstract class Personaje extends Elemento implements Runnable {
 	
 	public static final int limiteX = 850;
-	public static final int limiteY = 800;
+	public static final int limiteY = 805;
 	protected static final int Desplazamiento = 1;
 	public static int estado=0;
 	
+	public ArrayList<Plataforma> puntosPlataforma = DonkeyPOOB.getPlataformas();; 
 	public boolean salto = false;
 	public boolean caida = true;
 	
 	public double gravity = 0.0;
 	
-	public  int  [][] puntosPlataforma = {{0,270},{580,270},{581,273},{645,273},{646,276},{710,276},
-										{711,279},{776,279},{777,282},{841,282},{840,350},{900,352},{774,356}};
+
 	public int [] salida,salidaDos;
 	public double corte; 
 	
 	public double pendiente;
 	
-	private Thread tk; 
+	//private Thread tk; 
 	
 	//Variables de imagen
 	/**private final String right;
@@ -43,6 +46,7 @@ public abstract class Personaje extends Elemento implements Runnable {
 	public Personaje(int x, int y, String marioRight, String marioRRun, String marioR, String marioLeft, String marioLRun, String marioL, String kill, String scaleL, String scaleR) {
 		super(x,y);
 		super.setImagen("rsc/"+marioRight+".png");
+		
 
 	}
 	
@@ -57,8 +61,7 @@ public abstract class Personaje extends Elemento implements Runnable {
 		
 		if(y+Desplazamiento < limiteY)
 				y+=Desplazamiento;
-			
-			
+		estaSobreUnaPlataforma(x,y+33);	
 	}
 	
 		
@@ -78,45 +81,49 @@ public abstract class Personaje extends Elemento implements Runnable {
 	public void moverIzquierda(){
 		if(x-Desplazamiento > 10) {
 			x-=Desplazamiento; 
-			estaSobreUnaPlataforma(x,y+33);
+			estaSobreUnaPlataforma(x+30 ,y+33);
 		}if(estado == 3) {
 			estado = 2;
 		}else {
 			estado = 3;
 		}
 	}
+	
 	public void estaSobreUnaPlataforma(int x, int y) {
-		for (int i=0; i<puntosPlataforma.length-1;i++) {
 
-			 salida=puntosPlataforma[i];
-			 salidaDos=puntosPlataforma[i+1];
-			 pendiente=  (salidaDos[1]-(salida[1]))/salidaDos[0]-(salida[0]);
-			 corte=salida[1]-(pendiente*x);
-			 if (x>=salida[0] && x<=salidaDos[0]) {
-				 if (i%2==0) {
-						System.out.println(y+" Y");
-						System.out.println(pendiente+" pendiente");
-						//System.out.println(x+" X");
-						//System.out.println(corte+" corte");
-					 if (y==(pendiente*x)+corte) {
-					 	//System.out.println("sisa,todo bien")
-						 caida=false;
-					 }else {
-						 caida = true;
-					 }
-			
-				 	}	
-				 }
-			
-			 }
-	}
-	public void moverHastaUnaPlataforma(){
-		while(caida) {
-			
-			moverAbajo();
-			estaSobreUnaPlataforma(x,y+33);
+		for (int i = 0; i < puntosPlataforma.size(); i++) {
+			int[] izquierda = puntosPlataforma.get(i).getPuntoUno();
+			int[] derecha = puntosPlataforma.get(i).getPuntoDos();
+			// System.out.println(puntosPlataforma.get(i).getPuntoUno()[0]+"
+			// "+puntosPlataforma.get(i).getPuntoUno()[1]+"izquierda");
+			// System.out.println(puntosPlataforma.get(i).getPuntoDos()[0]+"
+			// "+puntosPlataforma.get(i).getPuntoDos()[1]);
+			// System.out.println(x+" "+y+" posicion" );
+			// System.out.println("estoy aqui");
+			if (y == derecha[1]) {
+				if ((izquierda[0] <= x && x <= derecha[0])) {
+					System.out.println("sisas");
+					caida = false;
+					break;
+				} else {
+					caida = true;
+					System.out.println("noks");
+				}
+			}
+
+			// System.out.println(puntosPlataforma.get(i));
 		}
+		System.out.println(x + " " + y);
+
+	}
+
+	public void moverHastaUnaPlataforma(){
+		
+		while(caida) {
+			moverAbajo();
+			System.out.println(caida);
+		}
+	
 		
 	}	
-	
 }

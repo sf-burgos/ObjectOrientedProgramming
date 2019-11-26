@@ -19,13 +19,11 @@ import javax.sound.sampled.DataLine;
 public class DonkeyPOOB {
 	private static DonkeyPOOB juego = null; 
 	private Jugador[] jugadores; 
-	private ArrayList<Plataforma> piso; 
-	//private Barril[] barriles;
-	//private ArrayList<Sorpresa> sorpresas; 
+	public static ArrayList<Plataforma> piso; 
 	private boolean enPausa; 
 	
 	public DonkeyPOOB() {
-		//sorpresas = new ArrayList<sorpresas>; 
+
 		piso = new ArrayList<Plataforma>();
 	}
 	
@@ -60,7 +58,7 @@ public class DonkeyPOOB {
 				jugadores[1] = new Usuario(556,550); //Posicion derecha
 			}
 		}else{
-			jugadores[0] = new Usuario(26,0); //Posicion centro
+			jugadores[0] = new Usuario(400,0); //Posicion centro
 		}
 	}
 	
@@ -136,25 +134,33 @@ public class DonkeyPOOB {
 	}
 	
 	public void addPlataformas() {
-		int[] puntoCero = {0,675};int[] puntoUno = {836,712};
+		int[] puntoCero = {300,211};int[] puntoUno = {497,211};
  		Plataforma plataformaUno = new Plataforma(puntoCero, puntoUno);
  		piso.add(plataformaUno);
-		int[] puntoDos = {61,604};int[] puntoTres = {900,565};		
+		
+ 		int[] puntoDos = {0,346};int[] puntoTres = {795,346};		
 		Plataforma plataformaDos = new Plataforma(puntoDos, puntoTres);
 		piso.add(plataformaDos);
-		int[] puntoCuatro = {0,459};int[] puntoCinco = {836,498};		
-		Plataforma plataformaTres = new Plataforma(puntoDos, puntoTres);
+		
+		int[] puntoCuatro = {100,440};int[] puntoCinco = {900,440};		
+		Plataforma plataformaTres = new Plataforma(puntoCuatro, puntoCinco);
 		piso.add(plataformaTres);
-		int[] puntoSeis = {60,391};int[] puntoSiete = {892,351};		
-		Plataforma plataformaCuatro = new Plataforma(puntoDos, puntoTres);
+		
+		int[] puntoSeis = {0,530};int[] puntoSiete = {800,530};		
+		Plataforma plataformaCuatro = new Plataforma(puntoSeis, puntoSiete);
 		piso.add(plataformaCuatro);
-		int[] puntoOcho = {0,270};int[] puntoNueve = {837,285};		
+		int[] puntoOcho = {100,620};int[] puntoNueve = {900,620};		
 		Plataforma plataformaCinco = new Plataforma(puntoOcho, puntoNueve);
 		piso.add(plataformaCinco);
-		int[] puntoDiez = {546,177};int[] puntoOnce = {354,177};		
-		Plataforma plataformaSeis = new Plataforma(puntoDos, puntoTres);
+		int[] puntoDiez = {0,715};int[] puntoOnce = {800,715};		
+		Plataforma plataformaSeis = new Plataforma(puntoDiez, puntoOnce);
 		piso.add(plataformaSeis);
-	}
-
-	
+		int[] puntoDoce = {0,805};int[] puntoTrece = {892,805};		
+		Plataforma plataformaSiete = new Plataforma(puntoDoce, puntoTrece);
+		piso.add(plataformaSiete);
+	}	
+	public static ArrayList<Plataforma> getPlataformas(){
+		return piso; 
+		
+	}  
 }

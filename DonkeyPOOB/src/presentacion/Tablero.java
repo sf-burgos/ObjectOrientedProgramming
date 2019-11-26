@@ -30,8 +30,6 @@ public class Tablero extends JPanel{
 	private String[] puntajes;
 	private boolean terminar, gameOver, enPausa;
 	protected JButton guardar,abrir,reiniciar;
-	//private int[][] puntosMapa = {{355,179},{544,179},{0,270},{837,283},{62,390},{893,352},{0,458},{838,498},{60,604}};
-	private int [][] puntosMapa = {{0,270},{580,270}};
 	public Tablero(int numeroJugadores) {
 		puntajes = new String[numeroJugadores];
 		barriles = new ArrayList<Sprite>();
@@ -110,9 +108,7 @@ public class Tablero extends JPanel{
 		}
 		
 	}*/
-	public int [][] getPuntosMapa(){
-		return puntosMapa;
-	}
+
 	
 	public void paint(Graphics g) {
 		super.paintComponent(g);
