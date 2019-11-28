@@ -21,11 +21,13 @@ public class DonkeyPOOB {
 	private Jugador[] jugadores; 
 	private Barril[] barriles;
 	public static ArrayList<Plataforma> piso; 
+	public static ArrayList<Escalera> puntosEscalera; 
 	private boolean enPausa; 
 	
 	public DonkeyPOOB() {
 
-		piso = new ArrayList<Plataforma>();		
+		piso = new ArrayList<Plataforma>();
+		puntosEscalera = new ArrayList<Escalera>();
 	}
 	
 	public static DonkeyPOOB getJuego() {
@@ -169,11 +171,43 @@ public class DonkeyPOOB {
 		Plataforma plataformaSiete = new Plataforma(puntoDoce, puntoTrece);
 		piso.add(plataformaSiete);
 	}	
+	
+	public void addEscaleras() {
+		int[] puntoCero = {481,211};int[] puntoUno = {481,346};
+ 		Escalera EscaleraUno = new Escalera(puntoCero, puntoUno);
+ 		puntosEscalera.add(EscaleraUno);
+		/**
+ 		int[] puntoDos = {0,346};int[] puntoTres = {795,346};		
+		Escalera EscaleraDos = new Escalera(puntoDos, puntoTres);
+		piso.add(EscaleraDos);
+		
+		int[] puntoCuatro = {100,440};int[] puntoCinco = {900,440};		
+		Escalera EscaleraTres = new Escalera(puntoCuatro, puntoCinco);
+		piso.add(EscaleraTres);
+		
+		int[] puntoSeis = {0,530};int[] puntoSiete = {800,530};		
+		Escalera EscaleraCuatro = new Escalera(puntoSeis, puntoSiete);
+		piso.add(EscaleraCuatro);
+		int[] puntoOcho = {100,620};int[] puntoNueve = {900,620};		
+		Escalera EscaleraCinco = new Escalera(puntoOcho, puntoNueve);
+		piso.add(EscaleraCinco);
+		int[] puntoDiez = {0,715};int[] puntoOnce = {800,715};		
+		Escalera Escaleraseis = new Escalera(puntoDiez, puntoOnce);
+		piso.add(Escaleraseis);
+		int[] puntoDoce = {0,805};int[] puntoTrece = {892,805};		
+		Escalera Escalerasiete = new Escalera(puntoDoce, puntoTrece);
+		piso.add(Escalerasiete);
+		*/
+	}
 	public static ArrayList<Plataforma> getPlataformas(){
 		return piso; 
 		
 	}  
-	
+	public static ArrayList<Escalera> getEscaleras(){
+		return puntosEscalera; 
+		
+	}  
+		
 	public Barril[] getBarriles() {
 		return barriles;
 	}

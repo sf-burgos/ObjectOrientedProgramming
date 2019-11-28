@@ -217,6 +217,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		DonkeyPOOB.nuevoJuego();
 		juego = DonkeyPOOB.getJuego();
 		juego.addPlataformas();
+		juego.addEscaleras();
 		juego.prepareBarriles(2);
 		juego.prepareJugadores(jugadores, maquinas);			
 		ponerElementos();
@@ -286,7 +287,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 			while(!juego.gameOver()&&!juego.finished()){
 				
 				actualizar();
-				Thread.sleep(5);
+				t.sleep(50);
 				while(!juego.gameOver()) {
 					if(!juego.enPausa()){
 						actualizar();
@@ -406,9 +407,9 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	}
 	
 	public void actualizar() {
-		actualizarBarriles();
-		actualizarJugadores();
 		
+		actualizarJugadores();
+		actualizarBarriles();
 		tablero.repaint();
 	}
 	
