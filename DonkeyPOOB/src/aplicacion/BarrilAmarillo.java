@@ -16,13 +16,15 @@ public class BarrilAmarillo extends Barril {
 		}while(!caida) {
 			
 			if(y == 440-33 || y == 620-33 || y == 805-33) {
-				x-=Desplazamiento;					
+				x-=Desplazamiento;
+				estaSobreUnaPlataforma(x+30,y+33);
 			}			
 			else {
 				x+=Desplazamiento;		
 				System.out.println("asdsa");
+				estaSobreUnaPlataforma(x,y+33);
 			}
-			estaSobreUnaPlataforma(x,y+33);
+			
 			System.out.println(x+" "+y);
 			break;
 		}
