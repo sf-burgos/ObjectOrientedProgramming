@@ -45,11 +45,11 @@ public class Tablero extends JPanel{
 	}
 	
 	public void addBarril() {
-		barriles.add(new Sprite(0,0,true));
+		barriles.add(new Sprite(329,211,true,3,3));
 	}
 	
 	public void addJugador() {
-		jugadores.add(new Sprite(0,550,true,3,3));
+		jugadores.add(new Sprite(400,0,true,3,3));
 		addVidas();
 	}
 	
@@ -114,6 +114,7 @@ public class Tablero extends JPanel{
 		super.paintComponent(g);
 		g.drawImage(nivel, 0, 0, this);
 		for (Sprite j: jugadores) j.paint((Graphics2D) g);
+		for (Sprite j: barriles) j.paint((Graphics2D) g);
 		paintComponents(g);
 	}	
 }

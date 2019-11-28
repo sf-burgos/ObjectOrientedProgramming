@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public abstract class Personaje extends Elemento{
 	
+	
 	public static final int limiteX = 850;
 	public static final int limiteY = 805;
 	protected static final int Desplazamiento = 1;
@@ -15,6 +16,8 @@ public abstract class Personaje extends Elemento{
 	public ArrayList<Plataforma> puntosPlataforma = DonkeyPOOB.getPlataformas();; 
 	public boolean salto = false;
 	public boolean caida = true;
+	public boolean activarDerecha = false;
+	public boolean activarIzquierda = false;
 	
 	public double gravity = 0.0;
 	
@@ -43,11 +46,8 @@ public abstract class Personaje extends Elemento{
 	//por agregar
 	
 	
-	public Personaje(int x, int y, String marioRight, String marioRRun, String marioR, String marioLeft, String marioLRun, String marioL, String kill, String scaleL, String scaleR) {
+	public Personaje(int x, int y) {
 		super(x,y);
-		super.setImagen("rsc/"+marioRight+".png");
-		
-
 	}
 	
 	//Metodos de movimiento
@@ -102,18 +102,16 @@ public abstract class Personaje extends Elemento{
 			// System.out.println("estoy aqui");
 			if (y == derecha[1]) {
 				if ((izquierda[0] <= x && x <= derecha[0])) {
-					System.out.println("sisas");
 					caida = false;
 					break;
 				} else {
 					caida = true;
-					System.out.println("noks");
 				}
 			}
 
 			// System.out.println(puntosPlataforma.get(i));
 		}
-		System.out.println(x + " " + y);
+	
 
 	}
 
@@ -121,9 +119,12 @@ public abstract class Personaje extends Elemento{
 		
 		while(caida) {
 			moverAbajo();
-			System.out.println(caida);
 		}
 	
 		
 	}	
+	
+	public void cambiarEstado() {
+		
+	}
 }

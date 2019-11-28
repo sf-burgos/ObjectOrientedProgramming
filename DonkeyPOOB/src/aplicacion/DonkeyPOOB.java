@@ -25,8 +25,7 @@ public class DonkeyPOOB {
 	
 	public DonkeyPOOB() {
 
-		piso = new ArrayList<Plataforma>();
-		prepareBarriles(1);
+		piso = new ArrayList<Plataforma>();		
 	}
 	
 	public static DonkeyPOOB getJuego() {
@@ -42,9 +41,11 @@ public class DonkeyPOOB {
 	
 	public void prepareBarriles(int Nbarriles) {
 		barriles = new Barril[Nbarriles];
-		barriles[0]= new BarrilAmarillo(0,0,"barrilBajando");
+		for(int i=0;i<barriles.length;i++) {
+			barriles[i]= new BarrilAmarillo(200,0);
+		}
 		
-		
+				
 	}
 	
 	public void prepareJugadores(int NJugadores,int maquina){
@@ -67,7 +68,7 @@ public class DonkeyPOOB {
 				jugadores[1] = new Usuario(556,550); //Posicion derecha
 			}
 		}else{
-			jugadores[0] = new Usuario(400,0); //Posicion centro
+			jugadores[0] = new Usuario(300,0); //Posicion centro
 		}
 	}
 	

@@ -217,8 +217,8 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		DonkeyPOOB.nuevoJuego();
 		juego = DonkeyPOOB.getJuego();
 		juego.addPlataformas();
-		juego.prepareJugadores(jugadores, maquinas);	
-		juego.prepareBarriles(1);
+		juego.prepareBarriles(2);
+		juego.prepareJugadores(jugadores, maquinas);			
 		ponerElementos();
 	}
 	
@@ -268,7 +268,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 			if(keyCode == KeyEvent.VK_DOWN) {
 				juego.JugadorDown(0);
 				//System.out.println("I don't wanna go mr Stark");
-				actualizarJugadores();
+				//actualizarJugadores();
 			}
 		}
 		
@@ -284,6 +284,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	public void run() {
 		try {
 			while(!juego.gameOver()&&!juego.finished()){
+				
 				actualizar();
 				Thread.sleep(5);
 				while(!juego.gameOver()) {
@@ -319,6 +320,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	}	
 	private void  ponerElementosJuego() {
 		try {
+			juego.prepareBarriles(1);
 			juego.barrilesParaJugar(menuInicial.barrilesSelecionados);
 			juego.sorpresasParaJugar(menuInicial.sorpresasSelecionados);
 		}catch(DonkeyPOOBException e){
@@ -404,16 +406,22 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	}
 	
 	public void actualizar() {
+		actualizarBarriles();
 		actualizarJugadores();
+		
 		tablero.repaint();
 	}
 	
 	private void prepareBarriles() {
-
-			tablero.addBarril();
-			tablero.getBarril(0).setRoot(juego.getBarril(0).getImagen());
+			Barril[] barriles = juego.getBarriles(); 
+			for (int i=0;i<barriles.length;i++) {
+				tablero.addBarril();
+				tablero.getBarril(i).setRoot(juego.getBarril(i).getImagen());
+				
+			}
+			actualizarBarriles();
 	}
-	/**private void actualizarBarriles() {
+	private void actualizarBarriles() {
 		Barril[] barriles = juego.getBarriles(); 
 		for (int i = 0; i < barriles.length; i++) {
 			Sprite s;
@@ -424,6 +432,8 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 				s = tablero.getBarril(i);
 			}
 			if (juego.getBarril(i).isVisible()) {
+				juego.getBarril(0).moverHastaUnaPlataforma();
+				//juego.getBarril(0).recorrerTablero();
 				s.setX(barriles[i].getX());
 				s.setY(barriles[i].getY());
 				s.setRoot(barriles[i].getImagen());
@@ -431,13 +441,9 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 			s.setVisible(barriles[i].isVisible());
 		}
 		
-	}*/
 
-	
-	
-	
-	
-	
+	}
+
 	
 
 }
