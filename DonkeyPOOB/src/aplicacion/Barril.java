@@ -42,10 +42,8 @@ public abstract class Barril extends Elemento {
 			if (y == derecha[1]) {
 				if ((izquierda[0] <= x && x <= derecha[0])) {
 					caida = false;
-					System.out.println("sisas");
 					break;
 				} else {
-					System.out.println("nooks");
 					caida = true;
 				}
 			}

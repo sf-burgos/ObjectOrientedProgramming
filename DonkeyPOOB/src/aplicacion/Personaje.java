@@ -72,10 +72,12 @@ public abstract class Personaje extends Elemento{
 				x+=Desplazamiento;
 				estaSobreUnaPlataforma(x,y+33);
 			}
-			if(estado == 1) {
-				estado = 0;
+			if(estado % 10 == 0) {
+				estado += 2;
+				super.setImagen("rsc/marioSprite4.png");
 			}else {
-				estado = 1; 
+				estado +=3; 
+				super.setImagen("rsc/marioSprite0.png");
 			}
 		}
 	
@@ -106,8 +108,11 @@ public abstract class Personaje extends Elemento{
 					if(estaSobreEscalera(x,y)) {
 						abajo = true;
 						arriba = false;
-					}if(estaBajoEscalera(x,y)) {
+					}else if(estaBajoEscalera(x,y)) {
 						arriba = true;
+						abajo = false;
+					}else {
+						arriba = false;
 						abajo = false;
 					}
 					caida = false;
@@ -127,8 +132,8 @@ public abstract class Personaje extends Elemento{
 		for (int i = 0; i < puntosEscalera.size(); i++) {
 			int[] izquierda = puntosEscalera.get(i).getPuntoUno();
 			if ((izquierda[0]-10<=x && izquierda[0]+10>=x && izquierda[1]==y)) {
-				System.out.println("si arriba funciono ");
-				System.out.println(x+" "+y+" posicion" );
+				//System.out.println("si arriba funciono ");
+				//System.out.println(x+" "+y+" posicion" );
 				return true;
 			}
 		}
@@ -139,8 +144,8 @@ public abstract class Personaje extends Elemento{
 		for (int i = 0; i < puntosEscalera.size(); i++) {
 			int[] derecha = puntosEscalera.get(i).getPuntoDos();
 			if ((derecha[0]-10<=x && derecha[0]+10>=x && derecha[1]==y)) {
-				System.out.println("si abajo funciono ");
-				System.out.println(x+" "+y+" posicion" );
+				//System.out.println("si abajo funciono ");
+				//System.out.println(x+" "+y+" posicion" );
 				return true;
 			}
 		}

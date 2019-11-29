@@ -25,7 +25,7 @@ public class BarrilAmarillo extends Barril {
 				estaSobreUnaPlataforma(x,y+33);
 			}
 			
-			System.out.println(x+" "+y);
+			//System.out.println(x+" "+y);
 			break;
 		}
 	

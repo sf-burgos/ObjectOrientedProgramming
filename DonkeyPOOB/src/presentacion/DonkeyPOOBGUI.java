@@ -28,6 +28,8 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -233,6 +235,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	}
 
 	@Override
+	
 	public void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
 		if (juego != null && tablero != null) {
@@ -243,11 +246,11 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 			if(keyCode == KeyEvent.VK_RIGHT) {
 				juego.JugadorRight(0);
 				//System.out.println("I don't wanna go mr Stark");
-				if(juego.getJugador(0).getPersonaje().estado%2 == 0) {
+				/**if(juego.getJugador(0).getPersonaje().estado%2 == 0) {
 					juego.getJugador(0).getPersonaje().setImagen("rsc/marioSprite4.png");
 				}else {
 					juego.getJugador(0).getPersonaje().setImagen("rsc/marioSprite0.png");
-				}
+				}*/
 			}
 			if(keyCode == KeyEvent.VK_LEFT) {
 				juego.JugadorLeft(0);
@@ -266,6 +269,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 				//System.out.println("I don't wanna go mr Stark");
 			}
 			if(keyCode == KeyEvent.VK_DOWN) {
+
 				if(juego.getJugador(0).getPersonaje().abajo) {
 					juego.JugadorDown(0);
 				}
@@ -281,22 +285,24 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	
 		
 	}
-
+	
 	@Override
 	public void run() {
 		try {
 			while(!juego.gameOver()&&!juego.finished()){
 				
-				//actualizar();
-				//actualizarBarriles();
+				actualizar();
+				actualizarBarriles();
+
 
 			
 				while(!juego.gameOver()) {
 					if(!juego.enPausa()){
 						
 						actualizar();
+						Thread.sleep(2);
 						actualizarBarriles();
-						Thread.sleep(5);
+						
 					}
 				}
 			}
@@ -347,7 +353,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		prepareBarriles();
 		layout.show(principal,"tablero");
 		t.start();
-		t2.start();
+
 	}
 	
 	public void prepareAccionesElementosJuego() {
@@ -443,7 +449,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 				s = tablero.getBarril(i);
 			}
 			if (juego.getBarril(i).isVisible()) {
-				juego.getBarril(0).moverHastaUnaPlataforma();
+				juego.getBarril(i).moverHastaUnaPlataforma();
 				//juego.getBarril(0).recorrerTablero();
 				s.setX(barriles[i].getX());
 				s.setY(barriles[i].getY());
@@ -454,7 +460,6 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		
 
 	}
-
 	
 
 }
