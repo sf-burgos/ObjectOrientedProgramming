@@ -12,9 +12,10 @@ public abstract class Personaje extends Elemento{
 	public static final int limiteY = 805;
 	protected static final int Desplazamiento = 1;
 	public static int estado=0;
+	//public int limiteSalto=50;
 	public ArrayList<Plataforma> puntosPlataforma = DonkeyPOOB.getPlataformas();
 	public ArrayList<Escalera> puntosEscalera= DonkeyPOOB.getEscaleras();
-	public boolean salto = false;
+	public boolean salto = true;
 	public boolean caida = true;
 	public boolean arriba = false;
 	public boolean abajo = false;
@@ -90,6 +91,22 @@ public abstract class Personaje extends Elemento{
 		}else {
 			estado = 3;
 		}
+	}
+	public void saltar() {
+		int limiteSalto = y-70;
+		System.out.println("limiteSalto"+" "+limiteSalto);
+		while (y>=limiteSalto) {
+			System.out.println("y"+" "+y);
+			if(y-Desplazamiento > 2)
+				y-=Desplazamiento;	
+			
+		}
+		caida = true;
+		if (caida&&salto){
+			moverHastaUnaPlataforma();
+			salto = false;							
+		}
+		salto =true;
 	}
 	
 	public void estaSobreUnaPlataforma(int x, int y) {

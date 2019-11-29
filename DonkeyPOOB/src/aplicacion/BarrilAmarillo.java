@@ -21,7 +21,7 @@ public class BarrilAmarillo extends Barril {
 			}			
 			else {
 				x+=Desplazamiento;		
-				System.out.println("asdsa");
+				//System.out.println("asdsa");
 				estaSobreUnaPlataforma(x,y+33);
 			}
 			

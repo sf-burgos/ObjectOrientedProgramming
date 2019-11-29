@@ -276,6 +276,10 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 				//System.out.println("I don't wanna go mr Stark");
 				//actualizarJugadores();
 			}
+			if(keyCode == KeyEvent.VK_ENTER) {
+				juego.jugadorSalto(0);
+			}
+			
 		}
 		
 	}

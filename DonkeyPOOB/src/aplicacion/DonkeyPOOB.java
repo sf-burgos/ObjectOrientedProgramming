@@ -128,6 +128,9 @@ public class DonkeyPOOB {
 	public void JugadorDown(int n) {
 		jugadores[n].moveDown();
 	}
+	public void jugadorSalto(int n) {
+		jugadores[n].moveJump();
+	}
 	
 	public boolean gameOver() {
 		boolean aunActivo = false;

@@ -31,6 +31,10 @@ public abstract class Jugador {
 	public void moveDown() {
 		personaje.moverAbajo();
 	}
+
+	public void moveJump() {
+		personaje.saltar();
+	}
 	
 	public String getRoot() {
 		return personaje.getImagen();
