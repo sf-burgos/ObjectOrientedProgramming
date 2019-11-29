@@ -16,8 +16,8 @@ public abstract class Personaje extends Elemento{
 	public ArrayList<Escalera> puntosEscalera= DonkeyPOOB.getEscaleras();
 	public boolean salto = false;
 	public boolean caida = true;
-	public boolean activarDerecha = false;
-	public boolean activarIzquierda = false;
+	public boolean arriba = false;
+	public boolean abajo = false;
 	
 	public double gravity = 0.0;
 	
@@ -53,9 +53,10 @@ public abstract class Personaje extends Elemento{
 	//Metodos de movimiento
 	public void moverArriba(){
 		if(y-Desplazamiento > 2)
-			y-=Desplazamiento;
-			estaSobreUnaPlataforma(x,y+33);
+			y-=Desplazamiento;			
+	estaSobreUnaPlataforma(x,y+33);
 	}
+	
 		
 	public void moverAbajo() {
 		
@@ -102,12 +103,16 @@ public abstract class Personaje extends Elemento{
 			// System.out.println("estoy aqui");
 			if (y == derecha[1]) {
 				if ((izquierda[0] <= x && x <= derecha[0])) {
-					if (estaSobreEscalera(x+15,y)) {
-						//System.out.println("holi :V");
-						activarBotonesEscaleras();
+					if(estaSobreEscalera(x,y)) {
+						abajo = true;
+						arriba = false;
+					}if(estaBajoEscalera(x,y)) {
+						arriba = true;
+						abajo = false;
 					}
 					caida = false;
 					break;
+					
 				} else {
 					caida = true;
 				}
@@ -121,14 +126,24 @@ public abstract class Personaje extends Elemento{
 	public boolean estaSobreEscalera(int x,int y) {
 		for (int i = 0; i < puntosEscalera.size(); i++) {
 			int[] izquierda = puntosEscalera.get(i).getPuntoUno();
-			int[] derecha = puntosEscalera.get(i).getPuntoDos();
-			if ((izquierda[0]-10<=x && izquierda[0]+25>=x && izquierda[1]==y) || (derecha[0]-10<=x && derecha[0]+10>=x && derecha[1]==y)) {
-				System.out.println("si funciono ");
+			if ((izquierda[0]-10<=x && izquierda[0]+10>=x && izquierda[1]==y)) {
+				System.out.println("si arriba funciono ");
 				System.out.println(x+" "+y+" posicion" );
 				return true;
 			}
 		}
-		//System.out.println("no estoy esc");
+		return false;
+	}
+	
+	public boolean estaBajoEscalera(int x,int y) {
+		for (int i = 0; i < puntosEscalera.size(); i++) {
+			int[] derecha = puntosEscalera.get(i).getPuntoDos();
+			if ((derecha[0]-10<=x && derecha[0]+10>=x && derecha[1]==y)) {
+				System.out.println("si abajo funciono ");
+				System.out.println(x+" "+y+" posicion" );
+				return true;
+			}
+		}
 		return false;
 	}
 	
@@ -136,13 +151,14 @@ public abstract class Personaje extends Elemento{
 		
 		while(caida) {
 			moverAbajo();
+			break;
+			
 		}
 	
 		
 	}	
 
-	public boolean activarBotonesEscaleras() {
-		return true;
+	public void activarBotonesEscaleras() {
 		
 	}
 	public void cambiarEstado() {

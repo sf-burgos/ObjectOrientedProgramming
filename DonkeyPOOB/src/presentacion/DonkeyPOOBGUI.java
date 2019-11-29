@@ -48,7 +48,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	private String rightRun;
 	private Tablero tablero;
 	private DonkeyPOOB juego;
-	private Thread t; 
+	private Thread t,t2; 
 	
 	
 	public DonkeyPOOBGUI() {
@@ -216,9 +216,6 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	public void iniciar(int jugadores,int maquinas) {
 		DonkeyPOOB.nuevoJuego();
 		juego = DonkeyPOOB.getJuego();
-		juego.addPlataformas();
-		juego.addEscaleras();
-		juego.prepareBarriles(2);
 		juego.prepareJugadores(jugadores, maquinas);			
 		ponerElementos();
 	}
@@ -263,11 +260,15 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 				
 			}
 			if(keyCode == KeyEvent.VK_UP) {
-				juego.JugadorUp(0);
+				if(juego.getJugador(0).getPersonaje().arriba) {
+					juego.JugadorUp(0);
+				}
 				//System.out.println("I don't wanna go mr Stark");
 			}
 			if(keyCode == KeyEvent.VK_DOWN) {
-				juego.JugadorDown(0);
+				if(juego.getJugador(0).getPersonaje().abajo) {
+					juego.JugadorDown(0);
+				}
 				//System.out.println("I don't wanna go mr Stark");
 				//actualizarJugadores();
 			}
@@ -286,11 +287,16 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		try {
 			while(!juego.gameOver()&&!juego.finished()){
 				
-				actualizar();
-				t.sleep(50);
+				//actualizar();
+				//actualizarBarriles();
+
+			
 				while(!juego.gameOver()) {
 					if(!juego.enPausa()){
+						
 						actualizar();
+						actualizarBarriles();
+						Thread.sleep(5);
 					}
 				}
 			}
@@ -321,7 +327,9 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	}	
 	private void  ponerElementosJuego() {
 		try {
-			juego.prepareBarriles(1);
+			juego.prepareBarriles(2);
+			juego.addPlataformas();
+			juego.addEscaleras();
 			juego.barrilesParaJugar(menuInicial.barrilesSelecionados);
 			juego.sorpresasParaJugar(menuInicial.sorpresasSelecionados);
 		}catch(DonkeyPOOBException e){
@@ -334,10 +342,12 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		tablero = new Tablero(jugadores);
 		principal.add(tablero,"tablero");		
 		t = new Thread(this);
+		t2 = new Thread(this);
 		prepareJugadores();
 		prepareBarriles();
 		layout.show(principal,"tablero");
 		t.start();
+		t2.start();
 	}
 	
 	public void prepareAccionesElementosJuego() {
@@ -389,7 +399,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		}
 		actualizarJugadores();
 	}
-	private void actualizarJugadores(){
+	private void actualizarJugadores(){		
 		Sprite s;
 		try {
 			s = tablero.getJugador(0);
@@ -409,7 +419,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	public void actualizar() {
 		
 		actualizarJugadores();
-		actualizarBarriles();
+		//actualizarBarriles();
 		tablero.repaint();
 	}
 	
