@@ -8,10 +8,20 @@ public  class Mario extends Personaje {
 		setImagen("rsc/marioSprite0.png");
 	}
 	
-	public void marioDerecha() {
-		setImagen("rsc/marioSprite4.png");
-	}
-	
+	public void moverDerecha(){
+		
+		if(x+Desplazamiento < limiteX) {
+				x+=Desplazamiento;
+				estaSobreUnaPlataforma(x,y+33);
+			}
+			if(estado % 10 == 0) {
+				estado += 2;
+				super.setImagen("rsc/marioSprite4.png");
+			}else {
+				estado +=3; 
+				super.setImagen("rsc/marioSprite0.png");
+			}
+		}
 	
 
 	

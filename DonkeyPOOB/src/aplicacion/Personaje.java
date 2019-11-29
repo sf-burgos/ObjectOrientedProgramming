@@ -75,10 +75,8 @@ public abstract class Personaje extends Elemento{
 			}
 			if(estado % 10 == 0) {
 				estado += 2;
-				super.setImagen("rsc/marioSprite4.png");
 			}else {
 				estado +=3; 
-				super.setImagen("rsc/marioSprite0.png");
 			}
 		}
 	
@@ -93,13 +91,20 @@ public abstract class Personaje extends Elemento{
 		}
 	}
 	public void saltar() {
-		int limiteSalto = y-70;
+		int limiteSalto = y-40;
 		System.out.println("limiteSalto"+" "+limiteSalto);
 		while (y>=limiteSalto) {
 			System.out.println("y"+" "+y);
-			if(y-Desplazamiento > 2)
-				y-=Desplazamiento;	
-			
+			if(y-Desplazamiento > 2)							
+				if(super.getImagen().equals("rsc/marioSprite4.png") || super.getImagen().equals("rsc/marioSprite0.png")) {
+					y-=Desplazamiento;	
+					System.out.println("derecha");
+					x+=Desplazamiento;
+				}
+				if(super.getImagen().equals("rsc/marioSprite1.png") || super.getImagen().equals("rsc/marioSprite2.png")) {
+					x-=Desplazamiento;
+					y-=Desplazamiento;	
+				}			
 		}
 		caida = true;
 		if (caida&&salto){

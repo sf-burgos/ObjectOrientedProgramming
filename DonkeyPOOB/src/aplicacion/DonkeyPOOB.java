@@ -24,6 +24,7 @@ public class DonkeyPOOB {
 	public static ArrayList<Escalera> puntosEscalera; 
 	private boolean enPausa; 
 	
+	
 	public DonkeyPOOB() {
 
 		piso = new ArrayList<Plataforma>();
@@ -44,10 +45,8 @@ public class DonkeyPOOB {
 	public void prepareBarriles(int Nbarriles) {
 		barriles = new Barril[Nbarriles];
 		for(int i=0;i<barriles.length;i++) {
-			barriles[i]= new BarrilAmarillo(200,0);
-		}
-		
-				
+			barriles[i]= new BarrilAmarillo(200,200);
+		}							
 	}
 	
 	public void prepareJugadores(int NJugadores,int maquina){
@@ -224,5 +223,15 @@ public class DonkeyPOOB {
 			barril = barriles[i];
 		}
 		return barril;
+	}
+	
+	public void lanzarBarriles() {
+		barriles[0].moverHastaUnaPlataforma();
+		for (int i = 1; i < barriles.length;i++) {
+			if(barriles[i-1].getY() >= 346) {
+				barriles[i].moverHastaUnaPlataforma();
+			}
+			
+		}
 	}
 }

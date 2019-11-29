@@ -10,6 +10,7 @@ public abstract class Barril extends Elemento {
 	protected static final float Desplazamiento = 1;
 	public static int estado=0;
 	public boolean caida = true;
+	public int peaje = 0; 
 
 
 	

@@ -52,6 +52,12 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	private DonkeyPOOB juego;
 	private Thread t,t2; 
 	
+	//booleans
+	private boolean left=false;
+	private boolean right=false;
+	private boolean down=false;
+	private boolean up=false;
+	private boolean jump=false;
 	
 	public DonkeyPOOBGUI() {
 		super("DonkeyPOOB");
@@ -245,6 +251,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 			}
 			if(keyCode == KeyEvent.VK_RIGHT) {
 				juego.JugadorRight(0);
+				right=true; 
 				//System.out.println("I don't wanna go mr Stark");
 				/**if(juego.getJugador(0).getPersonaje().estado%2 == 0) {
 					juego.getJugador(0).getPersonaje().setImagen("rsc/marioSprite4.png");
@@ -260,11 +267,13 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 				}else {
 					juego.getJugador(0).getPersonaje().setImagen("rsc/marioSprite2.png");
 				}
+				left=true;
 				
 			}
 			if(keyCode == KeyEvent.VK_UP) {
 				if(juego.getJugador(0).getPersonaje().arriba) {
 					juego.JugadorUp(0);
+					up=true;
 				}
 				//System.out.println("I don't wanna go mr Stark");
 			}
@@ -272,12 +281,15 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 
 				if(juego.getJugador(0).getPersonaje().abajo) {
 					juego.JugadorDown(0);
+					down=true;
+					
 				}
 				//System.out.println("I don't wanna go mr Stark");
 				//actualizarJugadores();
 			}
-			if(keyCode == KeyEvent.VK_ENTER) {
+			if(keyCode == KeyEvent.VK_ENTER){
 				juego.jugadorSalto(0);
+				jump=true;
 			}
 			
 		}
@@ -286,7 +298,11 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-	
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) left = false;
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) right = false;
+        if (e.getKeyCode() == KeyEvent.VK_UP) up = false;
+        if (e.getKeyCode() == KeyEvent.VK_DOWN) down = false;
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) jump = false;
 		
 	}
 	
@@ -304,9 +320,9 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 					if(!juego.enPausa()){
 						
 						actualizar();
-						Thread.sleep(2);
-						actualizarBarriles();
 						
+						actualizarBarriles();
+						Thread.sleep(15);
 					}
 				}
 			}
@@ -337,9 +353,9 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	}	
 	private void  ponerElementosJuego() {
 		try {
-			juego.prepareBarriles(2);
+			juego.prepareBarriles(5);
 			juego.addPlataformas();
-			juego.addEscaleras();
+			juego.addEscaleras();			
 			juego.barrilesParaJugar(menuInicial.barrilesSelecionados);
 			juego.sorpresasParaJugar(menuInicial.sorpresasSelecionados);
 		}catch(DonkeyPOOBException e){
@@ -453,13 +469,14 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 				s = tablero.getBarril(i);
 			}
 			if (juego.getBarril(i).isVisible()) {
-				juego.getBarril(i).moverHastaUnaPlataforma();
-				//juego.getBarril(0).recorrerTablero();
+				juego.lanzarBarriles();
 				s.setX(barriles[i].getX());
 				s.setY(barriles[i].getY());
 				s.setRoot(barriles[i].getImagen());
 			} 
 			s.setVisible(barriles[i].isVisible());
+			
+			
 		}
 		
 
