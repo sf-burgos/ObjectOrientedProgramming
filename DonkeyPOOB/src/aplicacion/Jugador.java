@@ -59,9 +59,5 @@ public abstract class Jugador {
 	
 	public int getVidas() {
 		return vidas;
-	}
-	
-	
-	
-	
+	}	
 }

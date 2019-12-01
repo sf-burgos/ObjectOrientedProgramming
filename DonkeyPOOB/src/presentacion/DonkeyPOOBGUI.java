@@ -252,21 +252,9 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 			if(keyCode == KeyEvent.VK_RIGHT) {
 				juego.JugadorRight(0);
 				right=true; 
-				//System.out.println("I don't wanna go mr Stark");
-				/**if(juego.getJugador(0).getPersonaje().estado%2 == 0) {
-					juego.getJugador(0).getPersonaje().setImagen("rsc/marioSprite4.png");
-				}else {
-					juego.getJugador(0).getPersonaje().setImagen("rsc/marioSprite0.png");
-				}*/
 			}
 			if(keyCode == KeyEvent.VK_LEFT) {
 				juego.JugadorLeft(0);
-				//System.out.println("I don't wanna go mr Stark");
-				if(juego.getJugador(0).getPersonaje().estado==3) {
-					juego.getJugador(0).getPersonaje().setImagen("rsc/marioSprite1.png");
-				}else {
-					juego.getJugador(0).getPersonaje().setImagen("rsc/marioSprite2.png");
-				}
 				left=true;
 				
 			}
@@ -313,16 +301,15 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 				
 				actualizar();
 				actualizarBarriles();
+				Thread.sleep(10);
 
 
 			
 				while(!juego.gameOver()) {
 					if(!juego.enPausa()){
-						
-						actualizar();
-						
 						actualizarBarriles();
-						Thread.sleep(15);
+						actualizar();
+						Thread.sleep(10);
 					}
 				}
 			}
@@ -355,7 +342,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		try {
 			juego.prepareBarriles(5);
 			juego.addPlataformas();
-			juego.addEscaleras();			
+			juego.addEscaleras();					
 			juego.barrilesParaJugar(menuInicial.barrilesSelecionados);
 			juego.sorpresasParaJugar(menuInicial.sorpresasSelecionados);
 		}catch(DonkeyPOOBException e){
@@ -434,6 +421,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 			s = tablero.getJugador(0);
 		}
 		if (juego.getJugador(0).getPersonaje().isVisible()) {
+			
 			juego.getJugador(0).getPersonaje().moverHastaUnaPlataforma();
 			s.setX(juego.getJugador(0).getX());
 			s.setY(juego.getJugador(0).getY());

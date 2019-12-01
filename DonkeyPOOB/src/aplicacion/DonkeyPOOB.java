@@ -19,7 +19,7 @@ import javax.sound.sampled.DataLine;
 public class DonkeyPOOB {
 	private static DonkeyPOOB juego = null; 
 	private Jugador[] jugadores; 
-	private Barril[] barriles;
+	private static Barril[] barriles;
 	public static ArrayList<Plataforma> piso; 
 	public static ArrayList<Escalera> puntosEscalera; 
 	private boolean enPausa; 
@@ -69,7 +69,7 @@ public class DonkeyPOOB {
 				jugadores[1] = new Usuario(556,550); //Posicion derecha
 			}
 		}else{
-			jugadores[0] = new Usuario(400,100); //Posicion centro
+			jugadores[0] = new Usuario(400,270); //Posicion centro
 		}
 	}
 	
@@ -208,7 +208,7 @@ public class DonkeyPOOB {
 		
 	}  
 		
-	public Barril[] getBarriles() {
+	public static Barril[] getBarriles() {
 		return barriles;
 	}
 	
@@ -226,12 +226,18 @@ public class DonkeyPOOB {
 	}
 	
 	public void lanzarBarriles() {
-		barriles[0].moverHastaUnaPlataforma();
-		for (int i = 1; i < barriles.length;i++) {
-			if(barriles[i-1].getY() >= 346) {
-				barriles[i].moverHastaUnaPlataforma();
+		
+		
+		for (int i = 0; i < barriles.length;i++) {
+			if (i == 0) {
+				barriles[0].moverHastaUnaPlataforma();
+			}else {
+				if(barriles[i-1].getY() >= 346) {
+					barriles[i].moverHastaUnaPlataforma();
+					
+				}
 			}
-			
+			juego.getJugador(0).getPersonaje().comprobarColision(barriles[i].getX(), barriles[i].getY());
 		}
 	}
 }
