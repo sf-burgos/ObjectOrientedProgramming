@@ -69,7 +69,7 @@ public class DonkeyPOOB {
 				jugadores[1] = new Usuario(556,550); //Posicion derecha
 			}
 		}else{
-			jugadores[0] = new Usuario(400,270); //Posicion centro
+			jugadores[0] = new Usuario(400,750); //Posicion centro
 		}
 	}
 	
@@ -194,8 +194,20 @@ public class DonkeyPOOB {
 		Escalera EscaleraCinco = new Escalera(puntoOcho, puntoNueve);
 		puntosEscalera.add(EscaleraCinco);
 		int[] puntoDiez = {762,530};int[] puntoOnce = {762,620};		
-		Escalera Escaleraseis = new Escalera(puntoDiez, puntoOnce);
-		puntosEscalera.add(Escaleraseis);
+		Escalera EscaleraSeis = new Escalera(puntoDiez, puntoOnce);
+		puntosEscalera.add(EscaleraSeis);
+		
+		int[] puntoDoce = {143,620};int[] puntoTrece = {143,715};		
+		Escalera EscaleraSiete = new Escalera(puntoDoce, puntoTrece);
+		puntosEscalera.add(EscaleraSiete);
+		
+		int[] puntoCatorce = {343,620};int[] puntoQuince= {343,715};		
+		Escalera EscaleraOcho = new Escalera(puntoCatorce, puntoQuince);
+		puntosEscalera.add(EscaleraOcho);
+		
+		int[] puntoDieciseis = {766,715};int[] puntoDiecisiete = {766,805};		
+		Escalera EscaleraNueve = new Escalera(puntoDieciseis, puntoDiecisiete);
+		puntosEscalera.add(EscaleraNueve);
 		
 		
 	}
