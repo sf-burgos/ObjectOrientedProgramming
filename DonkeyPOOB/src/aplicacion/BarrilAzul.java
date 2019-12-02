@@ -7,7 +7,7 @@ public class BarrilAzul extends Barril {
 	public BarrilAzul(int x, int y) {
 		
 		super(x, y);
-		setImagen("rsc/barrilBajando.png");
+		setImagen("rsc/barrilAzul.png");
 
 		
 		// TODO Auto-generated constructor stub
@@ -15,21 +15,32 @@ public class BarrilAzul extends Barril {
 	public void moverHastaUnaPlataforma(){
 		
 		while(caida) {
-			if(estaSobreEscalera(x,y)) {
-				moverAbajo();
-			}
+			moverAbajo();
 			break;
 		}while(!caida) {
-			
-			if(y == 481-33 || y == 750-33 || y == 805-33) {
-				x-=Desplazamiento;
-				estaSobreUnaPlataforma(x+30,y+33);
+			System.out.println(x+" "+y);
+			if(y == 440-33 || y == 620-33 || y == 805-33) {
+				if (estaSobreEscalera(x+33,y+33)){
+					//System.out.println("aqui");
+					moverAbajo();
+					caida=true;
+					break;
+				}else{
+					x-=Desplazamiento;
+					estaSobreUnaPlataforma(x+30,y+33);
+				}
 			}			
 			else {
-				x+=Desplazamiento;		
-				//System.out.println("asdsa");
-				estaSobreUnaPlataforma(x,y+33);
-			}
+				if (estaSobreEscalera(x,y+33)){
+					//System.out.println("aqui");
+					moverAbajo();
+					caida=true;
+					break;
+				}else{
+					x+=Desplazamiento;
+					estaSobreUnaPlataforma(x+30,y+33);
+				}
+			}	
 			
 			//System.out.println(x+" "+y);
 			break;
@@ -38,12 +49,11 @@ public class BarrilAzul extends Barril {
 		
 	}
 	
+	
 	public boolean estaSobreEscalera(int x,int y) {
 		for (int i = 0; i < puntosEscalera.size(); i++) {
 			int[] izquierda = puntosEscalera.get(i).getPuntoUno();
-			if ((izquierda[0]-10<=x && izquierda[0]+10>=x && izquierda[1]==y)) {
-				//System.out.println("si arriba funciono ");
-				//System.out.println(x+" "+y+" posicion" );
+			if ((izquierda[0]-15<=x && izquierda[0]+14>=x) && ((izquierda[1]==y-1)||(izquierda[1]==y))) {
 				return true;
 			}
 		}

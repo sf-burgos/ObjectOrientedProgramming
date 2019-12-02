@@ -10,7 +10,7 @@ public abstract class Personaje extends Elemento{
 	
 	public static final int limiteX = 850;
 	public static final int limiteY = 805;
-	protected static final int Desplazamiento = 1;
+	protected static final int Desplazamiento = 2;
 	public static int estado=0;
 	//public int limiteSalto=50;
 	public ArrayList<Plataforma> puntosPlataforma = DonkeyPOOB.getPlataformas();
@@ -100,7 +100,7 @@ public abstract class Personaje extends Elemento{
 		for (int i = 0; i < puntosPlataforma.size(); i++) {
 			int[] izquierda = puntosPlataforma.get(i).getPuntoUno();
 			int[] derecha = puntosPlataforma.get(i).getPuntoDos();
-			if (y == derecha[1]) {
+			if (y-1 == derecha[1]|| y == derecha[1]) {
 				if ((izquierda[0] <= x && x <= derecha[0])) {
 					if(estaSobreEscalera(x,y)) {
 						abajo = true;
@@ -126,7 +126,7 @@ public abstract class Personaje extends Elemento{
 	public boolean estaSobreEscalera(int x,int y) {
 		for (int i = 0; i < puntosEscalera.size(); i++) {
 			int[] izquierda = puntosEscalera.get(i).getPuntoUno();
-			if ((izquierda[0]-15<=x && izquierda[0]+14>=x && izquierda[1]==y)) {
+			if ((izquierda[0]-15<=x && izquierda[0]+14>=x) && ((izquierda[1]==y-1)||(izquierda[1]==y))) {
 				return true;
 			}
 		}
@@ -136,7 +136,7 @@ public abstract class Personaje extends Elemento{
 	public boolean estaBajoEscalera(int x,int y) {
 		for (int i = 0; i < puntosEscalera.size(); i++) {
 			int[] derecha = puntosEscalera.get(i).getPuntoDos();
-			if ((derecha[0]-15<=x && derecha[0]+14>=x && derecha[1]==y)) {
+			if ((derecha[0]-15<=x && derecha[0]+14>=x) && ((derecha[1]==y-1)||(derecha[1]==y))) {
 				return true;
 			}
 		}
@@ -155,7 +155,7 @@ public abstract class Personaje extends Elemento{
 	}	
 	
 	public void comprobarColision(int xBarril, int yBarril) {
-		if(this.getX() == xBarril && this.getY() == yBarril) {
+		if((this.getX() == xBarril && this.getY() == yBarril)||(this.getX()-1 == xBarril && this.getY()-1 == yBarril)) {
 			System.out.println("si");
 		}
 	

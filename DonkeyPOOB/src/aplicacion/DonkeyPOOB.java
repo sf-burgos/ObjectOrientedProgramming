@@ -1,4 +1,6 @@
 package aplicacion;
+import java.lang.Math;
+import java.util.Random;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -45,7 +47,21 @@ public class DonkeyPOOB {
 	public void prepareBarriles(int Nbarriles) {
 		barriles = new Barril[Nbarriles];
 		for(int i=0;i<barriles.length;i++) {
-			barriles[i]= new BarrilAmarillo(200,200);
+			int x = ElegirElBarrilaLanzar(0,3);
+			//System.out.println(x);
+			if (x==0) {
+				barriles[i]= new BarrilAmarillo(200,200);
+			}
+			else if(x==1){
+				barriles[i]= new BarrilAzul(200,200);
+			}
+			else if(x==2) { 
+				barriles[i]= new BarrilVerde(200,200);
+			}
+			else if(x==3) { 
+				int cordenadaX = ElegirElBarrilaLanzar(200,795);
+				barriles[i]= new BarrilRojo(cordenadaX,200);
+			}
 		}							
 	}
 	
@@ -252,4 +268,10 @@ public class DonkeyPOOB {
 			juego.getJugador(0).getPersonaje().comprobarColision(barriles[i].getX(), barriles[i].getY());
 		}
 	}
+
+	public static int ElegirElBarrilaLanzar(int min, int max){
+		int x =(int) (Math.random()*((max-min)+1))+min;
+		return x;
+		}
+	
 }

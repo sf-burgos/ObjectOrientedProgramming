@@ -340,7 +340,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	}	
 	private void  ponerElementosJuego() {
 		try {
-			juego.prepareBarriles(5);
+			juego.prepareBarriles(10);
 			juego.addPlataformas();
 			juego.addEscaleras();					
 			juego.barrilesParaJugar(menuInicial.barrilesSelecionados);
