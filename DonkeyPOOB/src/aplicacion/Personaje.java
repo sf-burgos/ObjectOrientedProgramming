@@ -71,6 +71,23 @@ public abstract class Personaje extends Elemento{
 			estado = 3;
 		}
 	}
+	
+	public void utilizarMartillo() {
+		if(super.getImagen().equals("rsc/marioSprite4.png") || super.getImagen().equals("rsc/marioSprite0.png")) {
+			System.out.println("auida");
+			super.setImagen("rsc/martilloDerecha.png");
+		}
+			
+		if(super.getImagen().equals("rsc/marioSprite1.png") || super.getImagen().equals("rsc/marioSprite2.png")) {
+			super.setImagen("rsc/martilloIzquierda.png");
+		
+		}
+			
+		
+		
+		
+		
+	}
 	public void saltar() {
 		int limiteSalto = y-40;
 		System.out.println("limiteSalto"+" "+limiteSalto);
@@ -156,12 +173,22 @@ public abstract class Personaje extends Elemento{
 	}	
 	
 	public boolean comprobarColision(int xBarril, int yBarril) {
-		if(((this.getX() <= xBarril && this.getX()+33 >= xBarril) && this.getY() == yBarril)||(this.getX()-1 == xBarril && this.getY()-1 == yBarril)) {
+		if(((this.getX() <= xBarril && this.getX()+33 >= xBarril) && this.getY() == yBarril)||(this.getX() == xBarril && this.getY()-1 == yBarril)) {
 			return true;
 		}
 		return false;
 	
 	}
+	
+	public boolean comprobarColisionSorpresa(int xSorpresa, int ySorpresa) {
+		if(((this.getX() <= xSorpresa&& this.getX()+33 >= xSorpresa) && this.getY() == ySorpresa)||(this.getX() == xSorpresa&& this.getY()-1 == ySorpresa)) {
+			return true;
+		}
+		return false;
+	
+	}
+	
+	
 
 	public void activarBotonesEscaleras() {
 		

@@ -45,7 +45,7 @@ public class Tablero extends JPanel{
 	}
 	
 	public void addBarril() {
-		barriles.add(new Sprite(329,211,true,1,1));
+		barriles.add(new Sprite(329,211,true,3,3));
 	}
 	
 	public void addJugador() {
@@ -118,6 +118,7 @@ public class Tablero extends JPanel{
 		for (Sprite j: jugadores) j.paint((Graphics2D) g);
 		for (Sprite j: barriles) j.paint((Graphics2D) g);
 		for (Sprite v : vidas) v.paint((Graphics2D) g);
+		for (Sprite v : sorpresas) v.paint((Graphics2D) g);
 		if (puntajes.length == 1) {
 			g.setColor(Color.white);
 			g.setFont(new Font("Century Gothic", Font.BOLD, 30));

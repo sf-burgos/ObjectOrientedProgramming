@@ -22,6 +22,7 @@ public class DonkeyPOOB {
 	private static DonkeyPOOB juego = null; 
 	private Jugador[] jugadores; 
 	private static Barril[] barriles;
+	private static Sorpresa[] sorpresas;
 	public static ArrayList<Plataforma> piso; 
 	public static ArrayList<Escalera> puntosEscalera; 
 	private boolean enPausa; 
@@ -47,7 +48,7 @@ public class DonkeyPOOB {
 	public void prepareBarriles(int Nbarriles) {
 		barriles = new Barril[Nbarriles];
 		for(int i=0;i<barriles.length;i++) {
-			int x = ElegirElBarrilaLanzar(0,3);
+			int x = elegirElBarrilaLanzar(0,3);
 			//System.out.println(x);
 			if (x==0) {
 				barriles[i]= new BarrilAmarillo(200,200);
@@ -59,9 +60,19 @@ public class DonkeyPOOB {
 				barriles[i]= new BarrilVerde(200,200);
 			}
 			else if(x==3) { 
-				int cordenadaX = ElegirElBarrilaLanzar(200,795);
+				int cordenadaX = elegirElBarrilaLanzar(200,795);
 				barriles[i]= new BarrilRojo(cordenadaX,200);
 			}
+		}							
+	}
+	
+	public void prepareSorpresa(int Nsorpresas) {
+		sorpresas = new Sorpresa [Nsorpresas];
+		for(int i=0;i<sorpresas.length;i++) {
+			//int x = ElegirElBarrilaLanzar(0,3);
+			//System.out.println(x);
+			
+			sorpresas[i]= new Martillo(200,587);
 		}							
 	}
 	
@@ -115,6 +126,11 @@ public class DonkeyPOOB {
 	
 	public int numeroJugadores() {
 		return jugadores.length;
+	}
+	
+
+	public int numeroDeSorpresas() {
+		return sorpresas.length;
 	}
 	
 	public Jugador getJugador(int i){
@@ -265,13 +281,21 @@ public class DonkeyPOOB {
 					
 				}
 			}
-			if(juego.getJugador(0).getPersonaje().comprobarColision(barriles[i].getX(), barriles[i].getY())) {
+			if(juego.getJugador(0).getPersonaje().comprobarColision(barriles[i].getX(), barriles[i].getY()) ) {
 				quitarVidas(0);
 			}
 		}
 	}
+	public void colisionSopresa() {
+		for (int i = 0; i < sorpresas.length;i++) {
+			if(juego.getJugador(0).getPersonaje().comprobarColisionSorpresa(sorpresas[i].getX(), sorpresas[i].getY()) ) {
+				juego.getJugador(0).poderMartillo();
+				sorpresas[i].setVisible(false);
+			}
+		}
+	}
 
-	public static int ElegirElBarrilaLanzar(int min, int max){
+	public static int elegirElBarrilaLanzar(int min, int max){
 		int x =(int) (Math.random()*((max-min)+1))+min;
 		return x;
 	}
@@ -280,5 +304,8 @@ public class DonkeyPOOB {
 		jugadores[jugador].quitarVida();
 	}
 	
+	public Sorpresa getSorpresa(int i){
+		return sorpresas[i];
+	}
 	
 }

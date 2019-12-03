@@ -15,6 +15,10 @@ public abstract class Jugador {
 		this.esHumano = esHumano;
 		personaje = new Mario(x,y);
 	}
+	public void poderMartillo(){
+		personaje.utilizarMartillo();
+		
+	}
 	
 	public void moveRight() {
 		personaje.moverDerecha();

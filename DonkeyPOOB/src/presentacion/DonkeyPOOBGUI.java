@@ -342,7 +342,8 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		try {
 			juego.prepareBarriles(4);
 			juego.addPlataformas();
-			juego.addEscaleras();					
+			juego.addEscaleras();
+			juego.prepareSorpresa(1);
 			juego.barrilesParaJugar(menuInicial.barrilesSelecionados);
 			juego.sorpresasParaJugar(menuInicial.sorpresasSelecionados);
 		}catch(DonkeyPOOBException e){
@@ -440,6 +441,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		actualizarJugadores();
 		actualizarPuntaje();
 		actualizarVidas();
+		actualizarSorpresas();
 		tablero.repaint();
 	}
 	
@@ -483,6 +485,24 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 			ArrayList<Sprite> vidas = tablero.getVidas();
 			for(int j = i*3;j <= 3+((i*3)-1);j++)vidas.get(j).setVisible(true);
 			for(int j = i*3;j <= 3+((i*3)-1)-(vidasAct);j++) vidas.get(j).setVisible(false);
+		}
+	}
+	private void actualizarSorpresas() {
+		for(int i = 0; i < juego.numeroDeSorpresas(); i++){
+			Sprite s;
+			try {
+				s = tablero.getSorpresa(i);
+			} catch (IndexOutOfBoundsException ex) {
+				tablero.addSorpresa();
+				s = tablero.getSorpresa(i);
+			}
+			if(juego.getSorpresa(i).isVisible()){
+				juego.colisionSopresa();
+				s.setX(juego.getSorpresa(i).getX());
+				s.setY(juego.getSorpresa(i).getY());
+				s.setRoot(juego.getSorpresa(i).getImagen());
+			}
+			s.setVisible(juego.getSorpresa(i).isVisible());
 		}
 	}
 

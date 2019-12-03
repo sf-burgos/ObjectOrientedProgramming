@@ -4,7 +4,7 @@ public class BarrilAmarillo extends Barril {
 
 	public BarrilAmarillo(int x, int y) {
 		super(x, y);
-		setImagen("rsc/barrilAmarillo.png");
+		setImagen("rsc/barrilBajando.png");
 		
 		// TODO Auto-generated constructor stub
 	}
