@@ -280,8 +280,9 @@ public class DonkeyPOOB {
 					barriles[i].moverHastaUnaPlataforma();
 					
 				}
+				
 			}
-			if(juego.getJugador(0).getPersonaje().comprobarColision(barriles[i].getX(), barriles[i].getY()) ) {
+			if(juego.getJugador(0).getPersonaje().comprobarColision(barriles[i].getX(), barriles[i].getY())) {
 				quitarVidas(0);
 			}
 		}

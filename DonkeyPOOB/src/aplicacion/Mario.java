@@ -36,6 +36,7 @@ public  class Mario extends Personaje {
 	}
 	
 	public void saltar() {
+		
 		salto = true;
 		int limiteSalto = y-50;
 		super.getImagen().equals("rsc/marioSprite5.png");

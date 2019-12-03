@@ -90,13 +90,11 @@ public abstract class Personaje extends Elemento{
 	}
 	public void saltar() {
 		int limiteSalto = y-40;
-		System.out.println("limiteSalto"+" "+limiteSalto);
 		while (y>=limiteSalto) {
 			System.out.println("y"+" "+y);
 			if(y-Desplazamiento > 2)							
 				if(super.getImagen().equals("rsc/marioSprite4.png") || super.getImagen().equals("rsc/marioSprite0.png")) {
 					y-=Desplazamiento;	
-					System.out.println("derecha");
 					x+=Desplazamiento;
 				}
 				if(super.getImagen().equals("rsc/marioSprite1.png") || super.getImagen().equals("rsc/marioSprite2.png")) {

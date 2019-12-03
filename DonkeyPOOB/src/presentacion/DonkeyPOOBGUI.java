@@ -309,7 +309,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 					if(!juego.enPausa()){
 						actualizarBarriles();
 						actualizar();
-						Thread.sleep(10);
+						Thread.sleep(15);
 					}
 				}
 			}
@@ -485,6 +485,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 			ArrayList<Sprite> vidas = tablero.getVidas();
 			for(int j = i*3;j <= 3+((i*3)-1);j++)vidas.get(j).setVisible(true);
 			for(int j = i*3;j <= 3+((i*3)-1)-(vidasAct);j++) vidas.get(j).setVisible(false);
+			//System.out.println(3+((i*3)-1)-(vidasAct));
 		}
 	}
 	private void actualizarSorpresas() {
