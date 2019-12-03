@@ -18,7 +18,7 @@ public class BarrilAzul extends Barril {
 			moverAbajo();
 			break;
 		}while(!caida) {
-			System.out.println(x+" "+y);
+			//System.out.println(x+" "+y);
 			if(y == 440-33 || y == 620-33 || y == 805-33) {
 				if (estaSobreEscalera(x+33,y+33)){
 					//System.out.println("aqui");

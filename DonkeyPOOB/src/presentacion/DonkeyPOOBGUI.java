@@ -340,7 +340,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	}	
 	private void  ponerElementosJuego() {
 		try {
-			juego.prepareBarriles(10);
+			juego.prepareBarriles(4);
 			juego.addPlataformas();
 			juego.addEscaleras();					
 			juego.barrilesParaJugar(menuInicial.barrilesSelecionados);
@@ -408,8 +408,13 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		for (int i = 0; i < juego.numeroJugadores(); i++) {
 			tablero.addJugador();
 			tablero.getJugador(i).setRoot(juego.getJugador(i).getRoot());
-			
+			ArrayList<Sprite> vidas = tablero.getVidas();
+			for(int j = i*3;j <= 3+((i*3)-1);j++){
+				vidas.get(j).setRoot("rsc/marioSprite0.png");
+			}
 		}
+			
+		
 		actualizarJugadores();
 	}
 	private void actualizarJugadores(){		
@@ -433,7 +438,8 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	public void actualizar() {
 		
 		actualizarJugadores();
-		//actualizarBarriles();
+		actualizarPuntaje();
+		actualizarVidas();
 		tablero.repaint();
 	}
 	
@@ -462,14 +468,23 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 				s.setY(barriles[i].getY());
 				s.setRoot(barriles[i].getImagen());
 			} 
-			s.setVisible(barriles[i].isVisible());
-			
-			
+			s.setVisible(barriles[i].isVisible());						
+		}		
+	}
+	private void actualizarPuntaje(){
+		for(int i = 0; i < juego.numeroJugadores(); i++){
+			tablero.setPuntaje(i, juego.getJugador(i).getPuntaje());
 		}
-		
-
 	}
 	
+	private void actualizarVidas(){
+		for(int i = 0; i < juego.numeroJugadores(); i++){
+			int vidasAct = juego.getJugador(i).getVidas();
+			ArrayList<Sprite> vidas = tablero.getVidas();
+			for(int j = i*3;j <= 3+((i*3)-1);j++)vidas.get(j).setVisible(true);
+			for(int j = i*3;j <= 3+((i*3)-1)-(vidasAct);j++) vidas.get(j).setVisible(false);
+		}
+	}
 
 }
 		

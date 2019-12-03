@@ -54,10 +54,10 @@ public abstract class Personaje extends Elemento{
 				x+=Desplazamiento;
 				estaSobreUnaPlataforma(x,y+33);
 			}
-			if(estado % 10 == 0) {
-				estado += 2;
+			if(estado % 2 == 0) {
+				estado =1;
 			}else {
-				estado +=3; 
+				estado +=2; 
 			}
 		}
 	
@@ -120,6 +120,7 @@ public abstract class Personaje extends Elemento{
 			}else if ((y > izquierda[1] && y < puntosPlataforma.get(i+1).getPuntoDos()[1]) && i < puntosPlataforma.size()) {
 				arriba = true;
 				abajo = true;
+
 			}
 		}
 	}
@@ -154,10 +155,11 @@ public abstract class Personaje extends Elemento{
 		
 	}	
 	
-	public void comprobarColision(int xBarril, int yBarril) {
-		if((this.getX() == xBarril && this.getY() == yBarril)||(this.getX()-1 == xBarril && this.getY()-1 == yBarril)) {
-			System.out.println("si");
+	public boolean comprobarColision(int xBarril, int yBarril) {
+		if(((this.getX() <= xBarril && this.getX()+33 >= xBarril) && this.getY() == yBarril)||(this.getX()-1 == xBarril && this.getY()-1 == yBarril)) {
+			return true;
 		}
+		return false;
 	
 	}
 

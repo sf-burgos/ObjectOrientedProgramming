@@ -57,7 +57,23 @@ public abstract class Jugador {
 		return personaje;
 	}
 	
+	public int getPuntaje() {
+		return puntaje; 
+	}
+	
+	public boolean isVisible() {
+		return personaje.isVisible();
+	}
+	
+	public void addPuntaje(int puntos) {
+		puntaje += puntos;
+	}
+	
 	public int getVidas() {
 		return vidas;
-	}	
+	}
+	
+	public void quitarVida() {
+		vidas--;
+	}
 }

@@ -7,16 +7,18 @@ public class BarrilRojo extends Barril {
 }
 
 	public void moverHastaUnaPlataforma() {
-		while(caida && y<=800) {
+		while(caida && y < 804) {
 			moverAbajo();
-			System.out.println(y);
+			//System.out.println(y);
 			break;
 		}
-		while(!caida && y<=800) {
+		while(!caida && y < 804) {
 			moverAbajo();
-			System.out.println(y+"estoy aqui");
-			caida=true;
+			//System.out.println(y+"estoy aqui");
 			break;
+		}
+		if(y == 804) {
+			this.setVisible(false);
 		}
 		
 	}

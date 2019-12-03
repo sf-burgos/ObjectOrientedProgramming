@@ -260,18 +260,25 @@ public class DonkeyPOOB {
 			if (i == 0) {
 				barriles[0].moverHastaUnaPlataforma();
 			}else {
-				if(barriles[i-1].getY() >= 346) {
+				if(barriles[i-1].getY() >= 400) {
 					barriles[i].moverHastaUnaPlataforma();
 					
 				}
 			}
-			juego.getJugador(0).getPersonaje().comprobarColision(barriles[i].getX(), barriles[i].getY());
+			if(juego.getJugador(0).getPersonaje().comprobarColision(barriles[i].getX(), barriles[i].getY())) {
+				quitarVidas(0);
+			}
 		}
 	}
 
 	public static int ElegirElBarrilaLanzar(int min, int max){
 		int x =(int) (Math.random()*((max-min)+1))+min;
 		return x;
-		}
+	}
+	
+	public void quitarVidas(int jugador) {
+		jugadores[jugador].quitarVida();
+	}
+	
 	
 }
