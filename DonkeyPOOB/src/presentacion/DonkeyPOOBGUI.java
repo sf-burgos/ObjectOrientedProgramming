@@ -59,6 +59,10 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	private boolean up=false;
 	private boolean jump=false;
 	
+	
+	/**
+	 * Constructor de la interfaz grafica 
+	 * */
 	public DonkeyPOOBGUI() {
 		super("DonkeyPOOB");
 		prepareElementos();
@@ -71,7 +75,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		
 	}
 	/**
-	*Constructor del DonkeyPoob
+	* Metodo principal donde creamos el juego 
 	*@param string arg[]
 	*/
 	public static void main(String args[]) {
@@ -174,10 +178,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 				salir();
 			}
 		});
-		
-	
-		
-	
+			
 	}
 	
 	/**
@@ -218,8 +219,9 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	}
 	
 	/**
-	*Inicio del juego teniendo en cuentas los personajes, barriles, sorpresas y demás elementos para crear el tablero
-	*@param int jugadores @param int maquinas
+	* Inicio del juego teniendo en cuentas los personajes, barriles, sorpresas y demás elementos para crear el tablero
+	*@param int jugadores 
+	*@param int maquinas
 	*/
 	public void iniciar(int jugadores,int maquinas) {
 		DonkeyPOOB.nuevoJuego();
@@ -228,6 +230,9 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		ponerElementos();
 	}
 	
+	/**
+	 *  Poner los elementos de la pantalla inicial de seleccion y los oyentes necesarios 
+	 * */
 	
 	public void ponerElementos() {
 		menuInicial.prepareElegirElementos();
@@ -242,6 +247,9 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 
 	@Override
 	
+	/**
+	 * Oyentes para las teclas de movimiento 
+	 * */
 	public void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
 		if (juego != null && tablero != null) {
@@ -295,13 +303,15 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	}
 	
 	@Override
+	/**
+	 * Hilo donde corremos los procesos que tienen que ir actualizandose 
+	 * */
 	public void run() {
 		try {
 			while(!juego.gameOver()&&!juego.finished()){
 				
 				actualizar();
 				actualizarBarriles();
-				Thread.sleep(10);
 
 
 			
@@ -309,7 +319,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 					if(!juego.enPausa()){
 						actualizarBarriles();
 						actualizar();
-						Thread.sleep(15);
+						Thread.sleep(13);
 					}
 				}
 			}
@@ -338,6 +348,10 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 			}
 		});
 	}	
+	
+	/**
+	 * Preparamos los elementos para jugar utilizando la capa de aplicacion 
+	 * */
 	private void  ponerElementosJuego() {
 		try {
 			juego.prepareBarriles(4);
@@ -351,12 +365,15 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		}
 	}
 	
+	/**
+	 * Creamos el tablero necesario para jugar preparamos los jugadors y los barriles para jugar 
+	 * */
+	
 	private void prepareElementosJuego(int jugadores){
 		setSize(new Dimension(900, 900));
 		tablero = new Tablero(jugadores);
 		principal.add(tablero,"tablero");		
 		t = new Thread(this);
-		t2 = new Thread(this);
 		prepareJugadores();
 		prepareBarriles();
 		layout.show(principal,"tablero");
@@ -403,7 +420,9 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		});
 	}
 	
-	
+	/**
+	 * preparacion de los jugadores validando la informacion de aplicacion y pasandola a presentacion 
+	 * */
 	
 	private void prepareJugadores() {
 		for (int i = 0; i < juego.numeroJugadores(); i++) {
@@ -418,6 +437,10 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		
 		actualizarJugadores();
 	}
+	
+	/**
+	 * Actualizar posicion del jugador y estados del jugador desde la capa de aplicacion a presentacion 
+	 * */
 	private void actualizarJugadores(){		
 		Sprite s;
 		try {
@@ -436,6 +459,10 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		s.setVisible(juego.getJugador(0).getPersonaje().isVisible());
 	}
 	
+	/**
+	 * Se realiza la actualizacion de los elementos del tablero, jugadores, puntaje, vidas y sorpresas 
+	 * */
+	
 	public void actualizar() {
 		
 		actualizarJugadores();
@@ -445,6 +472,10 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		tablero.repaint();
 	}
 	
+	
+	/**
+	 * preparacion de los barriles en presentacion teniendo en cuenta la informacion en aplicacion 
+	 * */
 	private void prepareBarriles() {
 			Barril[] barriles = juego.getBarriles(); 
 			for (int i=0;i<barriles.length;i++) {
@@ -454,6 +485,10 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 			}
 			actualizarBarriles();
 	}
+	
+	/**
+	 * Actualizar la posicion de los barriles segun la capa de aplicacion posicion estado 
+	 * */
 	private void actualizarBarriles() {
 		Barril[] barriles = juego.getBarriles(); 
 		for (int i = 0; i < barriles.length; i++) {
@@ -473,17 +508,25 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 			s.setVisible(barriles[i].isVisible());						
 		}		
 	}
+	
+	/**
+	 * Actualizacion del puntaje teniendo en cuenta la informacion en la capa de aplicacion 
+	 * */
 	private void actualizarPuntaje(){
 		for(int i = 0; i < juego.numeroJugadores(); i++){
 			tablero.setPuntaje(i, juego.getJugador(i).getPuntaje());
 		}
 	}
 	
+	/**
+	 * Actualizacion de las vidas solicitando informacion al juego en aplicacion 
+	 * */
+	
 	private void actualizarVidas(){
 		for(int i = 0; i < juego.numeroJugadores(); i++){
 			int vidasAct = juego.getJugador(i).getVidas();
 			ArrayList<Sprite> vidas = tablero.getVidas();
-			for(int j = i*3;j <= 3+((i*3)-1);j++)vidas.get(j).setVisible(true);
+			//for(int j = i*3;j <= 3+((i*3)-1);j++)vidas.get(j).setVisible(true);
 			for(int j = i*3;j <= 3+((i*3)-1)-(vidasAct);j++) vidas.get(j).setVisible(false);
 			//System.out.println(3+((i*3)-1)-(vidasAct));
 		}
@@ -506,6 +549,8 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 			s.setVisible(juego.getSorpresa(i).isVisible());
 		}
 	}
+	
+	
 
 }
 		
