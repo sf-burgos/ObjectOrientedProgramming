@@ -182,7 +182,7 @@ public abstract class Personaje extends Elemento{
 	
 	public boolean comprobarColision(Barril barril) {
 		boolean colisiono = false;
-		if(this.getY() == barril.getY() || this.getY()-1==barril.getY()) {
+		if(this.getY() >= barril.getY() && this.getY()-30 <= barril.getY() ) {
 			if((barril.getX() > this.getX() && this.getX()+33 > barril.getX())) {
 				if(barril instanceof BarrilRojo || barril instanceof BarrilAzul || barril instanceof BarrilAmarillo) {
 					if(!martillo) {
