@@ -26,6 +26,7 @@ public abstract class Personaje extends Elemento{
 	public boolean arriba = false;
 	public boolean abajo = false;
 	public boolean martillo = false; 
+	public boolean hongo=false;
 	
 	
 	public int [] salida,salidaDos;
@@ -95,9 +96,13 @@ public abstract class Personaje extends Elemento{
 		
 		reloj.schedule(tarea, 0, 10000);
 		*/
-
-
 	}
+	
+	public void utilizarHongo() {
+		
+		hongo = !hongo;
+		
+}
 	public void saltar() {
 		int limiteSalto = y-40;
 		while (y>=limiteSalto) {

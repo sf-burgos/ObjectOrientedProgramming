@@ -10,7 +10,7 @@ public class Hongo extends Sorpresa {
 
 	@Override
 	public void aplicarPoder(Jugador jugador) {
-		// TODO Auto-generated method stub
+		jugador.poderHongo();
 		
 	}
 

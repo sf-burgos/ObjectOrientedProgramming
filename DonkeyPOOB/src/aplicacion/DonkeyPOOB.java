@@ -25,6 +25,7 @@ public class DonkeyPOOB {
 	private static Sorpresa[] sorpresas;
 	public static ArrayList<Plataforma> piso; 
 	public static ArrayList<Escalera> puntosEscalera; 
+	private static Elemento[] personajesEstaticos;
 	private boolean enPausa; 
 	
 	/**
@@ -111,6 +112,13 @@ public class DonkeyPOOB {
 		}							
 	}
 	
+	public void preparePersonajesEstaticos(int NEstaticos) {
+		personajesEstaticos = new Elemento [NEstaticos];
+		personajesEstaticos [0] = new mono(0,346);
+		
+		
+	}
+	
 	/**
 	 * Crea los jugadores dependiendo el tipo si es una maquina o un usuario 
 	 * @param NJugadores numero de jugadores 
@@ -146,7 +154,7 @@ public class DonkeyPOOB {
 	 * @param barriles arreglo con los barriles seleccionados 
 	 * */
 	
-	public void barrilesParaJugar(int[] barriles) throws DonkeyPOOBException{
+	/**public void barrilesParaJugar(int[] barriles) throws DonkeyPOOBException{
 		int numeroBarriles = 0;
 		for (int i=0;i<barriles.length;i++) {
 			if(barriles[i]==1) {
@@ -156,7 +164,7 @@ public class DonkeyPOOB {
 		if(numeroBarriles==0) {
 			throw new DonkeyPOOBException(DonkeyPOOBException.SIN_BARRILES);
 		}
-	}
+	}*/
 	
 	/**
 	 * Prepara las sorpresas seleccionadas en el menu para jugar 
@@ -474,6 +482,10 @@ public class DonkeyPOOB {
 	
 	public boolean finished() {
 		return false;
+	}
+	
+	public Elemento getPersonajeEstatico(int i) {
+		return personajesEstaticos[i];
 	}
 	
 }

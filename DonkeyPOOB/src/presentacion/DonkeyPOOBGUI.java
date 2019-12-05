@@ -252,18 +252,29 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	 * */
 	public void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
-		if (juego != null && tablero != null) {
+		if (juego != null && tablero != null ) {
 			if(keyCode == KeyEvent.VK_P) {
 				juego.pausa();
 				tablero.pausa();
 			}
 			if(keyCode == KeyEvent.VK_RIGHT) {
-				juego.JugadorRight(0);
-				right=true; 
+				if (juego.getJugador(0).getPersonaje().hongo) {
+					juego.JugadorLeft(0);
+					left=true;
+				}else {
+						juego.JugadorRight(0);
+						right=true;
+						
+				}
 			}
 			if(keyCode == KeyEvent.VK_LEFT) {
+				if (juego.getJugador(0).getPersonaje().hongo) {
+				juego.JugadorRight(0);
+				right=true;
+			}else {
 				juego.JugadorLeft(0);
 				left=true;
+			}
 				
 			}
 			if(keyCode == KeyEvent.VK_UP) {
@@ -358,7 +369,8 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 			juego.addPlataformas();
 			juego.addEscaleras();
 			juego.prepareSorpresa(6);
-			juego.barrilesParaJugar(menuInicial.barrilesSelecionados);
+			juego.preparePersonajesEstaticos(1);
+			//juego.barrilesParaJugar(menuInicial.barrilesSelecionados);
 			juego.sorpresasParaJugar(menuInicial.sorpresasSelecionados);
 		}catch(DonkeyPOOBException e){
 			JOptionPane.showMessageDialog(null, e.getMessage(), "¡Cuidado!", JOptionPane.WARNING_MESSAGE, icono);
@@ -376,6 +388,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		t = new Thread(this);
 		prepareJugadores();
 		prepareBarriles();
+		preparePersonajesEstaticos();
 		layout.show(principal,"tablero");
 		t.start();
 
@@ -549,6 +562,17 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 			}
 			s.setVisible(juego.getSorpresa(i).isVisible());
 		}
+	}
+	
+	private void preparePersonajesEstaticos() {
+		Sprite s;
+		tablero.addPersonajeEstatico();
+		s = tablero.getPersonajeEstatico(0);
+		tablero.getPersonajeEstatico(0).setRoot(juego.getPersonajeEstatico(0).getImagen());
+		s.setX(100);
+		s.setY(346-83);
+		s.setVisible(juego.getPersonajeEstatico(0).isVisible());
+			
 	}
 	
 	

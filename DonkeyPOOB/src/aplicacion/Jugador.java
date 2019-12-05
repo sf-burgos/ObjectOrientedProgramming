@@ -19,6 +19,10 @@ public abstract class Jugador {
 		personaje.utilizarMartillo();
 		
 	}
+	public void poderHongo() {
+		
+		personaje.utilizarHongo();
+	}
 	
 	public void moveRight() {
 		personaje.moverDerecha();
@@ -83,8 +87,7 @@ public abstract class Jugador {
 	
 	public void addVida() {
 		if(vidas < 3);
-			vidas++;
-		
+			vidas++;		
 	}
 	
 	public boolean comprobarColision(Barril barril) {

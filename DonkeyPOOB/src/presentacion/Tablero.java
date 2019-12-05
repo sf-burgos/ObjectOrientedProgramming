@@ -27,6 +27,7 @@ public class Tablero extends JPanel{
 	private ArrayList<Sprite> jugadores;
 	private ArrayList<Sprite> sorpresas;
 	private ArrayList<Sprite> vidas; 
+	private ArrayList<Sprite> personajesEstaticos; 
 	private String[] puntajes;
 	private boolean terminar, gameOver, enPausa;
 	protected JButton guardar,abrir,reiniciar;
@@ -36,12 +37,17 @@ public class Tablero extends JPanel{
 		jugadores = new ArrayList<Sprite>();
 		vidas = new ArrayList<Sprite>();
 		sorpresas = new ArrayList<Sprite>();
+		personajesEstaticos = new ArrayList<Sprite>();
 		terminar = false;
 		try {
 			nivel = ImageIO.read(new File("rsc/nivel1.png"));
 		}catch(IOException e){
 			e.printStackTrace();
 		}
+	}
+	public void addPersonajeEstatico() {
+		personajesEstaticos.add(new Sprite(500,500,true,50,50));
+		
 	}
 	
 	public void addBarril() {
@@ -77,6 +83,10 @@ public class Tablero extends JPanel{
 	
 	public Sprite getSorpresa(int i) {
 		return sorpresas.get(i);
+	}
+	
+	public Sprite getPersonajeEstatico(int i) {
+		return personajesEstaticos.get(i);
 	}
 	
 	public Sprite getBarril(int i) {
@@ -118,6 +128,7 @@ public class Tablero extends JPanel{
 		for (Sprite v : vidas) v.paint((Graphics2D) g);
 		for (Sprite v : sorpresas) v.paint((Graphics2D) g);
 		for (Sprite j: jugadores) j.paint((Graphics2D) g);
+		for (Sprite j: personajesEstaticos) j.paint((Graphics2D) g);
 		
 		
 		
