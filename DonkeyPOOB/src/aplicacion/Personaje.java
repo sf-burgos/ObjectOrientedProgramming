@@ -1,6 +1,11 @@
 package aplicacion;
 
+import java.util.Date;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 //import java.io.Serializable;
 //import java.util.*;
@@ -12,6 +17,7 @@ public abstract class Personaje extends Elemento{
 	public static final int limiteY = 805;
 	protected static final int Desplazamiento = 2;
 	public static int estado=0;
+	public int desplazamientoMartillo = 0;
 	//public int limiteSalto=50;
 	public ArrayList<Plataforma> puntosPlataforma = DonkeyPOOB.getPlataformas();
 	public ArrayList<Escalera> puntosEscalera= DonkeyPOOB.getEscaleras();
@@ -19,6 +25,7 @@ public abstract class Personaje extends Elemento{
 	public boolean caida = true;
 	public boolean arriba = false;
 	public boolean abajo = false;
+	public boolean martillo = false; 
 	
 	
 	public int [] salida,salidaDos;
@@ -73,20 +80,23 @@ public abstract class Personaje extends Elemento{
 	}
 	
 	public void utilizarMartillo() {
-		if(super.getImagen().equals("rsc/marioSprite4.png") || super.getImagen().equals("rsc/marioSprite0.png")) {
-			System.out.println("auida");
-			super.setImagen("rsc/martilloDerecha.png");
-		}
+		
+		martillo = true;
+		/**
+		Timer reloj = new Timer();
+		TimerTask tarea = new TimerTask(){
+
+			@Override
+			public void run() {
+				martillo = true;			
+			}
 			
-		if(super.getImagen().equals("rsc/marioSprite1.png") || super.getImagen().equals("rsc/marioSprite2.png")) {
-			super.setImagen("rsc/martilloIzquierda.png");
+		};
 		
-		}
-			
-		
-		
-		
-		
+		reloj.schedule(tarea, 0, 10000);
+		*/
+
+
 	}
 	public void saltar() {
 		int limiteSalto = y-40;
@@ -170,20 +180,34 @@ public abstract class Personaje extends Elemento{
 		
 	}	
 	
-	public boolean comprobarColision(int xBarril, int yBarril) {
-		if(((this.getX() <= xBarril && this.getX()+33 >= xBarril) && this.getY() == yBarril)||(this.getX() == xBarril && this.getY()-1 == yBarril)) {
-			return true;
+	public boolean comprobarColision(Barril barril) {
+		boolean colisiono = false;
+		if(this.getY() == barril.getY() || this.getY()-1==barril.getY()) {
+			if((barril.getX() > this.getX() && this.getX()+33 > barril.getX())) {
+				if(barril instanceof BarrilRojo || barril instanceof BarrilAzul || barril instanceof BarrilAmarillo) {
+					if(!martillo) {
+						colisiono = true;
+						this.setX(60);
+						this.setY(772);
+					}else{
+						colisiono = true;
+						barril.setX(1000);
+						barril.setY(1000);
+					}
+				}
+			}
+			else if((barril.getX() == this.getX()) && barril instanceof BarrilVerde) {
+				colisiono = true;
+			}
 		}
-		return false;
-	
+		return colisiono;
 	}
 	
 	public boolean comprobarColisionSorpresa(int xSorpresa, int ySorpresa) {
-		if(((this.getX() <= xSorpresa&& this.getX()+33 >= xSorpresa) && this.getY() == ySorpresa)||(this.getX() == xSorpresa&& this.getY()-1 == ySorpresa)) {
+		if(((this.getX() <= xSorpresa&& this.getX()+33 >= xSorpresa) && (this.getY() >= ySorpresa && this.getY()-33 <= ySorpresa))) {
 			return true;
 		}
 		return false;
-	
 	}
 	
 	

@@ -62,7 +62,7 @@ public abstract class Barril extends Elemento {
 	
 	public abstract void moverHastaUnaPlataforma();
 		
-		
+	
 	
 		
 		

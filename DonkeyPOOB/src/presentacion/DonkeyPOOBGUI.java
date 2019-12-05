@@ -319,7 +319,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 					if(!juego.enPausa()){
 						actualizarBarriles();
 						actualizar();
-						Thread.sleep(13);
+						Thread.sleep(20);
 					}
 				}
 			}
@@ -354,10 +354,10 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	 * */
 	private void  ponerElementosJuego() {
 		try {
-			juego.prepareBarriles(4);
+			juego.prepareBarriles(5);
 			juego.addPlataformas();
 			juego.addEscaleras();
-			juego.prepareSorpresa(1);
+			juego.prepareSorpresa(6);
 			juego.barrilesParaJugar(menuInicial.barrilesSelecionados);
 			juego.sorpresasParaJugar(menuInicial.sorpresasSelecionados);
 		}catch(DonkeyPOOBException e){
@@ -450,8 +450,8 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 			s = tablero.getJugador(0);
 		}
 		if (juego.getJugador(0).getPersonaje().isVisible()) {
-			
 			juego.getJugador(0).getPersonaje().moverHastaUnaPlataforma();
+			
 			s.setX(juego.getJugador(0).getX());
 			s.setY(juego.getJugador(0).getY());
 			s.setRoot(juego.getJugador(0).getRoot());
@@ -501,6 +501,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 			}
 			if (juego.getBarril(i).isVisible()) {
 				juego.lanzarBarriles();
+				juego.colisionBarriles();
 				s.setX(barriles[i].getX());
 				s.setY(barriles[i].getY());
 				s.setRoot(barriles[i].getImagen());
@@ -526,7 +527,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		for(int i = 0; i < juego.numeroJugadores(); i++){
 			int vidasAct = juego.getJugador(i).getVidas();
 			ArrayList<Sprite> vidas = tablero.getVidas();
-			//for(int j = i*3;j <= 3+((i*3)-1);j++)vidas.get(j).setVisible(true);
+			for(int j = i*3;j <= 3+((i*3)-1);j++)vidas.get(j).setVisible(true);
 			for(int j = i*3;j <= 3+((i*3)-1)-(vidasAct);j++) vidas.get(j).setVisible(false);
 			//System.out.println(3+((i*3)-1)-(vidasAct));
 		}

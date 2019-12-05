@@ -80,4 +80,17 @@ public abstract class Jugador {
 	public void quitarVida() {
 		vidas--;
 	}
+	
+	public void addVida() {
+		if(vidas < 3);
+			vidas++;
+		
+	}
+	
+	public boolean comprobarColision(Barril barril) {
+		if(personaje.comprobarColision(barril)) {
+			return true;
+		}
+		return false;
+	}
 }

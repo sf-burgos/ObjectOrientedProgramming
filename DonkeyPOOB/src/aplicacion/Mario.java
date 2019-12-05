@@ -13,7 +13,7 @@ public  class Mario extends Personaje {
 		if(x+Desplazamiento < limiteX) {
 				x+=Desplazamiento;
 				estaSobreUnaPlataforma(x,y+33);
-			}
+		}if(!martillo) {
 			if(estado % 10 == 0) {
 				estado += 2;
 				super.setImagen("rsc/marioSprite4.png");
@@ -21,17 +21,33 @@ public  class Mario extends Personaje {
 				estado +=3; 
 				super.setImagen("rsc/marioSprite0.png");
 			}
+		}else {
+			super.setImagen("rsc/martilloDerecha.png");
+			desplazamientoMartillo += Desplazamiento; 
+			if(desplazamientoMartillo > 500) {
+				martillo = false;
+			}
+		}
 	}
 	public void moverIzquierda(){
 		if(x-Desplazamiento > 10) {
 			x-=Desplazamiento; 
 			estaSobreUnaPlataforma(x+30 ,y+33);
-		}if(estado % 10 == 0) {
-			estado += 2;
-			super.setImagen("rsc/marioSprite2.png");
+		}
+		if(!martillo) {
+			if(estado % 10 == 0) {
+				estado += 2;
+				super.setImagen("rsc/marioSprite2.png");
+			}else {
+				estado += 3;
+				super.setImagen("rsc/marioSprite1.png");
+			}
 		}else {
-			estado += 3;
-			super.setImagen("rsc/marioSprite1.png");
+			super.setImagen("rsc/martilloIzquierda.png");
+			desplazamientoMartillo += Desplazamiento;
+			if(desplazamientoMartillo > 500) {
+				martillo = false;
+			}
 		}
 	}
 	

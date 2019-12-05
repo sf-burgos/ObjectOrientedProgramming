@@ -8,7 +8,7 @@ public class Martillo extends Sorpresa {
 
 	@Override
 	public void aplicarPoder(Jugador jugador) {
-		//jugador.poderMartillo();
+		jugador.poderMartillo();
 		
 	}
 

@@ -91,10 +91,23 @@ public class DonkeyPOOB {
 	public void prepareSorpresa(int Nsorpresas) {
 		sorpresas = new Sorpresa [Nsorpresas];
 		for(int i=0;i<sorpresas.length;i++) {
-			//int x = ElegirElBarrilaLanzar(0,3);
+			int x = elegirElBarrilaLanzar(100,600);
+			int z = elegirElBarrilaLanzar(1,6);
+			int y = piso.get(z).getPuntoDos()[1];
 			//System.out.println(x);
-			
-			sorpresas[i]= new Martillo(200,587);
+			if(i == 0) {
+				sorpresas[i]= new Cereza(x,y-33);
+			}if(i == 1) {
+				sorpresas[i]= new Manzana(x,y-33);
+			}if(i == 2) {
+				sorpresas[i]= new Corazon(x,y-33);
+			}if(i == 3) {
+				sorpresas[i]= new Hongo(x,y-33);
+			}if(i == 4) {
+				sorpresas[i]= new Martillo(x,y-33);
+			}if(i == 5) {
+				sorpresas[i]= new Soga(x,y-33);
+			}
 		}							
 	}
 	
@@ -392,19 +405,37 @@ public class DonkeyPOOB {
 				if(barriles[i-1].getY() >= 400) {
 					barriles[i].moverHastaUnaPlataforma();
 					
-				}
-				
-			}
-			if(juego.getJugador(0).getPersonaje().comprobarColision(barriles[i].getX(), barriles[i].getY())) {
-				quitarVidas(0);
+				}				
 			}
 		}
 	}
 	public void colisionSopresa() {
 		for (int i = 0; i < sorpresas.length;i++) {
 			if(juego.getJugador(0).getPersonaje().comprobarColisionSorpresa(sorpresas[i].getX(), sorpresas[i].getY()) ) {
-				juego.getJugador(0).poderMartillo();
+				sorpresas[i].aplicarPoder(juego.getJugador(0));
 				sorpresas[i].setVisible(false);
+				sorpresas[i].setX(1000);
+				sorpresas[i].setY(1000);
+			}
+		}
+	}
+	
+	public void colisionBarriles() {
+		for (int i = 0; i < barriles.length;i++) {
+			if(juego.getJugador(0).comprobarColision(barriles[i])) {
+				if(barriles[i] instanceof BarrilVerde) {
+					addVidas(0);
+					barriles[i].setVisible(false);
+				}
+				else {
+					if(juego.getJugador(0).getPersonaje().martillo) {
+						barriles[i].setVisible(false);
+						juego.getJugador(0).addPuntaje(50);
+					}else {
+						quitarVidas(0);
+					}
+				}
+				
 			}
 		}
 	}
@@ -426,6 +457,10 @@ public class DonkeyPOOB {
 	
 	public void quitarVidas(int jugador) {
 		jugadores[jugador].quitarVida();
+	}
+	
+	public void addVidas(int jugador) {
+		jugadores[jugador].addVida();
 	}
 	
 	/**
