@@ -52,12 +52,18 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	private DonkeyPOOB juego;
 	private Thread t,t2; 
 	
-	//booleans
+	//booleansMARIO
 	private boolean left=false;
 	private boolean right=false;
 	private boolean down=false;
 	private boolean up=false;
 	private boolean jump=false;
+	//booleansLUIGI
+	private boolean leftTwo=false;
+	private boolean rightTwo=false;
+	private boolean downTwo=false;
+	private boolean upTwo=false;
+	private boolean jumpTwo=false;
 	
 	
 	/**
@@ -298,7 +304,53 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 				juego.jugadorSalto(0);
 				jump=true;
 			}
+		
 			
+			
+			/*LUigi*/
+			if(keyCode == KeyEvent.VK_D) {
+				if (juego.getJugador(1).getPersonaje().hongo) {
+					juego.JugadorLeft(1);
+					left=true;
+				}else {
+						juego.JugadorRight(0);
+						right=true;
+						
+				}
+			}
+			
+			if(keyCode == KeyEvent.VK_A) {
+				if (juego.getJugador(1).getPersonaje().hongo) {
+				juego.JugadorRight(1);
+				rightTwo=true;
+			}else {
+				juego.JugadorLeft(1);
+				leftTwo=true;
+			}
+				
+			}
+			if(keyCode == KeyEvent.VK_W) {
+				if(juego.getJugador(1).getPersonaje().arriba) {
+					juego.JugadorUp(1);
+					upTwo=true;
+				}
+				//System.out.println("I don't wanna go mr Stark");
+			}
+			if(keyCode == KeyEvent.VK_S) {
+				if(juego.getJugador(1).getPersonaje().abajo) {
+					juego.JugadorDown(1);
+					downTwo=true;
+				}
+				//System.out.println("I don't wanna go mr Stark");
+			}
+			if(keyCode == KeyEvent.VK_SPACE){
+				juego.jugadorSalto(1);
+				jumpTwo=true;
+			}
+		
+			
+			
+		
 		}
 		
 	}
@@ -310,6 +362,12 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
         if (e.getKeyCode() == KeyEvent.VK_UP) up = false;
         if (e.getKeyCode() == KeyEvent.VK_DOWN) down = false;
         if (e.getKeyCode() == KeyEvent.VK_ENTER) jump = false;
+        
+		if (e.getKeyCode() == KeyEvent.VK_A) leftTwo = false;
+        if (e.getKeyCode() == KeyEvent.VK_D) rightTwo = false;
+        if (e.getKeyCode() == KeyEvent.VK_W) upTwo = false;
+        if (e.getKeyCode() == KeyEvent.VK_S) downTwo = false;
+        if (e.getKeyCode() == KeyEvent.VK_SPACE) jumpTwo = false;
 		
 	}
 	
@@ -365,7 +423,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	 * */
 	private void  ponerElementosJuego() {
 		try {
-			juego.prepareBarriles(5);
+			juego.prepareBarriles(10);
 			juego.addPlataformas();
 			juego.addEscaleras();
 			juego.prepareSorpresa(6);
@@ -491,10 +549,16 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	 * */
 	private void prepareBarriles() {
 			Barril[] barriles = juego.getBarriles(); 
-			for (int i=0;i<barriles.length;i++) {
-				tablero.addBarril();
-				tablero.getBarril(i).setRoot(juego.getBarril(i).getImagen());
-				
+			int[] barrilesSeleccionados = PantallaInicial.barrilesSelecionados;
+			
+			System.out.println(barrilesSeleccionados.length);
+			System.out.println(barriles.length);
+			
+			for (int i=0;i<barrilesSeleccionados.length;i++) {
+				if (barrilesSeleccionados[i]==1){
+					tablero.addBarril();
+					tablero.getBarril(i).setRoot(juego.getBarril(i).getImagen());
+				}
 			}
 			actualizarBarriles();
 	}
@@ -548,6 +612,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	private void actualizarSorpresas() {
 		for(int i = 0; i < juego.numeroDeSorpresas(); i++){
 			Sprite s;
+			
 			try {
 				s = tablero.getSorpresa(i);
 			} catch (IndexOutOfBoundsException ex) {
@@ -574,7 +639,6 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		s.setVisible(juego.getPersonajeEstatico(0).isVisible());
 			
 	}
-	
 	
 
 }

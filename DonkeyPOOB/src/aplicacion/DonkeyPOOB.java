@@ -18,6 +18,8 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 
+import presentacion.PantallaInicial;
+
 public class DonkeyPOOB {
 	private static DonkeyPOOB juego = null; 
 	private Jugador[] jugadores; 
@@ -36,6 +38,7 @@ public class DonkeyPOOB {
 
 		piso = new ArrayList<Plataforma>();
 		puntosEscalera = new ArrayList<Escalera>();
+		
 	}
 	
 	/**
@@ -90,6 +93,7 @@ public class DonkeyPOOB {
 	 * @param Nsorpresas numero de sorpresas 
 	 * */
 	public void prepareSorpresa(int Nsorpresas) {
+		//PantallaInicial
 		sorpresas = new Sorpresa [Nsorpresas];
 		for(int i=0;i<sorpresas.length;i++) {
 			int x = elegirElBarrilaLanzar(100,600);
@@ -475,10 +479,10 @@ public class DonkeyPOOB {
 	 * Retorna la sorpresa en un indice dado 
 	 * @param indice de la sorpresa 
 	 * */
-	
 	public Sorpresa getSorpresa(int i){
 		return sorpresas[i];
 	}
+	
 	
 	public boolean finished() {
 		return false;

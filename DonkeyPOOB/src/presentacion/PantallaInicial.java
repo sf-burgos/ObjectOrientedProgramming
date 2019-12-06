@@ -11,6 +11,10 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import aplicacion.Plataforma;
+import aplicacion.Sorpresa;
+
 import java.awt.event.*;
 
 public class PantallaInicial extends JPanel {
@@ -23,10 +27,11 @@ public class PantallaInicial extends JPanel {
 	private boolean elementos;
 	protected int numeroJugadores;
 	
-	protected int[] barrilesSelecionados;
-	protected int[] sorpresasSelecionados;
-	protected int[] personajesSelecionados;
+	protected static int[] barrilesSelecionados;
+	protected static  int[] sorpresasSelecionados;
+	protected static int[] personajesSelecionados;
 	
+
 	
 	public PantallaInicial(String imagen)  {
 		super(null);
@@ -34,6 +39,8 @@ public class PantallaInicial extends JPanel {
 		setFondo(imagen);
 		
 	}
+	
+	
 	
 	private void setFondo(String root) {
 		try {
@@ -359,4 +366,7 @@ public class PantallaInicial extends JPanel {
 			}
 		});
 	}
+	
+
+	
 }
