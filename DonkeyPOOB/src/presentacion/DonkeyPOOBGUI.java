@@ -388,7 +388,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 					if(!juego.enPausa()){
 						actualizarBarriles();
 						actualizar();
-						Thread.sleep(20);
+						Thread.sleep(15);
 					}
 				}
 			}
@@ -423,12 +423,13 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	 * */
 	private void  ponerElementosJuego() {
 		try {
-			juego.prepareBarriles(10);
+			
+			juego.prepareBarriles(menuInicial.barrilesSelecionados);
+		
 			juego.addPlataformas();
 			juego.addEscaleras();
 			juego.prepareSorpresa(6);
 			juego.preparePersonajesEstaticos(1);
-			//juego.barrilesParaJugar(menuInicial.barrilesSelecionados);
 			juego.sorpresasParaJugar(menuInicial.sorpresasSelecionados);
 		}catch(DonkeyPOOBException e){
 			JOptionPane.showMessageDialog(null, e.getMessage(), "¡Cuidado!", JOptionPane.WARNING_MESSAGE, icono);
@@ -551,14 +552,12 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 			Barril[] barriles = juego.getBarriles(); 
 			int[] barrilesSeleccionados = PantallaInicial.barrilesSelecionados;
 			
-			System.out.println(barrilesSeleccionados.length);
-			System.out.println(barriles.length);
 			
-			for (int i=0;i<barrilesSeleccionados.length;i++) {
-				if (barrilesSeleccionados[i]==1){
+			for (int i=0;i<barriles.length;i++) {
+				
 					tablero.addBarril();
 					tablero.getBarril(i).setRoot(juego.getBarril(i).getImagen());
-				}
+			
 			}
 			actualizarBarriles();
 	}
@@ -577,8 +576,8 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 				s = tablero.getBarril(i);
 			}
 			if (juego.getBarril(i).isVisible()) {
-				juego.lanzarBarriles();
 				juego.colisionBarriles();
+				juego.lanzarBarriles();				
 				s.setX(barriles[i].getX());
 				s.setY(barriles[i].getY());
 				s.setRoot(barriles[i].getImagen());

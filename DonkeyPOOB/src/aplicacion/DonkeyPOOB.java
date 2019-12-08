@@ -64,11 +64,29 @@ public class DonkeyPOOB {
 	/**
 	 * Prepara los tipos de barriles para jugar
 	 * @param Nbarriles numero de barriles  
+	 * @throws DonkeyPOOBException 
 	 * */
 	
-	public void prepareBarriles(int Nbarriles) {
-		barriles = new Barril[Nbarriles];
+	public void prepareBarriles(int [] barrilesSeleccionados) {
+		int[] barrilesJugar = barrilesParaJugar(barrilesSeleccionados);
+		Barril[] barrilesS = new Barril[barrilesJugar.length];
+		barriles = new Barril[barrilesS.length];		
+		for(int j=0; j< barriles.length ; j++) {
+			if (barrilesJugar[j] == 1) {
+				barriles[j] = new BarrilAmarillo(200,250);
+			}else if(barrilesJugar[j] == 2) {
+				barriles[j] = new BarrilAzul(200,250);
+			}else if(barrilesJugar[j] == 4) {
+				barriles[j] = new BarrilVerde(200,250);				
+			}else if(barrilesJugar[j] == 3) {
+				barriles[j] = new BarrilRojo(200,250);
+			}
+		}
+		/**
 		for(int i=0;i<barriles.length;i++) {
+			
+			
+			
 			int x = elegirElBarrilaLanzar(0,3);
 			//System.out.println(x);
 			if (x==0) {
@@ -84,7 +102,7 @@ public class DonkeyPOOB {
 				int cordenadaX = elegirElBarrilaLanzar(200,795);
 				barriles[i]= new BarrilRojo(cordenadaX,200);
 			}
-		}							
+		}		*/		
 	}
 	
 	
@@ -158,17 +176,10 @@ public class DonkeyPOOB {
 	 * @param barriles arreglo con los barriles seleccionados 
 	 * */
 	
-	/**public void barrilesParaJugar(int[] barriles) throws DonkeyPOOBException{
-		int numeroBarriles = 0;
-		for (int i=0;i<barriles.length;i++) {
-			if(barriles[i]==1) {
-				numeroBarriles+=1;
-			}
-		}
-		if(numeroBarriles==0) {
-			throw new DonkeyPOOBException(DonkeyPOOBException.SIN_BARRILES);
-		}
-	}*/
+	public int[] barrilesParaJugar(int[] barriles){
+		int[] barrilesJugar = convertirSeleccion(barriles);
+		return barrilesJugar;
+	}
 	
 	/**
 	 * Prepara las sorpresas seleccionadas en el menu para jugar 
@@ -490,6 +501,24 @@ public class DonkeyPOOB {
 	
 	public Elemento getPersonajeEstatico(int i) {
 		return personajesEstaticos[i];
+	}
+	
+	public int[] convertirSeleccion(int[] barriles) {
+		int cantidad = 0;
+		for(int i  = 0; i < barriles.length; i++) {
+			if (barriles[i]==1) {
+				cantidad++;
+			}
+		}
+		int[] barrilesSeleccion = new int[cantidad];
+		int posicion = 0;
+		for(int i  = 0; i < barriles.length; i++) {
+			if (barriles[i]==1) {
+				barrilesSeleccion[posicion]= i+1;
+				posicion++;
+			}
+		}
+		return barrilesSeleccion;
 	}
 	
 }
