@@ -1,6 +1,8 @@
 package aplicacion;
 
-public class mono extends Elemento  {
+import java.io.Serializable;
+
+public class mono extends Elemento implements Serializable  {
 
 	public mono(int x, int y) {
 		super(x, y);

@@ -1,5 +1,7 @@
 package aplicacion;
 
-public class Segmentada extends Escalera {
+import java.io.Serializable;
+
+public class Segmentada extends Escalera implements Serializable {
 
 }

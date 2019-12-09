@@ -1,5 +1,7 @@
 package aplicacion;
 
-public class Completa extends Escalera{
+import java.io.Serializable;
+
+public class Completa extends Escalera implements Serializable{
 
 }

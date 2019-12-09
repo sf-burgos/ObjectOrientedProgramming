@@ -1,8 +1,9 @@
 package aplicacion;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class BarrilAzul extends Barril {
+public class BarrilAzul extends Barril implements Serializable {
 	public ArrayList<Escalera> puntosEscalera= DonkeyPOOB.getEscaleras();
 	public BarrilAzul(int x, int y) {
 		

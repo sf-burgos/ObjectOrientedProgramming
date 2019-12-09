@@ -20,7 +20,7 @@ import javax.sound.sampled.DataLine;
 
 import presentacion.PantallaInicial;
 
-public class DonkeyPOOB {
+public class DonkeyPOOB implements Serializable {
 	private static DonkeyPOOB juego = null; 
 	private Jugador[] jugadores; 
 	private static Barril[] barriles;
@@ -67,8 +67,8 @@ public class DonkeyPOOB {
 	 * @throws DonkeyPOOBException 
 	 * */
 	
-	public void prepareBarriles(int [] barrilesSeleccionados) {
-		int[] barrilesJugar = barrilesParaJugar(barrilesSeleccionados);
+	public void prepareBarriles(int [] barrilesSeleccionados) throws DonkeyPOOBException   {
+		int[] barrilesJugar = barrilesParaJugar(barrilesSeleccionados) ;
 		Barril[] barrilesS = new Barril[barrilesJugar.length];
 		barriles = new Barril[barrilesS.length];		
 		for(int j=0; j< barriles.length ; j++) {
@@ -136,7 +136,9 @@ public class DonkeyPOOB {
 	
 	public void preparePersonajesEstaticos(int NEstaticos) {
 		personajesEstaticos = new Elemento [NEstaticos];
-		personajesEstaticos [0] = new mono(0,346);
+		personajesEstaticos [0] = new Princesa(310,346);
+		//personajesEstaticos [1] = new mono(0,346);
+		//personajesEstaticos [1] = new Princesa (310,346);
 		
 		
 	}
@@ -147,10 +149,10 @@ public class DonkeyPOOB {
 	 * @param maquina el tipo de jugador 
 	 * */
 	
-	public void prepareJugadores(int NJugadores,int maquina){
+	public void prepareJugadores(int NJugadores,int maquina, int[] personajesSeleccionados){
 		jugadores = new Jugador[NJugadores];
 		if(NJugadores == 2){
-			jugadores[0] = new Usuario(188,550); //Posicion izquierda
+			jugadores[0] = new Usuario(188,550,0); //Posicion izquierda
 			if(maquina > 0) {
 				switch (maquina){
 				case 1:
@@ -164,10 +166,20 @@ public class DonkeyPOOB {
 					break;
 					}
 			}else {
-				jugadores[1] = new Usuario(556,550); //Posicion derecha
+				jugadores[1] = new Usuario(556,550,0); //Posicion derecha
 			}
 		}else{
-			jugadores[0] = new Usuario(400,750); //Posicion centro
+			
+			if (personajesSeleccionados[0]==1) {
+				jugadores[0] = new Usuario(400,750,0);
+			}
+			if (personajesSeleccionados[1]==1) {
+				jugadores[0] = new Usuario(400,750,1); 
+				
+			}
+		
+			//System.out.println(personajesSeleccionados);
+			//jugadores[0] = new Usuario(400,750,1); 
 		}
 	}
 	
@@ -176,8 +188,15 @@ public class DonkeyPOOB {
 	 * @param barriles arreglo con los barriles seleccionados 
 	 * */
 	
-	public int[] barrilesParaJugar(int[] barriles){
+	public int[] barrilesParaJugar(int[] barriles) throws DonkeyPOOBException  {
 		int[] barrilesJugar = convertirSeleccion(barriles);
+		int numeroBarriles = 0; 		
+		for (int i=0;i<barriles.length;i++) { 			
+			if(barriles[i]==1) { 				
+				numeroBarriles+=1; 			
+				} 		
+		}if(numeroBarriles==0) { 			
+			throw new DonkeyPOOBException(DonkeyPOOBException.SIN_BARRILES);}
 		return barrilesJugar;
 	}
 	
@@ -494,11 +513,18 @@ public class DonkeyPOOB {
 		return sorpresas[i];
 	}
 	
-	
+	/**
+	 * se finaliza la aplicacion
+	 * */
 	public boolean finished() {
 		return false;
 	}
 	
+	/**
+	 * se da un personaje estatico,
+	 * donde sera o el Donkey o Princess
+	 * @param int i 
+	 * */
 	public Elemento getPersonajeEstatico(int i) {
 		return personajesEstaticos[i];
 	}
@@ -519,6 +545,40 @@ public class DonkeyPOOB {
 			}
 		}
 		return barrilesSeleccion;
+	}
+	/**
+	 * salva un juego a apartir de un archivo.
+	 * @param archivo a donde se va a salvar.
+	 */
+	public void salvar (File archivo) throws DonkeyPOOBException {
+		if (juego == null) {
+			throw new DonkeyPOOBException (DonkeyPOOBException .SIN_JUEGO);
+		}
+		try{
+			ObjectOutputStream out = new ObjectOutputStream( new FileOutputStream(archivo));
+			out.writeObject(juego);
+			out.close();
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Abre un juego a apartir de un archivo.
+	 * @param archivo de donde se va a abrir.
+	 */
+	public static void abra(File archivo) throws DonkeyPOOBException {
+		try {
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivo));
+			setJuego((DonkeyPOOB)ois.readObject() );
+		} catch (Exception e) {
+			throw new DonkeyPOOBException (DonkeyPOOBException .NO_ABRIR);
+		}
+	}
+
+	public static void setJuego(DonkeyPOOB aP) {
+		juego = aP;
 	}
 	
 }

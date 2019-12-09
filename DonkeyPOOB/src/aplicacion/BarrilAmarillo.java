@@ -1,6 +1,8 @@
 package aplicacion;
 
-public class BarrilAmarillo extends Barril {
+import java.io.Serializable;
+
+public class BarrilAmarillo extends Barril implements Serializable {
 
 	public BarrilAmarillo(int x, int y) {
 		super(x, y);

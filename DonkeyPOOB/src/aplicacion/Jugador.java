@@ -1,6 +1,8 @@
 package aplicacion;
 
-public abstract class Jugador {
+import java.io.Serializable;
+
+public abstract class Jugador implements Serializable {
 	protected Personaje personaje; 
 	public static final int limiteXFinal = 890;
 	public static final int limiteXInicial = 10;
@@ -9,11 +11,17 @@ public abstract class Jugador {
 	private int puntaje;
 	protected boolean esHumano;
 	
-	public Jugador(int x, int y, boolean esHumano) {
+	public Jugador(int x, int y, boolean esHumano, int h) {
 		vidas = 3; 
 		puntaje = 0;
 		this.esHumano = esHumano;
-		personaje = new Mario(x,y);
+		if (h==0) {
+			personaje = new Mario(x,y);
+		}
+		if (h==1) {
+			personaje = new Luigi(x,y);
+			
+		}
 	}
 	public void poderMartillo(){
 		personaje.utilizarMartillo();

@@ -1,6 +1,8 @@
 package aplicacion;
 
-public class BarrilVerde extends Barril {
+import java.io.Serializable;
+
+public class BarrilVerde extends Barril implements Serializable {
 	public BarrilVerde(int x, int y) {
 		super(x, y);
 		setImagen("rsc/barrilVerdeVida.png");

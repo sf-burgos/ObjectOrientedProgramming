@@ -1,6 +1,8 @@
 package aplicacion;
 
-public abstract class Sorpresa extends Elemento {
+import java.io.Serializable;
+
+public abstract class Sorpresa extends Elemento implements Serializable {
 	public Sorpresa (int x, int y) {
 		super(x,y);
 		

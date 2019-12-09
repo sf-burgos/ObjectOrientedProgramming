@@ -1,6 +1,8 @@
 package aplicacion;
 
-public class Manzana extends Sorpresa {
+import java.io.Serializable;
+
+public class Manzana extends Sorpresa implements Serializable {
 
 	public Manzana(int x, int y) {
 		super(x, y);

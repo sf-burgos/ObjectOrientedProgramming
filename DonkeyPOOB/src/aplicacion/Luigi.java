@@ -1,8 +1,10 @@
 package aplicacion;
 
-public  class Luigi extends Personaje {
+import java.io.Serializable;
 
-	public Luigi(int x, int y, String imagen) {		
+public  class Luigi extends Personaje implements Serializable {
+
+	public Luigi(int x, int y) {		
 		super(x, y);
 		setImagen("rsc/luigiSprite0.png");
 	}

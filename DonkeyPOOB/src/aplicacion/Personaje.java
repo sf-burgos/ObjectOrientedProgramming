@@ -1,16 +1,17 @@
 package aplicacion;
 
 import java.util.Date;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-//import java.io.Serializable;
+import java.io.Serializable;
 //import java.util.*;
 
-public abstract class Personaje extends Elemento{
+public abstract class Personaje extends Elemento implements Serializable{
 	
 	
 	public static final int limiteX = 850;

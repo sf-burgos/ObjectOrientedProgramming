@@ -1,6 +1,8 @@
 package aplicacion;
 
-public class Hongo extends Sorpresa {
+import java.io.Serializable;
+
+public class Hongo extends Sorpresa implements Serializable {
 
 	public Hongo(int x, int y) {
 		super(x, y);

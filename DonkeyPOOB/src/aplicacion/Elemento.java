@@ -1,6 +1,8 @@
 package aplicacion;
 
-public abstract class Elemento {
+import java.io.Serializable;
+
+public abstract class Elemento implements Serializable {
 	protected int x;
 	protected int y;
 	protected int deltaX;

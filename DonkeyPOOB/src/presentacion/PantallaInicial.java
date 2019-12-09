@@ -194,23 +194,28 @@ public class PantallaInicial extends JPanel {
 	}
 	
 	public void personajePrincipal() {
-		add(new Boton("mario",550,500));
-		add(new Boton("luigi",650,500));
-		
-		mario = new JCheckBox("",true);
-		mario.setOpaque(false);
-		mario.setBackground(Color.white);
-		mario.setBounds(550, 530, 20, 20);
-		add(mario);
-		
-		luigi = new JCheckBox("",false);
-		luigi.setOpaque(false);
-		luigi.setBackground(Color.white);
-		luigi.setBounds(650, 530, 20, 20);
-		add(luigi);
-		
-		int[] todos = {1,1};
-		personajesSelecionados = todos;
+		//if (numeroJugadores==1) {
+			add(new Boton("mario",550,500));
+			add(new Boton("luigi",650,500));
+			
+			mario = new JCheckBox("",true);
+			mario.setOpaque(false);
+			mario.setBackground(Color.white);
+			mario.setBounds(550, 530, 20, 20);
+			add(mario);
+			
+			luigi = new JCheckBox("",false);
+			luigi.setOpaque(false);
+			luigi.setBackground(Color.white);
+			luigi.setBounds(650, 530, 20, 20);
+			add(luigi);
+			int[] todos = {1,0};
+			personajesSelecionados = todos;
+		//}
+		//else {
+		//int[] todos = {1,1};
+		//personajesSelecionados = todos;
+		//}
 	}
 	
 	public void prepareElegirElementos() {
@@ -340,12 +345,17 @@ public class PantallaInicial extends JPanel {
 		});
 	}
 	private void prepareAccionesPersonajes() {
+		//for (int i=0;i<2;i++) {
+			//System.out.println(personajesSelecionados[i]+"estoy aqui");
+				
+			//}
 		mario.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e) {
 				if(e.getStateChange()==ItemEvent.SELECTED) {
 					personajesSelecionados[0] = 1;
 					personajesSelecionados[1] = 0;	
 					luigi.setSelected(false);
+		
 				}else {
 					personajesSelecionados[0] = 0;
 					personajesSelecionados[1] = 1;				

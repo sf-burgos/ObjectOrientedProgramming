@@ -1,8 +1,9 @@
 package aplicacion;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Barril extends Elemento {
+public abstract class Barril extends Elemento implements Serializable {
 
 
 	public static final int limiteX = 850;

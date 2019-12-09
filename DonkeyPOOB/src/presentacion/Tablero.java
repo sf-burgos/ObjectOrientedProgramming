@@ -64,7 +64,7 @@ public class Tablero extends JPanel{
 	}
 	
 	public void addVidas() {
-		for(int i = 0; i<5 ; i++) {
+		for(int i = 0; i<3 ; i++) {
 			if(jugadores.size() == 1) {
 				vidas.add(new Sprite(40 + (i*40), 60,true,1,1));
 			}else{
@@ -130,13 +130,17 @@ public class Tablero extends JPanel{
 		for (Sprite j: jugadores) j.paint((Graphics2D) g);
 		for (Sprite j: personajesEstaticos) j.paint((Graphics2D) g);
 		
-		
+		g.setColor(Color.white);
+		g.setFont(new Font("Century Gothic", Font.BOLD, 30));
 		
 		if (puntajes.length == 1) {
-			g.setColor(Color.white);
-			g.setFont(new Font("Century Gothic", Font.BOLD, 30));
 			g.drawString("Score", 30, 30);
 			g.drawString(puntajes[0], 30, 55);
+		}
+		else { 				
+			//g.drawString("Nivel "+ nivel, 425, 35); 				
+			g.drawString(puntajes[0], 30, 55); 				
+			g.drawString(puntajes[1], 644, 55); 			
 		}
 	
 		paintComponents(g);

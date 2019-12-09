@@ -1,5 +1,7 @@
 package aplicacion;
 
-public class Nivel {
+import java.io.Serializable;
+
+public class Nivel implements Serializable {
 
 }

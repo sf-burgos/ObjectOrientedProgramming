@@ -1,6 +1,8 @@
 package aplicacion;
 
-public class Protector extends Maquina {
+import java.io.Serializable;
+
+public class Protector extends Maquina implements Serializable {
 
 	public Protector(int x, int y) {
 		super(x, y);

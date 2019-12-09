@@ -1,6 +1,8 @@
 package aplicacion;
 
-public  class Mario extends Personaje {
+import java.io.Serializable;
+
+public  class Mario extends Personaje implements Serializable {
 
 	public Mario(int x, int y) {
 		// Personaje(int x, int y, String marioRight, String marioRRun, String marioR, String marioLeft, String marioLRun, String marioL, String kill, String scaleL, String scaleR) {

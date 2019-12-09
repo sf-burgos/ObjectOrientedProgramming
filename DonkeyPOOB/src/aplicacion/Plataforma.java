@@ -1,6 +1,8 @@
 package aplicacion;
 
-public class Plataforma {
+import java.io.Serializable;
+
+public class Plataforma implements Serializable  {
 	private int[] puntoUno;
 	private int[] puntoDos;
 	

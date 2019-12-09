@@ -1,6 +1,6 @@
 package aplicacion;
 
-public class DonkeyPOOBException extends Exception{
+public class DonkeyPOOBException extends Exception {
 		public static final String SIN_BARRILES = "No puede jugar sin barriles seleccionados.";
 		public static final String SIN_SORPRESAS = "No puede jugar sin sorpresas.";
 		public static final String SIN_JUEGO = "Cree un juego antes de guardar.";

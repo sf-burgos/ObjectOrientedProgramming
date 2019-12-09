@@ -1,5 +1,6 @@
 package presentacion;
 
+
 import aplicacion.DonkeyPOOB;
 import aplicacion.Barril;
 import aplicacion.DonkeyPOOBException;
@@ -51,6 +52,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	private Tablero tablero;
 	private DonkeyPOOB juego;
 	private Thread t,t2; 
+	private int player;
 	
 	//booleansMARIO
 	private boolean left=false;
@@ -146,15 +148,19 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	*Creación de los oyentes necesarios para el menú inicial
 	*/
 	public void prepareAcciones() {
+		prepareAccionesMenu();
 		menuInicial.unPlayer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				menuInicial.numeroJugadores = 1;
+				player=0;
 				iniciar(1,0);
 			}
 		});
 		menuInicial.dosPlayer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				player=1;
+				menuInicial.numeroJugadores = 2;
+				iniciar(2,0);
 			}
 		});
 		menuInicial.playerVsCpu.addActionListener(new ActionListener() {
@@ -171,7 +177,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		});
 		menuInicial.abrir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				abrir();
 			}
 		});
 		menuInicial.salir.addActionListener(new ActionListener() {
@@ -232,7 +238,8 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	public void iniciar(int jugadores,int maquinas) {
 		DonkeyPOOB.nuevoJuego();
 		juego = DonkeyPOOB.getJuego();
-		juego.prepareJugadores(jugadores, maquinas);			
+		//System.out.println(menuInicial.personajesSelecionados+"estamos melos, sisas");
+		//juego.prepareJugadores(jugadores, maquinas, menuInicial.personajesSelecionados);			
 		ponerElementos();
 	}
 	
@@ -380,13 +387,13 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 			while(!juego.gameOver()&&!juego.finished()){
 				
 				actualizar();
-				actualizarBarriles();
+				//actualizarBarriles();
 
 
 			
 				while(!juego.gameOver()) {
 					if(!juego.enPausa()){
-						actualizarBarriles();
+						//actualizarBarriles();
 						actualizar();
 						Thread.sleep(15);
 					}
@@ -410,7 +417,14 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		menuInicial.aceptar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				ponerElementosJuego();
+				if (player==0) {
+					ponerElementosJuego(1,0);
+					
+				}
+				if (player==1) {
+					ponerElementosJuego(2,0);
+					
+				}
 				prepareElementosJuego(1);
 				prepareAccionesElementosJuego();
 				
@@ -421,9 +435,9 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	/**
 	 * Preparamos los elementos para jugar utilizando la capa de aplicacion 
 	 * */
-	private void  ponerElementosJuego() {
+	private void  ponerElementosJuego(int jugadores,int maquinas) {
 		try {
-			
+			juego.prepareJugadores(jugadores, maquinas, menuInicial.personajesSelecionados);	
 			juego.prepareBarriles(menuInicial.barrilesSelecionados);
 		
 			juego.addPlataformas();
@@ -446,7 +460,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		principal.add(tablero,"tablero");		
 		t = new Thread(this);
 		prepareJugadores();
-		prepareBarriles();
+		//prepareBarriles();
 		preparePersonajesEstaticos();
 		layout.show(principal,"tablero");
 		t.start();
@@ -590,6 +604,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 	 * Actualizacion del puntaje teniendo en cuenta la informacion en la capa de aplicacion 
 	 * */
 	private void actualizarPuntaje(){
+		//System.out.println(juego.numeroJugadores());
 		for(int i = 0; i < juego.numeroJugadores(); i++){
 			tablero.setPuntaje(i, juego.getJugador(i).getPuntaje());
 		}
@@ -638,7 +653,73 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		s.setVisible(juego.getPersonajeEstatico(0).isVisible());
 			
 	}
-	
+	private void prepareAccionesMenu() {
+		salir.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				salir();
+			}
+		});
+		guardar.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				guardar();
+			}
+		});
+		
+		abrir.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				abrir();
+			}
+		});
+		
+		nuevo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setSize(new Dimension(900, 590));
+				//if(juego!=null)juego.endGame();
+				//reiniciar();
+			}
+		});
+	}
+	private void abrir(){
+		
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+		int result = fileChooser.showOpenDialog(this);
+		if (result == JFileChooser.APPROVE_OPTION) {
+			File f = fileChooser.getSelectedFile();
+			try{
+				DonkeyPOOB.abra(f);
+				juego  = DonkeyPOOB.getJuego();
+				//detenerSonidos();
+				prepareElementosJuego(juego.numeroJugadores());
+				actualizar();
+			}catch(DonkeyPOOBException e) {
+				JOptionPane.showMessageDialog(null, e.getMessage(), "¡Cuidado!", JOptionPane.WARNING_MESSAGE, icono);
+			}
+			
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	private void guardar() {
+		if(juego == null) {
+			JOptionPane.showMessageDialog(null, DonkeyPOOBException.SIN_JUEGO, "¡Cuidado!", JOptionPane.WARNING_MESSAGE, icono);
+		}else {
+			JFileChooser chooser = new JFileChooser();
+			chooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+			int result = chooser.showSaveDialog(this);
+			if (result == JFileChooser.APPROVE_OPTION) {
+				File f = new File("./"+chooser.getSelectedFile().getName()+".dat");
+				try {
+					juego.salvar(f);
+				}catch(DonkeyPOOBException e) {
+					JOptionPane.showMessageDialog(null, e.getMessage(), "¡Cuidado!", JOptionPane.WARNING_MESSAGE, icono);
+				}
+			}
+		}
+	}
 
 }
 		

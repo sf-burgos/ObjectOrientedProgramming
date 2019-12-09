@@ -1,6 +1,8 @@
 package aplicacion;
 
-public class Cereza extends Sorpresa {
+import java.io.Serializable;
+
+public class Cereza extends Sorpresa implements Serializable {
 
 	public Cereza(int x, int y) {
 		super(x, y);

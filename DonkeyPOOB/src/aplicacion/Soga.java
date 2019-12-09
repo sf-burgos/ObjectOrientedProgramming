@@ -1,6 +1,8 @@
 package aplicacion;
 
-public class Soga extends Sorpresa {
+import java.io.Serializable;
+
+public class Soga extends Sorpresa implements Serializable {
 
 	public Soga(int x, int y) {
 		super(x, y);
