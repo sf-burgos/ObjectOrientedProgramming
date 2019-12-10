@@ -402,7 +402,7 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 					if(!juego.enPausa()){
 						actualizarBarriles();
 						actualizar();
-						Thread.sleep(15);
+						Thread.sleep(20);
 					}
 				}
 			}
@@ -412,6 +412,10 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		}
 		
 	}
+	
+	/**
+	 * Prepara las acciones de los botones volver y aceptar 
+	 * */
 	private void prepareAccionesElementos() {
 		menuInicial.volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -474,6 +478,10 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		t.start();
 
 	}
+	
+	/**
+	 * Listener del raton 
+	 * */
 	
 	public void prepareAccionesElementosJuego() {
 		tablero.addMouseListener(new MouseListener(){
@@ -656,6 +664,10 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 			s.setVisible(juego.getSorpresa(i).isVisible());
 		}
 	}
+
+	/**
+	 * Prepara los personajes estaticos para pintarlos 
+	 * */
 	
 	private void preparePersonajesEstaticos() {
 		Sprite s;
@@ -673,6 +685,10 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 		t.setY(220);	
 		t.setVisible(juego.getPersonajeEstatico(0).isVisible());	
 	}
+	
+	/**
+	 * Listeners para los botones del menu 
+	 * */
 	private void prepareAccionesMenu() {
 		salir.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -699,6 +715,10 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 			}
 		});
 	}
+	
+	/**
+	 * Accion abrir 
+	 * */
 	private void abrir(){
 		
 		JFileChooser fileChooser = new JFileChooser();
@@ -733,6 +753,10 @@ public class DonkeyPOOBGUI extends JFrame implements Runnable,KeyListener{
 			}
 		}
 	}
+	
+	/**
+	 * Accion Guardar 
+	 * */
 	private void guardar() {
 		if(juego == null) {
 			JOptionPane.showMessageDialog(null, DonkeyPOOBException.SIN_JUEGO, "¡Cuidado!", JOptionPane.WARNING_MESSAGE, icono);

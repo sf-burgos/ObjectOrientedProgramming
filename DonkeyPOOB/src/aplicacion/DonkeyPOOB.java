@@ -70,7 +70,7 @@ public class DonkeyPOOB implements Serializable {
 	public void prepareBarriles(int [] barrilesSeleccionados) throws DonkeyPOOBException   {
 		int[] barrilesJugar = barrilesParaJugar(barrilesSeleccionados) ;
 		Barril[] barrilesS = new Barril[barrilesJugar.length];
-		barriles = new Barril[4];		
+		barriles = new Barril[15];		
 		for(int j=0; j< barriles.length ; j++) {
 			int x = elegirElBarrilaLanzar(0,barrilesJugar.length-1);
 			if (barrilesJugar[x] == 1) {
@@ -85,31 +85,8 @@ public class DonkeyPOOB implements Serializable {
 			}
 			
 		}
-		/**
-		for(int i=0;i<barriles.length;i++) {
-			
-			
-			
-			int x = elegirElBarrilaLanzar(0,3);
-			//System.out.println(x);
-			if (x==0) {
-				barriles[i]= new BarrilAmarillo(200,200);
-			}
-			else if(x==1){
-				barriles[i]= new BarrilAzul(200,200);
-			}
-			else if(x==2) { 
-				barriles[i]= new BarrilVerde(200,200);
-			}
-			else if(x==3) { 
-				int cordenadaX = elegirElBarrilaLanzar(200,795);
-				barriles[i]= new BarrilRojo(cordenadaX,200);
-			}
-		}		*/		
 	}
-	
-	
-	/**
+/**
 	 * Prepara las sorpresas para jugar 
 	 * @param Nsorpresas numero de sorpresas 
 	 * */
@@ -137,6 +114,10 @@ public class DonkeyPOOB implements Serializable {
 		}							
 	}
 	
+	/**
+	 * Prepara el mono y la princesa 
+	 * @param NEstaticos numero de personajes 
+	 */
 	public void preparePersonajesEstaticos(int NEstaticos) {
 		personajesEstaticos = new Elemento [NEstaticos];
 		personajesEstaticos [0] = new Princesa(310,346);
@@ -311,9 +292,7 @@ public class DonkeyPOOB implements Serializable {
 		return aunActivo;
 	}
 	
-	/**
-	 * Mueve un jugador a la derecha dependiendo el numero del jugador 
-	 * */
+
 	
 	
 	/**
@@ -453,6 +432,10 @@ public class DonkeyPOOB implements Serializable {
 			}
 		}
 	}
+	
+	/**
+	 * Verifica si una sorpresa colisiona con un personaje
+	 */
 	public void colisionSopresa() {
 		for (int i = 0; i < sorpresas.length;i++) {
 			for(int j=0;j< juego.numeroJugadores();j++) {
@@ -465,6 +448,9 @@ public class DonkeyPOOB implements Serializable {
 			}
 		}
 	}
+	/**
+	 * Verifica si un barril colisiona con un personaje
+	 */
 	
 	public void colisionBarriles() {
 		for (int i = 0; i < barriles.length;i++) {
@@ -507,6 +493,12 @@ public class DonkeyPOOB implements Serializable {
 		jugadores[jugador].quitarVida();
 	}
 	
+	/**
+	 * Agrega una vida a un jugador especifico 
+	 * @param indice del jugador 
+	 * */
+	
+	
 	public void addVidas(int jugador) {
 		jugadores[jugador].addVida();
 	}
@@ -534,6 +526,11 @@ public class DonkeyPOOB implements Serializable {
 	public Elemento getPersonajeEstatico(int i) {
 		return personajesEstaticos[i];
 	}
+	
+	/**
+	 * Nos permite saber que barriles fueron seleccionados 
+	 * @param Lista de barriles seleccionados 
+	 */
 	
 	public int[] convertirSeleccion(int[] barriles) {
 		int cantidad = 0;
@@ -583,8 +580,12 @@ public class DonkeyPOOB implements Serializable {
 		}
 	}
 
-	public static void setJuego(DonkeyPOOB aP) {
-		juego = aP;
+	/**
+	 * Recibe un juego 
+	 * @param DonkeyPOOB dp juego 
+	 * */
+	public static void setJuego(DonkeyPOOB dP) {
+		juego = dP;
 	}
 	
 }
