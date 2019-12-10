@@ -94,16 +94,16 @@ public class PantallaInicial extends JPanel {
 	public void prepareElementosCpu() {
 		removeAll();
 		
-		cpuProtector = new Boton("Protector",100,500);
+		cpuProtector = new Boton("Protector",200,600);
 		add(cpuProtector);
 		
-		cpuMimo = new Boton("Mimo",230,500);
+		cpuMimo = new Boton("Mimo",400,600);
 		add(cpuMimo);
 		
-		cpuTemeroso = new Boton("Temeroso",360,500);
+		cpuTemeroso = new Boton("Temeroso",600,600);
 		add(cpuTemeroso);
 		
-		volver = new  Boton("", 10, 10);
+		volver = new  Boton("atras", 10, 10);
 		add(volver);
 		repaint();
 	}
