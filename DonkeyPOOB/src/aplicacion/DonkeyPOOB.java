@@ -70,17 +70,20 @@ public class DonkeyPOOB implements Serializable {
 	public void prepareBarriles(int [] barrilesSeleccionados) throws DonkeyPOOBException   {
 		int[] barrilesJugar = barrilesParaJugar(barrilesSeleccionados) ;
 		Barril[] barrilesS = new Barril[barrilesJugar.length];
-		barriles = new Barril[barrilesS.length];		
+		barriles = new Barril[4];		
 		for(int j=0; j< barriles.length ; j++) {
-			if (barrilesJugar[j] == 1) {
-				barriles[j] = new BarrilAmarillo(200,250);
-			}else if(barrilesJugar[j] == 2) {
-				barriles[j] = new BarrilAzul(200,250);
-			}else if(barrilesJugar[j] == 4) {
-				barriles[j] = new BarrilVerde(200,250);				
-			}else if(barrilesJugar[j] == 3) {
-				barriles[j] = new BarrilRojo(200,250);
+			int x = elegirElBarrilaLanzar(0,barrilesJugar.length-1);
+			if (barrilesJugar[x] == 1) {
+				barriles[j] = new BarrilAmarillo(200,300);
+			}else if(barrilesJugar[x] == 2) {
+				barriles[j] = new BarrilAzul(200,300);
+			}else if(barrilesJugar[x] == 4) {
+				barriles[j] = new BarrilVerde(200,300);
+			}else if(barrilesJugar[x] == 3) {
+				int y = elegirElBarrilaLanzar(150,700);
+				barriles[j] = new BarrilRojo(y,250);
 			}
+			
 		}
 		/**
 		for(int i=0;i<barriles.length;i++) {
@@ -137,7 +140,7 @@ public class DonkeyPOOB implements Serializable {
 	public void preparePersonajesEstaticos(int NEstaticos) {
 		personajesEstaticos = new Elemento [NEstaticos];
 		personajesEstaticos [0] = new Princesa(310,346);
-		//personajesEstaticos [1] = new mono(0,346);
+		personajesEstaticos [1] = new mono(0,346);
 		//personajesEstaticos [1] = new Princesa (310,346);
 		
 		
@@ -166,7 +169,7 @@ public class DonkeyPOOB implements Serializable {
 					break;
 					}
 			}else {
-				jugadores[1] = new Usuario(556,550,0); //Posicion derecha
+				jugadores[1] = new Usuario(556,550,1); //Posicion derecha
 			}
 		}else{
 			
@@ -445,39 +448,42 @@ public class DonkeyPOOB implements Serializable {
 				barriles[0].moverHastaUnaPlataforma();
 			}else {
 				if(barriles[i-1].getY() >= 400) {
-					barriles[i].moverHastaUnaPlataforma();
-					
+					barriles[i].moverHastaUnaPlataforma();					
 				}				
 			}
 		}
 	}
 	public void colisionSopresa() {
 		for (int i = 0; i < sorpresas.length;i++) {
-			if(juego.getJugador(0).getPersonaje().comprobarColisionSorpresa(sorpresas[i].getX(), sorpresas[i].getY()) ) {
-				sorpresas[i].aplicarPoder(juego.getJugador(0));
-				sorpresas[i].setVisible(false);
-				sorpresas[i].setX(1000);
-				sorpresas[i].setY(1000);
+			for(int j=0;j< juego.numeroJugadores();j++) {
+				if(juego.getJugador(j).getPersonaje().comprobarColisionSorpresa(sorpresas[i].getX(), sorpresas[i].getY()) ) {
+					sorpresas[i].aplicarPoder(juego.getJugador(j));
+					sorpresas[i].setVisible(false);
+					sorpresas[i].setX(1000);
+					sorpresas[i].setY(1000);
+				}
 			}
 		}
 	}
 	
 	public void colisionBarriles() {
 		for (int i = 0; i < barriles.length;i++) {
-			if(juego.getJugador(0).comprobarColision(barriles[i])) {
-				if(barriles[i] instanceof BarrilVerde) {
-					addVidas(0);
-					barriles[i].setVisible(false);
-				}
-				else {
-					if(juego.getJugador(0).getPersonaje().martillo) {
+			for(int j=0;j< juego.numeroJugadores();j++) {
+				if(juego.getJugador(j).comprobarColision(barriles[i])) {
+					if(barriles[i] instanceof BarrilVerde) {
+						addVidas(j);
 						barriles[i].setVisible(false);
-						juego.getJugador(0).addPuntaje(50);
-					}else {
-						quitarVidas(0);
 					}
+					else {
+						if(juego.getJugador(j).getPersonaje().martillo) {
+							barriles[i].setVisible(false);
+							juego.getJugador(j).addPuntaje(50);
+						}else {
+							quitarVidas(j);
+						}
+					}
+					
 				}
-				
 			}
 		}
 	}

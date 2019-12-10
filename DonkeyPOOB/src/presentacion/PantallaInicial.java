@@ -75,10 +75,18 @@ public class PantallaInicial extends JPanel {
 		if(elementos){
 			g.setColor(Color.white);
 			g.setFont(new Font("Proxy 1", Font.BOLD, 20));
-			g.drawString("Selecione los elementos para su juego:           Personajes:", 100, 450);
-			g.drawString("Barriles:", 100, 470);
-			g.drawString("Sorpresas:", 100, 590);
-			elementos  = false;
+			if(numeroJugadores == 1) {				
+				g.drawString("Selecione los elementos para su juego:           Personajes:", 100, 450);
+				g.drawString("Barriles:", 100, 470);
+				g.drawString("Sorpresas:", 100, 590);
+				elementos  = false;
+			}else {
+				g.drawString("Selecione los elementos para su juego: ",100, 450);
+				g.drawString("Barriles:", 100, 470);
+				g.drawString("Sorpresas:", 100, 590);
+				elementos  = false;
+				
+			}
 		}
 		paintComponents(g);
 	}
@@ -194,7 +202,7 @@ public class PantallaInicial extends JPanel {
 	}
 	
 	public void personajePrincipal() {
-		//if (numeroJugadores==1) {
+		if (numeroJugadores==1) {
 			add(new Boton("mario",550,500));
 			add(new Boton("luigi",650,500));
 			
@@ -211,11 +219,11 @@ public class PantallaInicial extends JPanel {
 			add(luigi);
 			int[] todos = {1,0};
 			personajesSelecionados = todos;
-		//}
-		//else {
-		//int[] todos = {1,1};
-		//personajesSelecionados = todos;
-		//}
+		}
+		else {
+			int[] todos = {1,1};
+			personajesSelecionados = todos;
+		}
 	}
 	
 	public void prepareElegirElementos() {
@@ -349,32 +357,34 @@ public class PantallaInicial extends JPanel {
 			//System.out.println(personajesSelecionados[i]+"estoy aqui");
 				
 			//}
-		mario.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e) {
-				if(e.getStateChange()==ItemEvent.SELECTED) {
-					personajesSelecionados[0] = 1;
-					personajesSelecionados[1] = 0;	
-					luigi.setSelected(false);
-		
-				}else {
-					personajesSelecionados[0] = 0;
-					personajesSelecionados[1] = 1;				
+		if(numeroJugadores==1) {
+			mario.addItemListener(new ItemListener(){
+				public void itemStateChanged(ItemEvent e) {
+					if(e.getStateChange()==ItemEvent.SELECTED) {
+						personajesSelecionados[0] = 1;
+						personajesSelecionados[1] = 0;	
+						luigi.setSelected(false);
+			
+					}else {
+						personajesSelecionados[0] = 0;
+						personajesSelecionados[1] = 1;				
+					}
 				}
-			}
-		});
-		
-		luigi.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e) {
-				if(e.getStateChange()==ItemEvent.SELECTED) {
-					personajesSelecionados[1] = 1;
-					personajesSelecionados[0] = 0;
-					mario.setSelected(false);
-				}else {
-					personajesSelecionados[1] = 0;
-					personajesSelecionados[0] = 1;
+			});
+			
+			luigi.addItemListener(new ItemListener(){
+				public void itemStateChanged(ItemEvent e) {
+					if(e.getStateChange()==ItemEvent.SELECTED) {
+						personajesSelecionados[1] = 1;
+						personajesSelecionados[0] = 0;
+						mario.setSelected(false);
+					}else {
+						personajesSelecionados[1] = 0;
+						personajesSelecionados[0] = 1;
+					}
 				}
-			}
-		});
+			});
+		}
 	}
 	
 

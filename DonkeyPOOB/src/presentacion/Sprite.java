@@ -56,5 +56,12 @@ public class Sprite {
 			else
 				g.drawImage(imagen, x, y, width, height, null);			
 	}
+	
+	public void setWidth(int x) {
+		this.width = x;
+	}
+	public void setHeight(int y) {
+		this.height = y;
+	}
 
 }

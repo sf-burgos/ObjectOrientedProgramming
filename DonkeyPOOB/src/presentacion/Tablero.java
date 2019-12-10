@@ -46,7 +46,7 @@ public class Tablero extends JPanel{
 		}
 	}
 	public void addPersonajeEstatico() {
-		personajesEstaticos.add(new Sprite(500,500,true,50,50));
+		personajesEstaticos.add(new Sprite(500,500,true));
 		
 	}
 	
@@ -68,7 +68,7 @@ public class Tablero extends JPanel{
 			if(jugadores.size() == 1) {
 				vidas.add(new Sprite(40 + (i*40), 60,true,1,1));
 			}else{
-				vidas.add(new Sprite(750 + (i*42), 25,true,40,10));
+				vidas.add(new Sprite(700 + (i*42), 60,true,1,1));
 			}
 		}
 	}
@@ -137,9 +137,10 @@ public class Tablero extends JPanel{
 			g.drawString("Score", 30, 30);
 			g.drawString(puntajes[0], 30, 55);
 		}
-		else { 				
-			//g.drawString("Nivel "+ nivel, 425, 35); 				
-			g.drawString(puntajes[0], 30, 55); 				
+		else if(puntajes.length==2){
+			g.drawString("Score", 30, 30);
+			g.drawString(puntajes[0], 30, 55); 	
+			g.drawString("Score", 644, 30);
 			g.drawString(puntajes[1], 644, 55); 			
 		}
 	

@@ -8,7 +8,7 @@ public class BarrilAzul extends Barril implements Serializable {
 	public BarrilAzul(int x, int y) {
 		
 		super(x, y);
-		setImagen("rsc/barrilAzul.png");
+		setImagen("rsc/barrilAzulEscalera.png");
 
 		
 		// TODO Auto-generated constructor stub
