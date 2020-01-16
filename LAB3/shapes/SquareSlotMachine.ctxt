@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=SquareSlotMachine
+comment1.params=x
+comment1.target=SquareSlotMachine(int)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ SquareSlotMachine\r\n
+comment2.params=
+comment2.target=void\ pull()
+comment3.params=
+comment3.target=void\ imprimirC()
+numComments=4
